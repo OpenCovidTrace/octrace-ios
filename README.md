@@ -13,4 +13,4 @@ Visit <https://opencovidtrace.org> to learn more.
 
 The following is a statement from Apple: "To ensure the credibility of health and safety information, Apple is only accepting COVID-19 related apps from recognised entities such as government organisations, health-focused NGOs, companies deeply credentialed in health issues, and medical or educational institutions. Only developers from one of these recognized entities should submit an app related to COVID-19 to the App Store.
 
-For more information visit <https://developer.apple.com/news/?id=03142020">
+For more information visit <https://developer.apple.com/news/?id=03142020a>
