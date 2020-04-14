@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		419B242C40DBF496A21FF4B9 /* Pods_octrace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 212ADC273A0BEDD2DA92AED2 /* Pods_octrace.framework */; };
 		FA0571272446412E00D39462 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0571262446412E00D39462 /* AppDelegate.swift */; };
 		FA0571292446412E00D39462 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0571282446412E00D39462 /* SceneDelegate.swift */; };
 		FA05712B2446412E00D39462 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA05712A2446412E00D39462 /* ViewController.swift */; };
@@ -16,6 +17,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		117D1C6D38F63D587FA1E1BD /* Pods-octrace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-octrace.release.xcconfig"; path = "Target Support Files/Pods-octrace/Pods-octrace.release.xcconfig"; sourceTree = "<group>"; };
+		15CB5B50BF58601BDC235F89 /* Pods-octrace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-octrace.debug.xcconfig"; path = "Target Support Files/Pods-octrace/Pods-octrace.debug.xcconfig"; sourceTree = "<group>"; };
+		212ADC273A0BEDD2DA92AED2 /* Pods_octrace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_octrace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA0571232446412E00D39462 /* octrace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = octrace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA0571262446412E00D39462 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA0571282446412E00D39462 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -31,17 +35,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				419B242C40DBF496A21FF4B9 /* Pods_octrace.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E9992B61DF477DD3BE1353EE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				212ADC273A0BEDD2DA92AED2 /* Pods_octrace.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EE8A3518629D67CBA90A5493 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				15CB5B50BF58601BDC235F89 /* Pods-octrace.debug.xcconfig */,
+				117D1C6D38F63D587FA1E1BD /* Pods-octrace.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		FA05711A2446412E00D39462 = {
 			isa = PBXGroup;
 			children = (
 				FA0571252446412E00D39462 /* octrace */,
 				FA0571242446412E00D39462 /* Products */,
+				EE8A3518629D67CBA90A5493 /* Pods */,
+				E9992B61DF477DD3BE1353EE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -74,9 +99,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA0571372446413000D39462 /* Build configuration list for PBXNativeTarget "octrace" */;
 			buildPhases = (
+				9A8A38F6739D115A89B97C5B /* [CP] Check Pods Manifest.lock */,
 				FA05711F2446412E00D39462 /* Sources */,
 				FA0571202446412E00D39462 /* Frameworks */,
 				FA0571212446412E00D39462 /* Resources */,
+				432B66A2517D31F1C6F9DDCF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,6 +159,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		432B66A2517D31F1C6F9DDCF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-octrace/Pods-octrace-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-octrace/Pods-octrace-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-octrace/Pods-octrace-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9A8A38F6739D115A89B97C5B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-octrace-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FA05711F2446412E00D39462 /* Sources */ = {
@@ -282,6 +351,7 @@
 		};
 		FA0571382446413000D39462 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 15CB5B50BF58601BDC235F89 /* Pods-octrace.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -300,6 +370,7 @@
 		};
 		FA0571392446413000D39462 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 117D1C6D38F63D587FA1E1BD /* Pods-octrace.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
