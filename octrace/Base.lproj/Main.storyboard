@@ -1,24 +1,260 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Pif-DD-jMw">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Map-->
+        <scene sceneID="ra5-8h-WRz">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <viewController id="HgP-L2-cB3" customClass="MapViewController" customModule="OCTrace" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DTc-0Q-8MU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="u1L-zC-Iyl">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                            </mapView>
+                            <button opaque="NO" alpha="0.75" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tfk-CK-TcZ" customClass="RoundButton" customModule="CovidControl" customModuleProvider="target">
+                                <rect key="frame" x="16" y="741" width="40" height="40"/>
+                                <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="bME-Nd-T3H"/>
+                                    <constraint firstAttribute="height" constant="40" id="fXJ-Fl-SZA"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="outline_near_me_black_24pt">
+                                    <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="goToMyLocation:" destination="HgP-L2-cB3" eventType="touchUpInside" id="xyZ-2Z-Wgr"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aPZ-lL-MTC" customClass="RoundButton" customModule="CovidControl" customModuleProvider="target">
+                                <rect key="frame" x="16" y="637" width="40" height="40"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="FgB-EO-47a"/>
+                                    <constraint firstAttribute="height" constant="40" id="tT2-6p-DYy"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <state key="normal" image="outline_add_black_24pt">
+                                    <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="zoomIn:" destination="HgP-L2-cB3" eventType="touchUpInside" id="LXC-fb-sdn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jki-vL-Ib2" customClass="RoundButton" customModule="CovidControl" customModuleProvider="target">
+                                <rect key="frame" x="72" y="741" width="326" height="40"/>
+                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="5jj-b3-b9S"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Record contact"/>
+                                <connections>
+                                    <action selector="makeContact:" destination="HgP-L2-cB3" eventType="touchUpInside" id="HDe-yh-1A3"/>
+                                </connections>
+                            </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="pLf-Qi-GWp">
+                                <rect key="frame" x="148.5" y="694" width="117" height="32"/>
+                                <segments>
+                                    <segment title="Local"/>
+                                    <segment title="Global"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentChanged:" destination="HgP-L2-cB3" eventType="valueChanged" id="uE5-nJ-fjR"/>
+                                </connections>
+                            </segmentedControl>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="68J-pO-N1J">
+                                <rect key="frame" x="190.5" y="789" width="33" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bzt-Bm-9e7" customClass="RoundButton" customModule="CovidControl" customModuleProvider="target">
+                                <rect key="frame" x="16" y="685" width="40" height="40"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="25U-WU-iYg"/>
+                                    <constraint firstAttribute="height" constant="40" id="NYx-oN-gBw"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <state key="normal" image="outline_remove_black_24pt">
+                                    <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="zoomOut:" destination="HgP-L2-cB3" eventType="touchUpInside" id="MKy-jp-5bg"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Tfk-CK-TcZ" firstAttribute="leading" secondItem="aPZ-lL-MTC" secondAttribute="leading" id="40x-9r-hqh"/>
+                            <constraint firstItem="Jki-vL-Ib2" firstAttribute="top" secondItem="pLf-Qi-GWp" secondAttribute="bottom" constant="16" id="8Zl-DG-jnj"/>
+                            <constraint firstItem="Tfk-CK-TcZ" firstAttribute="top" secondItem="bzt-Bm-9e7" secondAttribute="bottom" constant="16" id="92d-tE-PBv"/>
+                            <constraint firstItem="68J-pO-N1J" firstAttribute="centerX" secondItem="DTc-0Q-8MU" secondAttribute="centerX" id="CbE-ko-XTd"/>
+                            <constraint firstItem="wVp-A6-3Pn" firstAttribute="trailing" secondItem="u1L-zC-Iyl" secondAttribute="trailing" id="Dvu-hG-QAL"/>
+                            <constraint firstItem="wVp-A6-3Pn" firstAttribute="bottom" secondItem="u1L-zC-Iyl" secondAttribute="bottom" id="Eci-vf-yAP"/>
+                            <constraint firstItem="Jki-vL-Ib2" firstAttribute="leading" secondItem="Tfk-CK-TcZ" secondAttribute="trailing" constant="16" id="IYx-6j-TJZ"/>
+                            <constraint firstItem="wVp-A6-3Pn" firstAttribute="trailing" secondItem="Jki-vL-Ib2" secondAttribute="trailing" constant="16" id="Ic2-bm-Okl"/>
+                            <constraint firstItem="Tfk-CK-TcZ" firstAttribute="leading" secondItem="wVp-A6-3Pn" secondAttribute="leading" constant="16" id="JN4-Aw-WGR"/>
+                            <constraint firstItem="u1L-zC-Iyl" firstAttribute="leading" secondItem="wVp-A6-3Pn" secondAttribute="leading" id="O5k-kQ-cVE"/>
+                            <constraint firstItem="Tfk-CK-TcZ" firstAttribute="bottom" secondItem="Jki-vL-Ib2" secondAttribute="bottom" id="PGY-yG-Qj5"/>
+                            <constraint firstItem="bzt-Bm-9e7" firstAttribute="leading" secondItem="aPZ-lL-MTC" secondAttribute="leading" id="WgK-TL-rae"/>
+                            <constraint firstItem="bzt-Bm-9e7" firstAttribute="top" secondItem="aPZ-lL-MTC" secondAttribute="bottom" constant="8" id="Xxj-yb-BET"/>
+                            <constraint firstItem="wVp-A6-3Pn" firstAttribute="bottom" secondItem="Tfk-CK-TcZ" secondAttribute="bottom" constant="32" id="d0S-Vl-0Ps"/>
+                            <constraint firstItem="u1L-zC-Iyl" firstAttribute="top" secondItem="DTc-0Q-8MU" secondAttribute="top" id="giz-f0-ilG"/>
+                            <constraint firstItem="pLf-Qi-GWp" firstAttribute="centerX" secondItem="DTc-0Q-8MU" secondAttribute="centerX" id="lEM-Mo-blf"/>
+                            <constraint firstItem="68J-pO-N1J" firstAttribute="top" secondItem="Jki-vL-Ib2" secondAttribute="bottom" constant="8" id="lTA-fT-BCY"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="wVp-A6-3Pn"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Map" image="tab_map" id="05B-fb-kPj"/>
+                    <connections>
+                        <outlet property="accuracyLabel" destination="68J-pO-N1J" id="96Q-8C-Txx"/>
+                        <outlet property="contactButton" destination="Jki-vL-Ib2" id="azE-Ow-TzV"/>
+                        <outlet property="mapView" destination="u1L-zC-Iyl" id="jQ5-3R-CfA"/>
+                        <outlet property="myLocationButton" destination="Tfk-CK-TcZ" id="qbM-cU-hjv"/>
+                        <outlet property="segmentedControl" destination="pLf-Qi-GWp" id="BUK-Ai-czI"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Qq-4l-7Vt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-271" y="-117"/>
+        </scene>
+        <!--My status-->
+        <scene sceneID="5nK-cd-NM7">
+            <objects>
+                <viewController id="6ld-MF-qcp" customClass="StatusViewController" customModule="OCTrace" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="c4l-F0-NZf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tVG-dr-mgC" customClass="RoundButton" customModule="CovidControl" customModuleProvider="target">
+                                <rect key="frame" x="32" y="426" width="350" height="44"/>
+                                <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="tR4-ym-Vok"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="STATUS CHANGE"/>
+                                <connections>
+                                    <action selector="statusChange:" destination="6ld-MF-qcp" eventType="touchUpInside" id="qxM-pU-XIV"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CURRENT STATUS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqn-M2-hsL">
+                                <rect key="frame" x="119.5" y="368.5" width="175" height="25.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="tVG-dr-mgC" firstAttribute="centerY" secondItem="c4l-F0-NZf" secondAttribute="centerY" id="5Qa-W5-sKm"/>
+                            <constraint firstItem="tVG-dr-mgC" firstAttribute="leading" secondItem="Swx-qk-Fcc" secondAttribute="leading" constant="32" id="GLS-IB-CMX"/>
+                            <constraint firstItem="Swx-qk-Fcc" firstAttribute="trailing" secondItem="tVG-dr-mgC" secondAttribute="trailing" constant="32" id="ddc-Je-yGW"/>
+                            <constraint firstItem="fqn-M2-hsL" firstAttribute="centerX" secondItem="c4l-F0-NZf" secondAttribute="centerX" id="iCf-sD-sig"/>
+                            <constraint firstItem="tVG-dr-mgC" firstAttribute="top" secondItem="fqn-M2-hsL" secondAttribute="bottom" constant="32" id="igP-kB-LIy"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Swx-qk-Fcc"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="My status" image="tab_status" id="yuH-Gz-PsF"/>
+                    <connections>
+                        <outlet property="statusButton" destination="tVG-dr-mgC" id="hBb-oa-PKh"/>
+                        <outlet property="statusLabel" destination="fqn-M2-hsL" id="Fpr-F2-Q7E"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5DE-C3-7my" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-271" y="605"/>
+        </scene>
+        <!--Newsroom-->
+        <scene sceneID="pg1-uu-GLu">
+            <objects>
+                <viewController id="ADf-XR-BQe" customClass="InfoViewController" customModule="OCTrace" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9nF-6C-ZLm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d9g-PO-wIV">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="d9g-PO-wIV" firstAttribute="top" secondItem="GK5-hw-l8F" secondAttribute="top" id="6fM-XU-uzv"/>
+                            <constraint firstItem="GK5-hw-l8F" firstAttribute="trailing" secondItem="d9g-PO-wIV" secondAttribute="trailing" id="ImH-8u-D0C"/>
+                            <constraint firstItem="d9g-PO-wIV" firstAttribute="leading" secondItem="GK5-hw-l8F" secondAttribute="leading" id="cH6-6p-lZZ"/>
+                            <constraint firstItem="GK5-hw-l8F" firstAttribute="bottom" secondItem="d9g-PO-wIV" secondAttribute="bottom" id="qkm-66-sPm"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="GK5-hw-l8F"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Newsroom" image="tab_news" id="gcb-Pv-af8"/>
+                    <connections>
+                        <outlet property="webView" destination="d9g-PO-wIV" id="hCM-kB-e5z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ub5-6q-xB1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-270" y="-830"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="flc-3S-0pz">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vl9-Nh-Wlc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <navigationController id="Pif-DD-jMw" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0Sn-l0-4nz">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="hZj-V4-8r7" kind="relationship" relationship="rootViewController" id="bbS-6d-gmW"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="-2222" y="-117"/>
+        </scene>
+        <!--Root View Controller-->
+        <scene sceneID="3ZZ-zh-3qj">
+            <objects>
+                <tabBarController id="hZj-V4-8r7" customClass="RootViewController" customModule="OCTrace" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="6eM-Ck-MTh"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="AKA-ak-vOa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="ADf-XR-BQe" kind="relationship" relationship="viewControllers" id="VGk-ne-dAb"/>
+                        <segue destination="HgP-L2-cB3" kind="relationship" relationship="viewControllers" id="TSz-g6-ee1"/>
+                        <segue destination="6ld-MF-qcp" kind="relationship" relationship="viewControllers" id="rgZ-Sg-pXO"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S50-gk-hfX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1204" y="-117"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="outline_add_black_24pt" width="24" height="24"/>
+        <image name="outline_near_me_black_24pt" width="24" height="24"/>
+        <image name="outline_remove_black_24pt" width="24" height="24"/>
+        <image name="tab_map" width="24" height="24"/>
+        <image name="tab_news" width="24" height="24"/>
+        <image name="tab_status" width="24" height="24"/>
+    </resources>
 </document>

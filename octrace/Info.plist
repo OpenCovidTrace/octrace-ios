@@ -15,30 +15,22 @@
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>UIApplicationSceneManifest</key>
-	<dict>
-		<key>UIApplicationSupportsMultipleScenes</key>
-		<false/>
-		<key>UISceneConfigurations</key>
-		<dict>
-			<key>UIWindowSceneSessionRoleApplication</key>
-			<array>
-				<dict>
-					<key>UISceneConfigurationName</key>
-					<string>Default Configuration</string>
-					<key>UISceneDelegateClassName</key>
-					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
-					<key>UISceneStoryboardFile</key>
-					<string>Main</string>
-				</dict>
-			</array>
-		</dict>
-	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>We use your location to record tracks of your movement. All the data is stored on your device unless you get infected and want to shared it with others. Allow location usage in background so it will stil work while you switch to other apps or when your device is locked.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>We use your location to record tracks of your movement. All the data is stored on your device unless you get infected and want to shared it with others. Allow location usage in background so it will stil work while you switch to other apps or when your device is locked.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We use your location to record tracks of your movement. All the data is stored on your device unless you get infected and want to shared it with others.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

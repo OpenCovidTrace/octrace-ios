@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>623310393501-6u7l6tck5e3k1mo7m7hppm5gg1qcs66g.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.623310393501-6u7l6tck5e3k1mo7m7hppm5gg1qcs66g</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAYj7HFUAIDUK_1hlzzlP5q4H1ISjMWm6s</string>
+	<key>GCM_SENDER_ID</key>
+	<string>623310393501</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.opencovidtrace.octrace</string>
+	<key>PROJECT_ID</key>
+	<string>opencovidtrace</string>
+	<key>STORAGE_BUCKET</key>
+	<string>opencovidtrace.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:623310393501:ios:9b99753d12f60f1f66c474</string>
+	<key>DATABASE_URL</key>
+	<string>https://opencovidtrace.firebaseio.com</string>
+</dict>
+</plist>
