@@ -29,6 +29,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var myLocationButton: UIButton!
     @IBOutlet weak var contactButton: UIButton!
     @IBOutlet weak var accuracyLabel: UILabel!
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
     
     @IBAction func segmentChanged(_ sender: Any) {
         // Need to do it asynchronously to enable the actual segment change ASAP
@@ -155,6 +156,8 @@ class MapViewController: UIViewController {
     }
     
     private func showLocalMap() {
+        indicator.hide()
+        
         mkCountriesPoints.forEach(mapView.removeAnnotation)
         
         goToMyLocation(global: false)
@@ -166,9 +169,11 @@ class MapViewController: UIViewController {
     private func showGlobalMap() {
         let countriesRequest = URLRequest(url: URL(string: "https://services.arcgis.com/5T5nSi527N4F7luB/arcgis/rest/services/Cases_by_country_Plg_V3/FeatureServer/0/query?f=json&where=1%3D1&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&orderByFields=cum_conf%20desc&resultOffset=0&resultRecordCount=310&cacheHint=true")!)
         
+        indicator.show()
         AF.request(countriesRequest,
                    interceptor: NetworkUtil.eternalRetry).responseDecodable(of: MapFeatureValue.self) { response in
                     if let value = response.value {
+                        self.indicator.hide()
                         self.updateCountriesInfo(with: value.features)
                     } else if let error = response.error {
                         print(error.localizedDescription)
