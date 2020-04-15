@@ -11,17 +11,13 @@ class InfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        webView.load(
-            URLRequest(url: URL(string: NEWS_ENDPOINT)!)
-        )
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         let websiteDataTypes = NSSet(array: [WKWebsiteDataTypeDiskCache, WKWebsiteDataTypeMemoryCache])
         let date = Date(timeIntervalSince1970: 0)
         WKWebsiteDataStore.default().removeData(ofTypes: websiteDataTypes as! Set<String>, modifiedSince: date, completionHandler:{ })
         
-        webView.reload()
+        webView.load(
+            URLRequest(url: URL(string: NEWS_ENDPOINT)!)
+        )
     }
     
 }
