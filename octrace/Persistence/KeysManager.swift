@@ -93,7 +93,7 @@ class KeysManager {
             // We currently don't upload diagnostic keys without location data!
             if let border = borders[dayNumber] {
                 let keyValue = KeyManager.getDailyKey(for: dayNumber).base64EncodedString()
-                // TODO secure randomizer on upload if borders thinner than threshold
+                border.secure()
                 let key = Key(value: keyValue, day: dayNumber, border: border)
                 
                 keysData.keys.append(key)
@@ -133,6 +133,10 @@ struct Key: Codable {
 
 class LocationBorder: Codable {
     
+    private static let minDiff = 0.1 // ~ 10km
+    private static let maxLatValue = 90.0
+    private static let maxLngValue = 180.0
+    
     var minLat: Double
     var minLng: Double
     var maxLat: Double
@@ -168,6 +172,38 @@ class LocationBorder: Codable {
             maxLat: max(maxLat, other.maxLat),
             maxLng: max(maxLng, other.maxLng)
         )
+    }
+    
+    func secure() {
+        if minLat - maxLat < LocationBorder.minDiff {
+            minLat -= Double.random(in: LocationBorder.minDiff/2 ..< LocationBorder.minDiff)
+            maxLat += Double.random(in: LocationBorder.minDiff/2 ..< LocationBorder.minDiff)
+            
+            if minLat < -LocationBorder.maxLatValue {
+                minLat += LocationBorder.maxLatValue * 2
+            }
+            
+            if maxLat > LocationBorder.maxLatValue {
+                maxLat -= LocationBorder.maxLatValue * 2
+            }
+            
+            print("Extended latitude to \(minLat) - \(maxLat)")
+        }
+        
+        if minLng - maxLng < LocationBorder.minDiff {
+            minLng -= Double.random(in: LocationBorder.minDiff/2 ..< LocationBorder.minDiff)
+            maxLng += Double.random(in: LocationBorder.minDiff/2 ..< LocationBorder.minDiff)
+            
+            if minLng < -LocationBorder.maxLngValue {
+                minLng += LocationBorder.maxLngValue * 2
+            }
+            
+            if maxLng > LocationBorder.maxLngValue {
+                maxLng -= LocationBorder.maxLngValue * 2
+            }
+            
+            print("Extended longitude to \(minLng) - \(maxLng)")
+        }
     }
     
 }

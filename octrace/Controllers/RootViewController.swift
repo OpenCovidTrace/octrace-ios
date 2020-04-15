@@ -225,10 +225,13 @@ class RootViewController: UITabBarController {
             return nil
         }
         
-        // TODO secure randomizer on upload if borders thinner than threshold
-        return borders.values.reduce(borders.values.first!) { first, second in
+        let border = borders.values.reduce(borders.values.first!) { first, second in
             first.extend(second)
         }
+        
+        border.secure()
+        
+        return border
     }
 }
 
