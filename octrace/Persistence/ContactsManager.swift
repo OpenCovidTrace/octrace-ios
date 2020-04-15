@@ -16,14 +16,14 @@ class ContactsManager {
         saveContacts(newContacts)
     }
     
-    static func matchContacts(_ keys: Keys) -> Contact? {
+    static func matchContacts(_ keysData: KeysData) -> Contact? {
         let contacts = getContacts()
         
         var lastInfectedContact: Contact? = nil
         
         contacts.forEach { contact in
             let contactDay = SecurityUtil.getDayNumber(from: contact.contact.tst)
-            keys.keys.filter { key in
+            keysData.keys.filter { key in
                 key.day == contactDay
             }.forEach { key in
                 let timeIntervalNumber = SecurityUtil.getTimeIntervalNumber(for: Int(contact.contact.tst/1000))

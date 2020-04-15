@@ -129,19 +129,19 @@ class RootViewController: UITabBarController {
                         "minLng": border.minLng,
                         "maxLng": border.maxLng
                     ]
-                ).responseDecodable(of: Tracks.self) { response in
+                ).responseDecodable(of: TracksData.self) { response in
                     self.indicator.hide()
                     
-                    if let tracks = response.value {
+                    if let data = response.value {
                         TracksManager.setUpdated()
                         
-                        if tracks.tracks.isEmpty {
+                        if data.tracks.isEmpty {
                             return
                         }
                         
                         let latestDailyKeys = KeyManager.getLatestDailyKeys()
                         
-                        let tracksFiltered = tracks.tracks.filter { track in
+                        let tracksFiltered = data.tracks.filter { track in
                             !latestDailyKeys.contains(Data(base64Encoded: track.key)!)
                         }
                         
@@ -176,17 +176,17 @@ class RootViewController: UITabBarController {
                         "minLng": border.minLng,
                         "maxLng": border.maxLng
                     ]
-                ).responseDecodable(of: Keys.self) { response in
-                    if let keys = response.value {
-                        print("Got \(keys.keys.count) new keys since \(lastUpdateTimestamp).")
+                ).responseDecodable(of: KeysData.self) { response in
+                    if let data = response.value {
+                        print("Got \(data.keys.count) new keys since \(lastUpdateTimestamp).")
                         
                         KeysManager.setUpdated()
                         
-                        if keys.keys.isEmpty {
+                        if data.keys.isEmpty {
                             return
                         }
                         
-                        if let lastInfectedContact = ContactsManager.matchContacts(keys) {
+                        if let lastInfectedContact = ContactsManager.matchContacts(data) {
                             let content = UNMutableNotificationContent()
                             
                             content.categoryIdentifier = EXPOSED_CONTACT_CATEGORY

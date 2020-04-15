@@ -83,7 +83,7 @@ class KeysManager {
         
         let borders = getLocationBorders()
         
-        let keys = Keys()
+        let keysData = KeysData()
         let diff = min(previousDayNumber - lastUpload, DataManager.maxDays)
         
         var offset = 0
@@ -96,7 +96,7 @@ class KeysManager {
                 // TODO secure randomizer on upload if borders thinner than threshold
                 let key = Key(value: keyValue, day: dayNumber, border: border)
                 
-                keys.keys.append(key)
+                keysData.keys.append(key)
             }
             
             offset += 1
@@ -104,7 +104,7 @@ class KeysManager {
         
         AF.request(STORAGE_ENDPOINT + "keys",
                    method: .post,
-                   parameters: keys,
+                   parameters: keysData,
                    encoder: JSONParameterEncoder.default).response { response in
                     let statusCode: Int = response.response?.statusCode ?? 0
                     if statusCode == 200 {
@@ -121,7 +121,7 @@ class KeysManager {
     
 }
 
-class Keys: Codable {
+class KeysData: Codable {
     var keys: [Key] = []
 }
 

@@ -78,11 +78,11 @@ class TracksManager {
             }
         }
         
-        let tracks = Tracks(tracks: [Track](tracksByDay.values))
+        let tracksData = TracksData(tracks: [Track](tracksByDay.values))
         
         AF.request(STORAGE_ENDPOINT + "tracks",
                    method: .post,
-                   parameters: tracks,
+                   parameters: tracksData,
                    encoder: JSONParameterEncoder.default).response { response in
                     let statusCode: Int = response.response?.statusCode ?? 0
                     
@@ -99,7 +99,7 @@ class TracksManager {
     }
 }
 
-class Tracks : Codable {
+class TracksData : Codable {
     let tracks: [Track]
     
     init(tracks: [Track]) {
