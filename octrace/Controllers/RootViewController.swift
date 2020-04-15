@@ -133,6 +133,12 @@ class RootViewController: UITabBarController {
                     self.indicator.hide()
                     
                     if let tracks = response.value {
+                        TracksManager.setUpdated()
+                        
+                        if tracks.tracks.isEmpty {
+                            return
+                        }
+                        
                         let latestDailyKeys = KeyManager.getLatestDailyKeys()
                         
                         let tracksFiltered = tracks.tracks.filter { track in
@@ -140,6 +146,10 @@ class RootViewController: UITabBarController {
                         }
                         
                         print("Got \(tracksFiltered.count) new tracks since \(lastUpdateTimestamp).")
+                        
+                        if tracksFiltered.isEmpty {
+                            return
+                        }
                         
                         TracksManager.addTracks(tracksFiltered)
                         self.mapViewController.updateExtTracks()
@@ -173,6 +183,12 @@ class RootViewController: UITabBarController {
                     if let keys = response.value {
                         print("Got \(keys.keys.count) new keys since \(lastUpdateTimestamp).")
                         
+                        KeysManager.setUpdated()
+                        
+                        if keys.keys.isEmpty {
+                            return
+                        }
+                        
                         if let lastInfectedContact = ContactsManager.matchContacts(keys) {
                             let content = UNMutableNotificationContent()
                             
@@ -182,21 +198,19 @@ class RootViewController: UITabBarController {
                             content.sound = UNNotificationSound.default
                             
                             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0, repeats: false)
-
+                            
                             let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
                             UNUserNotificationCenter.current().add(request)
                             
                             self.mapViewController.goToContact(lastInfectedContact)
                             self.mapViewController.updateContacts()
                         }
-                        
-                        KeysManager.setUpdated()
                     } else {
-                                           let statusCode: Int = response.response?.statusCode ?? 0
-                                           let body = String(data: response.data ?? Data(), encoding: .utf8) ?? ""
-                                           
-                                           print("GET /tracks ERROR: status \(statusCode), body \(body), error \(response.error?.localizedDescription ?? "nil")")
-                                       }
+                        let statusCode: Int = response.response?.statusCode ?? 0
+                        let body = String(data: response.data ?? Data(), encoding: .utf8) ?? ""
+                        
+                        print("GET /tracks ERROR: status \(statusCode), body \(body), error \(response.error?.localizedDescription ?? "nil")")
+                    }
                 }
             }
         }

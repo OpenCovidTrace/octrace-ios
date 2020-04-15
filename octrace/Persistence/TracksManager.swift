@@ -45,14 +45,12 @@ class TracksManager {
         do {
             let data = try PropertyListEncoder().encode(tracks)
             NSKeyedArchiver.archiveRootObject(data, toFile: tracksPath)
-            
-            setUpdated()
         } catch {
             print("Save Failed")
         }
     }
     
-    private static func setUpdated() {
+    static func setUpdated() {
         NSKeyedArchiver.archiveRootObject(Date.timestamp(), toFile: lastUpdatePath)
     }
     
