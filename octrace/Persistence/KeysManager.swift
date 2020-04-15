@@ -110,7 +110,7 @@ class KeysManager {
                     if statusCode == 200 {
                         NSKeyedArchiver.archiveRootObject(lastUpload, toFile: lastUploadPath)
                     } else {
-                        print("Error while sending tracks: \(statusCode).")
+                        response.reportError("POST /keys")
                     }
         }
     }

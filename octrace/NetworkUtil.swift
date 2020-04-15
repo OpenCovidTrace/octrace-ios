@@ -30,3 +30,12 @@ extension URL {
         return url.queryItems?.first(where: { $0.name == param })?.value
     }
 }
+
+extension AFDataResponse {
+    func reportError(_ request: String) {
+        let statusCode: Int = response?.statusCode ?? 0
+        let body = String(data: data ?? Data(), encoding: .utf8) ?? ""
+        
+        print("\(request) ERROR: status \(statusCode), body \(body), error \(error?.localizedDescription ?? "nil")")
+    }
+}

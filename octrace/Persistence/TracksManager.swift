@@ -89,7 +89,7 @@ class TracksManager {
                     if statusCode == 200 {
                         NSKeyedArchiver.archiveRootObject(now, toFile: lastUploadPath)
                     } else {
-                        print("Error while sending tracks: \(statusCode).")
+                        response.reportError("POST /tracks")
                     }
         }
     }

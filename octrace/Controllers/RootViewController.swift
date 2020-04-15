@@ -154,10 +154,7 @@ class RootViewController: UITabBarController {
                         TracksManager.addTracks(tracksFiltered)
                         self.mapViewController.updateExtTracks()
                     } else {
-                        let statusCode: Int = response.response?.statusCode ?? 0
-                        let body = String(data: response.data ?? Data(), encoding: .utf8) ?? ""
-                        
-                        print("GET /tracks ERROR: status \(statusCode), body \(body), error \(response.error?.localizedDescription ?? "nil")")
+                        response.reportError("GET /tracks")
                     }
                 }
             }
@@ -206,10 +203,7 @@ class RootViewController: UITabBarController {
                             self.mapViewController.updateContacts()
                         }
                     } else {
-                        let statusCode: Int = response.response?.statusCode ?? 0
-                        let body = String(data: response.data ?? Data(), encoding: .utf8) ?? ""
-                        
-                        print("GET /tracks ERROR: status \(statusCode), body \(body), error \(response.error?.localizedDescription ?? "nil")")
+                        response.reportError("GET /keys")
                     }
                 }
             }
