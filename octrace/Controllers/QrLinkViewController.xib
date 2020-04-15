@@ -11,6 +11,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QrLinkViewController" customModule="OCTrace" customModuleProvider="target">
             <connections>
                 <outlet property="imageView" destination="8fM-vB-sCg" id="U8f-uq-IVw"/>
+                <outlet property="indicator" destination="eiR-sF-YvE" id="L0c-ZI-tpW"/>
+                <outlet property="label" destination="YJo-sL-vP2" id="XQm-P6-G7I"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -25,7 +27,7 @@
                         <constraint firstAttribute="width" secondItem="8fM-vB-sCg" secondAttribute="height" multiplier="1:1" id="3eG-un-plu"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please have the other person scan this QR code." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YJo-sL-vP2">
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please have the other person scan this QR code." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YJo-sL-vP2">
                     <rect key="frame" x="16" y="655" width="382" height="50.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="21"/>
                     <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
@@ -43,6 +45,9 @@
                         </navigationItem>
                     </items>
                 </navigationBar>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="eiR-sF-YvE">
+                    <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
@@ -53,8 +58,10 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="YJo-sL-vP2" secondAttribute="trailing" constant="16" id="HsF-6B-ES7"/>
                 <constraint firstItem="iFF-c0-dz2" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Ldk-ZR-248"/>
                 <constraint firstItem="8fM-vB-sCg" firstAttribute="width" secondItem="8fM-vB-sCg" secondAttribute="height" multiplier="1:1" id="R8X-oY-YEr"/>
+                <constraint firstItem="eiR-sF-YvE" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="VKg-Pf-WDK"/>
                 <constraint firstItem="iFF-c0-dz2" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="WC5-zn-jBQ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="8fM-vB-sCg" secondAttribute="trailing" constant="16" id="hny-OA-JuZ"/>
+                <constraint firstItem="eiR-sF-YvE" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="nQg-CQ-xRs"/>
                 <constraint firstItem="iFF-c0-dz2" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="s1A-Ro-1I7"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

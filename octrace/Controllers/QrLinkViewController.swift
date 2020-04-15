@@ -6,9 +6,15 @@ class QrLinkViewController: UIViewController {
     static var instance: QrLinkViewController?
     
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
     
     @IBAction func close(_ sender: Any) {
         dismiss(animated: true)
+    }
+    
+    override func viewDidLoad() {
+        indicator.show()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -19,6 +25,9 @@ class QrLinkViewController: UIViewController {
             let key = EncryptionKeysManager.generateKey(for: tst).base64EncodedString().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
             
             imageView.image = generateQRCode(from: CONTACT_ENDPOINT + "app/contact?d=\(token)&i=\(rollingId)&k=\(key)&p=i&t=\(tst)")
+            
+            label.isHidden = false
+            indicator.hide()
         } else {
             dismiss(animated: true)
             showError("Failed to get notifications token.")
