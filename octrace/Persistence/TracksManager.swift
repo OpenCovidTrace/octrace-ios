@@ -78,7 +78,7 @@ class TracksManager {
             }
         }
         
-        let tracks = [Track](tracksByDay.values)
+        let tracks = Tracks(tracks: [Track](tracksByDay.values))
         
         AF.request(STORAGE_ENDPOINT + "tracks",
                    method: .post,
@@ -101,6 +101,10 @@ class TracksManager {
 
 class Tracks : Codable {
     let tracks: [Track]
+    
+    init(tracks: [Track]) {
+        self.tracks = tracks
+    }
 }
 
 class Track : Codable {
