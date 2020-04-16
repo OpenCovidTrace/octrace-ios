@@ -24,7 +24,7 @@ class LocationManager {
     static func initialize(_ delegate: CLLocationManagerDelegate) {
         locationManager.delegate = delegate
         
-        if let lastPoint = TrackingManager.getTrackingData().last {
+        if let lastPoint = TrackingManager.trackingData.last {
             lastTrackingUpdate = lastPoint.tst
         }
     }
@@ -60,7 +60,7 @@ class LocationManager {
     static func updateLocation(_ location: CLLocation) {
         lastLocation = location
         
-        KeysManager.updateLocationBorders(location)
+        LocationBordersManager.updateLocationBorders(location)
         
         callbacks.forEach { callback in callback(location) }
         callbacks.removeAll()

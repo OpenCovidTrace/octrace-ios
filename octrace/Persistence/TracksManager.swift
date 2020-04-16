@@ -12,58 +12,76 @@ class TracksManager {
     private init() {
     }
     
+    static var tracks: [Track] {
+        get {
+            guard let data = NSKeyedUnarchiver.unarchiveObject(withFile: tracksPath) as? Data else { return [] }
+            do {
+                return try PropertyListDecoder().decode([Track].self, from: data)
+            } catch {
+                print("Retrieve Failed")
+                
+                return []
+            }
+        }
+        
+        set {
+            do {
+                let data = try PropertyListEncoder().encode(newValue)
+                NSKeyedArchiver.archiveRootObject(data, toFile: tracksPath)
+            } catch {
+                print("Save Failed")
+            }
+        }
+    }
+    
     static func removeOldTracks() {
         let lastDay = SecurityUtil.currentDayNumber() - 14
         
-        let newTracks = getTracks().filter { track in
+        let newTracks = tracks.filter { track in
             track.day > lastDay
         }
         
-        saveTracks(newTracks)
+        tracks = newTracks
     }
     
-    static func getTracks() -> [Track] {
-        guard let data = NSKeyedUnarchiver.unarchiveObject(withFile: tracksPath) as? Data else { return [] }
-        do {
-            return try PropertyListDecoder().decode([Track].self, from: data)
-        } catch {
-            print("Retrieve Failed")
-            
-            return []
+    static func addTracks(_ items: [Track]) {
+        var newTracks = tracks
+        
+        newTracks.append(contentsOf: items)
+        
+        tracks = newTracks
+    }
+    
+    static var lastUpdateTimestamp: Int64 {
+        get {
+            NSKeyedUnarchiver.unarchiveObject(withFile: lastUpdatePath) as? Int64 ?? 0
         }
-    }
-    
-    static func addTracks(_ newTracks: [Track]) {
-        var tracks = getTracks()
         
-        tracks.append(contentsOf: newTracks)
-        
-        saveTracks(tracks)
-    }
-    
-    private static func saveTracks(_ tracks: [Track]) {
-        do {
-            let data = try PropertyListEncoder().encode(tracks)
-            NSKeyedArchiver.archiveRootObject(data, toFile: tracksPath)
-        } catch {
-            print("Save Failed")
+        set {
+            NSKeyedArchiver.archiveRootObject(newValue, toFile: lastUpdatePath)
         }
     }
     
     static func setUpdated() {
-        NSKeyedArchiver.archiveRootObject(Date.timestamp(), toFile: lastUpdatePath)
+        lastUpdateTimestamp = Date.timestamp()
     }
     
-    static func lastUpdateTimestamp() -> Int64 {
-        return NSKeyedUnarchiver.unarchiveObject(withFile: lastUpdatePath) as? Int64 ?? 0
+    static var lastUploadTimestamp: Int64 {
+        get {
+            NSKeyedUnarchiver.unarchiveObject(withFile: lastUploadPath) as? Int64 ?? 0
+        }
+        
+        set {
+            NSKeyedArchiver.archiveRootObject(newValue, toFile: lastUploadPath)
+        }
     }
     
     static func uploadNewTracks() {
-        let lastUploadTst = lastUploadTimestamp()
+        let oldLastUploadTimestamp = lastUploadTimestamp
         let now = Date.timestamp()
         
-        let points = TrackingManager.getTrackingData().filter { point in
-            point.tst > lastUploadTst
+        let points = TrackingManager.trackingData.filter { point in
+            point.tst > oldLastUploadTimestamp
         }
         
         var tracksByDay: [Int:Track] = [:]
@@ -87,16 +105,13 @@ class TracksManager {
                     let statusCode: Int = response.response?.statusCode ?? 0
                     
                     if statusCode == 200 {
-                        NSKeyedArchiver.archiveRootObject(now, toFile: lastUploadPath)
+                        lastUploadTimestamp = now
                     } else {
                         response.reportError("POST /tracks")
                     }
         }
     }
     
-    static func lastUploadTimestamp() -> Int64 {
-        return NSKeyedUnarchiver.unarchiveObject(withFile: lastUploadPath) as? Int64 ?? 0
-    }
 }
 
 class TracksData : Codable {

@@ -25,7 +25,7 @@ class StatusViewController: IndicatorViewController {
     }
     
     private func updateUserStatus(_ status: String) {
-        UserStatusManager.setStatus(status: status)
+        UserStatusManager.status = status
         
         TracksManager.uploadNewTracks()
         KeysManager.uploadNewKeys()

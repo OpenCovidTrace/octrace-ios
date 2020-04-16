@@ -147,7 +147,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             let secret = userInfo["secret"] as! String
             let tst = userInfo["tst"] as! Int64
             
-            if let key = EncryptionKeysManager.getKey(for: tst) {
+            if let key = EncryptionKeysManager.encryptionKeys[tst] {
                 let id = SecurityUtil.decodeAES(secret, with: key).base64EncodedString()
                 
                 // TODO verify that we have location here

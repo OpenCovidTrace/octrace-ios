@@ -10,40 +10,42 @@ class TrackingManager {
     private init() {
     }
     
+    static var trackingData: [TrackingPoint] {
+        get {
+            guard let data = NSKeyedUnarchiver.unarchiveObject(withFile: path) as? Data else { return [] }
+            do {
+                return try PropertyListDecoder().decode([TrackingPoint].self, from: data)
+            } catch {
+                print("Retrieve Failed")
+                
+                return []
+            }
+        }
+        
+        set {
+            do {
+                let data = try PropertyListEncoder().encode(newValue)
+                NSKeyedArchiver.archiveRootObject(data, toFile: path)
+            } catch {
+                print("Save Failed")
+            }
+        }
+    }
+    
     static func addTrackingPoint(_ point: TrackingPoint) {
-        var trackingData = getTrackingData()
+        var newTrackingData = trackingData
         
-        trackingData.append(point)
+        newTrackingData.append(point)
         
-        saveTrackingData(trackingData)
+        trackingData = newTrackingData
     }
     
     static func removeOldPoints() {
         let expirationTimestamp = DataManager.expirationTimestamp()
         
-        let newData = getTrackingData().filter { $0.tst > expirationTimestamp }
+        let newTrackingData = trackingData.filter { $0.tst > expirationTimestamp }
         
-        saveTrackingData(newData)
-    }
-    
-    private static func saveTrackingData(_ trackingData: [TrackingPoint]) {
-        do {
-            let data = try PropertyListEncoder().encode(trackingData)
-            NSKeyedArchiver.archiveRootObject(data, toFile: path)
-        } catch {
-            print("Save Failed")
-        }
-    }
-    
-    static func getTrackingData() -> [TrackingPoint] {
-        guard let data = NSKeyedUnarchiver.unarchiveObject(withFile: path) as? Data else { return [] }
-        do {
-            return try PropertyListDecoder().decode([TrackingPoint].self, from: data)
-        } catch {
-            print("Retrieve Failed")
-            
-            return []
-        }
+        trackingData = newTrackingData
     }
     
 }

@@ -80,7 +80,7 @@ class MapViewController: UIViewController {
         
         print("Updating user tracks...")
         
-        let polylines = makePolylines(TrackingManager.getTrackingData())
+        let polylines = makePolylines(TrackingManager.trackingData)
         
         print("Got \(polylines.count) user polylines.")
         
@@ -98,7 +98,7 @@ class MapViewController: UIViewController {
         
         var sickPolylines: [[CLLocationCoordinate2D]] = []
         
-        TracksManager.getTracks().forEach { track in
+        TracksManager.tracks.forEach { track in
             let trackPolylines = makePolylines(track.points)
             sickPolylines.append(contentsOf: trackPolylines)
         }
@@ -240,7 +240,7 @@ class MapViewController: UIViewController {
         mkContactPoints.keys.forEach(mapView.removeAnnotation)
         mkContactPoints.removeAll()
         
-        ContactsManager.getContacts().forEach { contact in
+        ContactsManager.contacts.forEach { contact in
             let annotation = MKPointAnnotation()
             
             annotation.coordinate = contact.contact.coordinate()

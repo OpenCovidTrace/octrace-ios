@@ -2,24 +2,26 @@ import Foundation
 
 class UserStatusManager {
     
+    private static let kUserStatus = "kUserStatus"
+    
     static let healthy = "healthy"
     static let symptoms = "symptoms"
     
-    private static let path = DataManager.docsDir.appendingPathComponent("user-status").path
-    
     private init() {
     }
-    
-    static func setStatus(status: String) {
-        NSKeyedArchiver.archiveRootObject(status, toFile: path)
+
+    static var status: String {
+        get {
+            UserDefaults.standard.string(forKey: kUserStatus) ?? healthy
+        }
+        
+        set {
+            UserDefaults.standard.set(newValue, forKey: kUserStatus)
+        }
     }
     
     static func sick() -> Bool {
-        return getStatus() == symptoms
-    }
-    
-    static func getStatus() -> String {
-        return NSKeyedUnarchiver.unarchiveObject(withFile: path) as? String ?? healthy
+        return status == symptoms
     }
     
 }

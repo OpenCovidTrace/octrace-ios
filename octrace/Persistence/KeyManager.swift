@@ -2,44 +2,41 @@ import Foundation
 
 class KeyManager {
     
-    private static let path = DataManager.docsDir.appendingPathComponent("key").path
+    private static let kTracingKey = "kTracingKey"
     
     private init() {
     }
     
-    static func setTracingKey(_ data: Data) {
-        NSKeyedArchiver.archiveRootObject(data, toFile: path)
+    static var tracingKey: Data? {
+        get {
+            UserDefaults.standard.data(forKey: kTracingKey)
+        }
+        
+        set {
+            UserDefaults.standard.set(newValue, forKey: kTracingKey)
+        }
     }
     
     static func hasKey() -> Bool {
-        return getTracingKey() != nil
-    }
-    
-    static func getTracingKey() -> Data? {
-        return NSKeyedUnarchiver.unarchiveObject(withFile: path) as? Data
+        return tracingKey != nil
     }
     
     static func getDailyKey(for dayNumber: Int) -> Data {
-        let tracingKey = getTracingKey()!
-        
-        return SecurityUtil.getDailyKey(tracingKey, dayNumber)
+        return SecurityUtil.getDailyKey(tracingKey!, dayNumber)
     }
     
     static func getSecretDailyKey(for dayNumber: Int) -> String {
-        let tracingKey = getTracingKey()!
-        
-        return SecurityUtil.getSecretDailyKey(tracingKey, dayNumber)
+        return SecurityUtil.getSecretDailyKey(tracingKey!, dayNumber)
     }
     
     static func getLatestDailyKeys() -> [Data] {
-        let tracingKey = getTracingKey()!
         var result: [Data] = []
         
         let dayNumber = SecurityUtil.currentDayNumber()
         
         var offset = 0
         while offset < DataManager.maxDays {
-            result.append(SecurityUtil.getDailyKey(tracingKey, dayNumber - offset))
+            result.append(SecurityUtil.getDailyKey(tracingKey!, dayNumber - offset))
             
             offset += 1
         }
@@ -48,14 +45,13 @@ class KeyManager {
     }
     
     static func getLatestSecretDailyKeys() -> [String] {
-        let tracingKey = getTracingKey()!
         var result: [String] = []
         
         let dayNumber = SecurityUtil.currentDayNumber()
         
         var offset = 0
         while offset < DataManager.maxDays {
-            result.append(SecurityUtil.getSecretDailyKey(tracingKey, dayNumber - offset))
+            result.append(SecurityUtil.getSecretDailyKey(tracingKey!, dayNumber - offset))
             
             offset += 1
         }

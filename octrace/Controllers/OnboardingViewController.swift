@@ -14,9 +14,7 @@ class OnboardingViewController: IndicatorViewController {
     @IBAction func actionTap(_ sender: Any) {
         switch stage {
         case .welcome:
-            let key = SecurityUtil.generateKey()
-            
-            KeyManager.setTracingKey(key)
+            KeyManager.tracingKey = SecurityUtil.generateKey()
             
             goNext(.location)
             
@@ -74,8 +72,6 @@ class OnboardingViewController: IndicatorViewController {
     }
     
     private func complete() {
-        OnboardingManager.doComplete()
-        
         popOut()
         parentController.popOut()
         parentController.parentController.popOut()

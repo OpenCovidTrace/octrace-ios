@@ -4,87 +4,51 @@ import CoreLocation
 
 class KeysManager {
     
+    private static let kLastKeysUploadDay = "kLastKeysUploadDay"
+    
     private static let lastUpdatePath = DataManager.docsDir.appendingPathComponent("keys-last-update").path
-    
-    private static let lastUploadPath = DataManager.docsDir.appendingPathComponent("keys-last-updload").path
-    
-    private static let locationBordersPath = DataManager.docsDir.appendingPathComponent("location-borders").path
     
     private init() {
     }
     
-    static func removeOldLocationBorders() {
-        let lastDay = SecurityUtil.currentDayNumber() - DataManager.maxDays
-        
-        let oldBorders = getLocationBorders()
-        
-        var newBorders: [Int:LocationBorder] = [:]
-                
-        oldBorders.keys.forEach { dayNumber in
-            if dayNumber > lastDay {
-                newBorders[dayNumber] = oldBorders[dayNumber]
-            }
+    static var lastUpdateTimestamp: Int64 {
+        get {
+            NSKeyedUnarchiver.unarchiveObject(withFile: lastUpdatePath) as? Int64 ?? 0
         }
         
-        saveLocationBorders(newBorders)
-    }
-    
-    static func getLocationBorders() -> [Int:LocationBorder] {
-        guard let data = NSKeyedUnarchiver.unarchiveObject(withFile: locationBordersPath) as? Data else { return [:] }
-        do {
-            return try PropertyListDecoder().decode([Int:LocationBorder].self, from: data)
-        } catch {
-            print("Retrieve Failed")
-            
-            return [:]
-        }
-    }
-    
-    static func updateLocationBorders(_ location: CLLocation) {
-        var borders = getLocationBorders()
-        
-        let currentDayNumber = SecurityUtil.currentDayNumber()
-        
-        if let currentBorder = borders[currentDayNumber] {
-            currentBorder.update(location)
-        } else {
-            borders[currentDayNumber] = LocationBorder(location)
-        }
-        
-        saveLocationBorders(borders)
-    }
-    
-    private static func saveLocationBorders(_ borders: [Int:LocationBorder]) {
-        do {
-            let data = try PropertyListEncoder().encode(borders)
-            NSKeyedArchiver.archiveRootObject(data, toFile: locationBordersPath)
-        } catch {
-            print("Save Failed")
+        set {
+            NSKeyedArchiver.archiveRootObject(newValue, toFile: lastUpdatePath)
         }
     }
     
     static func setUpdated() {
-        NSKeyedArchiver.archiveRootObject(Date.timestamp(), toFile: lastUpdatePath)
+        lastUpdateTimestamp = Date.timestamp()
     }
     
-    static func lastUpdateTimestamp() -> Int64 {
-        return NSKeyedUnarchiver.unarchiveObject(withFile: lastUpdatePath) as? Int64 ?? 0
+    static var lastUpdloadDay: Int {
+        get {
+            UserDefaults.standard.integer(forKey: kLastKeysUploadDay)
+        }
+        
+        set {
+            UserDefaults.standard.set(newValue, forKey: kLastKeysUploadDay)
+        }
     }
     
     static func uploadNewKeys() {
-        let lastUpload = lastUploadDayNumber()
+        let oldLastUploadDay = lastUpdloadDay
         
         // Uploading after EOD to include widest borders
         let previousDayNumber = SecurityUtil.currentDayNumber() - 1
         
-        if lastUpload == previousDayNumber {
+        if oldLastUploadDay == previousDayNumber {
             return
         }
         
-        let borders = getLocationBorders()
+        let borders = LocationBordersManager.locationBorders
         
         let keysData = KeysData()
-        let diff = min(previousDayNumber - lastUpload, DataManager.maxDays)
+        let diff = min(previousDayNumber - oldLastUploadDay, DataManager.maxDays)
         
         var offset = 0
         while offset < diff {
@@ -108,15 +72,11 @@ class KeysManager {
                    encoder: JSONParameterEncoder.default).response { response in
                     let statusCode: Int = response.response?.statusCode ?? 0
                     if statusCode == 200 {
-                        NSKeyedArchiver.archiveRootObject(lastUpload, toFile: lastUploadPath)
+                        lastUpdloadDay = previousDayNumber
                     } else {
                         response.reportError("POST /keys")
                     }
         }
-    }
-    
-    static func lastUploadDayNumber() -> Int {
-        return NSKeyedUnarchiver.unarchiveObject(withFile: lastUploadPath) as? Int ?? 0
     }
     
 }

@@ -52,11 +52,11 @@ class RootViewController: UITabBarController {
             print("Cleaning old data...")
             
             // Otherwise lastUpdateTimestamp won't be 0 for the initial load
-            if TracksManager.lastUpdateTimestamp() > 0 {
+            if TracksManager.lastUpdateTimestamp > 0 {
                 ContactsManager.removeOldContacts()
                 TracksManager.removeOldTracks()
                 TrackingManager.removeOldPoints()
-                KeysManager.removeOldLocationBorders()
+                LocationBordersManager.removeOldLocationBorders()
                 EncryptionKeysManager.removeOldKeys()
             }
             
@@ -118,7 +118,7 @@ class RootViewController: UITabBarController {
         indicator.show()
         
         LocationManager.registerCallback { location in
-            let lastUpdateTimestamp = TracksManager.lastUpdateTimestamp()
+            let lastUpdateTimestamp = TracksManager.lastUpdateTimestamp
             if let border = self.getQueryBorder(for: lastUpdateTimestamp) {
                 AF.request(
                     STORAGE_ENDPOINT + "tracks",
@@ -165,7 +165,7 @@ class RootViewController: UITabBarController {
         indicator.show()
         
         LocationManager.registerCallback { location in
-            let lastUpdateTimestamp = KeysManager.lastUpdateTimestamp()
+            let lastUpdateTimestamp = KeysManager.lastUpdateTimestamp
             if let border = self.getQueryBorder(for: lastUpdateTimestamp) {
                 AF.request(
                     STORAGE_ENDPOINT + "keys",
@@ -211,7 +211,7 @@ class RootViewController: UITabBarController {
     }
     
     private func getQueryBorder(for lastUpdateTimestamp: Int64) -> LocationBorder? {
-        var borders = KeysManager.getLocationBorders()
+        var borders = LocationBordersManager.locationBorders
         
         if lastUpdateTimestamp > 0 {
             let dayNumber = SecurityUtil.getDayNumber(from: lastUpdateTimestamp)

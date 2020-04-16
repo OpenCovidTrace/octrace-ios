@@ -31,7 +31,6 @@
 		FA05716B244647A400D39462 /* EncryptionKeysManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0571632446456C00D39462 /* EncryptionKeysManager.swift */; };
 		FA05716C244647A400D39462 /* KeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0571642446456C00D39462 /* KeyManager.swift */; };
 		FA05716D244647A400D39462 /* KeysManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA05715F2446456C00D39462 /* KeysManager.swift */; };
-		FA05716E244647A400D39462 /* OnboardingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA05715E2446456C00D39462 /* OnboardingManager.swift */; };
 		FA05716F244647A400D39462 /* TrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0571612446456C00D39462 /* TrackingManager.swift */; };
 		FA057170244647A400D39462 /* TracksManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0571602446456C00D39462 /* TracksManager.swift */; };
 		FA057171244647A400D39462 /* UserStatusManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0571662446456C00D39462 /* UserStatusManager.swift */; };
@@ -40,6 +39,7 @@
 		FA05717A24464AD000D39462 /* QrLinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA05717824464AD000D39462 /* QrLinkViewController.swift */; };
 		FA05717B24464AD000D39462 /* QrLinkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA05717924464AD000D39462 /* QrLinkViewController.xib */; };
 		FA0571AD2448773A00D39462 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA0571AC2448773A00D39462 /* GoogleService-Info.plist */; };
+		FA0571AF2448990500D39462 /* LocationBordersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0571AE2448990500D39462 /* LocationBordersManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,7 +66,6 @@
 		FA05714F2446454F00D39462 /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
 		FA0571502446454F00D39462 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		FA0571522446454F00D39462 /* IndicatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorViewController.swift; sourceTree = "<group>"; };
-		FA05715E2446456C00D39462 /* OnboardingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingManager.swift; sourceTree = "<group>"; };
 		FA05715F2446456C00D39462 /* KeysManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeysManager.swift; sourceTree = "<group>"; };
 		FA0571602446456C00D39462 /* TracksManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracksManager.swift; sourceTree = "<group>"; };
 		FA0571612446456C00D39462 /* TrackingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingManager.swift; sourceTree = "<group>"; };
@@ -82,6 +81,7 @@
 		FA05717824464AD000D39462 /* QrLinkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrLinkViewController.swift; sourceTree = "<group>"; };
 		FA05717924464AD000D39462 /* QrLinkViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QrLinkViewController.xib; sourceTree = "<group>"; };
 		FA0571AC2448773A00D39462 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FA0571AE2448990500D39462 /* LocationBordersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationBordersManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,7 +183,7 @@
 				FA0571632446456C00D39462 /* EncryptionKeysManager.swift */,
 				FA0571642446456C00D39462 /* KeyManager.swift */,
 				FA05715F2446456C00D39462 /* KeysManager.swift */,
-				FA05715E2446456C00D39462 /* OnboardingManager.swift */,
+				FA0571AE2448990500D39462 /* LocationBordersManager.swift */,
 				FA0571612446456C00D39462 /* TrackingManager.swift */,
 				FA0571602446456C00D39462 /* TracksManager.swift */,
 				FA0571662446456C00D39462 /* UserStatusManager.swift */,
@@ -323,9 +323,9 @@
 				FA0571272446412E00D39462 /* AppDelegate.swift in Sources */,
 				FA057170244647A400D39462 /* TracksManager.swift in Sources */,
 				FA057143244644C400D39462 /* RoundButton.swift in Sources */,
+				FA0571AF2448990500D39462 /* LocationBordersManager.swift in Sources */,
 				FA05717A24464AD000D39462 /* QrLinkViewController.swift in Sources */,
 				FA05715B2446455000D39462 /* MapViewController.swift in Sources */,
-				FA05716E244647A400D39462 /* OnboardingManager.swift in Sources */,
 				FA0571572446455000D39462 /* InfoViewController.swift in Sources */,
 				FA057142244644C400D39462 /* NetworkUtil.swift in Sources */,
 				FA05716D244647A400D39462 /* KeysManager.swift in Sources */,

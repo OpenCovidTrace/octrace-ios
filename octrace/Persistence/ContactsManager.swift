@@ -8,20 +8,42 @@ class ContactsManager {
     private init() {
     }
     
+    static var contacts: [ContactHealth] {
+        get {
+            guard let data = NSKeyedUnarchiver.unarchiveObject(withFile: path) as? Data else { return [] }
+            do {
+                return try PropertyListDecoder().decode([ContactHealth].self, from: data)
+            } catch {
+                print("Retrieve Failed")
+                
+                return []
+            }
+        }
+        
+        set {
+            do {
+                let data = try PropertyListEncoder().encode(newValue)
+                NSKeyedArchiver.archiveRootObject(data, toFile: path)
+            } catch {
+                print("Save Failed")
+            }
+        }
+    }
+    
     static func removeOldContacts() {
         let expirationTimestamp = DataManager.expirationTimestamp()
         
-        let newContacts = getContacts().filter { $0.contact.tst > expirationTimestamp }
+        let newContacts = contacts.filter { $0.contact.tst > expirationTimestamp }
         
-        saveContacts(newContacts)
+        contacts = newContacts
     }
     
     static func matchContacts(_ keysData: KeysData) -> Contact? {
-        let contacts = getContacts()
+        let newContacts = contacts
         
         var lastInfectedContact: Contact? = nil
         
-        contacts.forEach { contact in
+        newContacts.forEach { contact in
             let contactDay = SecurityUtil.getDayNumber(from: contact.contact.tst)
             keysData.keys.filter { key in
                 key.day == contactDay
@@ -42,37 +64,17 @@ class ContactsManager {
             }
         }
         
-        saveContacts(contacts)
+        contacts = newContacts
         
         return lastInfectedContact
     }
 
     static func addContact(_ contact: Contact) {
-        var contacts = getContacts()
+        var newContacts = contacts
         
-        contacts.append(ContactHealth(contact))
+        newContacts.append(ContactHealth(contact))
         
-        saveContacts(contacts)
-    }
-    
-    private static func saveContacts(_ contacts: [ContactHealth]) {
-        do {
-            let data = try PropertyListEncoder().encode(contacts)
-            NSKeyedArchiver.archiveRootObject(data, toFile: path)
-        } catch {
-            print("Save Failed")
-        }
-    }
-    
-    static func getContacts() -> [ContactHealth] {
-        guard let data = NSKeyedUnarchiver.unarchiveObject(withFile: path) as? Data else { return [] }
-        do {
-            return try PropertyListDecoder().decode([ContactHealth].self, from: data)
-        } catch {
-            print("Retrieve Failed")
-            
-            return []
-        }
+        contacts = newContacts
     }
     
 }
