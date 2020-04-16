@@ -35,11 +35,11 @@
 		FA05716F244647A400D39462 /* TrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0571612446456C00D39462 /* TrackingManager.swift */; };
 		FA057170244647A400D39462 /* TracksManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0571602446456C00D39462 /* TracksManager.swift */; };
 		FA057171244647A400D39462 /* UserStatusManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0571662446456C00D39462 /* UserStatusManager.swift */; };
-		FA05717324464A5C00D39462 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA05717224464A5C00D39462 /* GoogleService-Info.plist */; };
 		FA05717624464AC200D39462 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA05717424464AC200D39462 /* OnboardingViewController.swift */; };
 		FA05717724464AC200D39462 /* OnboardingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA05717524464AC200D39462 /* OnboardingViewController.xib */; };
 		FA05717A24464AD000D39462 /* QrLinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA05717824464AD000D39462 /* QrLinkViewController.swift */; };
 		FA05717B24464AD000D39462 /* QrLinkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA05717924464AD000D39462 /* QrLinkViewController.xib */; };
+		FA0571AD2448773A00D39462 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA0571AC2448773A00D39462 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,11 +77,11 @@
 		FA0571662446456C00D39462 /* UserStatusManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatusManager.swift; sourceTree = "<group>"; };
 		FA0571672446458300D39462 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		FA057168244646AD00D39462 /* OCTrace.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OCTrace.entitlements; sourceTree = "<group>"; };
-		FA05717224464A5C00D39462 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FA05717424464AC200D39462 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		FA05717524464AC200D39462 /* OnboardingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingViewController.xib; sourceTree = "<group>"; };
 		FA05717824464AD000D39462 /* QrLinkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrLinkViewController.swift; sourceTree = "<group>"; };
 		FA05717924464AD000D39462 /* QrLinkViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QrLinkViewController.xib; sourceTree = "<group>"; };
+		FA0571AC2448773A00D39462 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,8 +140,8 @@
 			isa = PBXGroup;
 			children = (
 				FA057168244646AD00D39462 /* OCTrace.entitlements */,
+				FA0571AC2448773A00D39462 /* GoogleService-Info.plist */,
 				FA0571342446413000D39462 /* Info.plist */,
-				FA05717224464A5C00D39462 /* GoogleService-Info.plist */,
 				FA0571672446458300D39462 /* Localizable.strings */,
 				FA0571262446412E00D39462 /* AppDelegate.swift */,
 				FA05713E244644C400D39462 /* DeviceTokenManager.swift */,
@@ -253,11 +253,11 @@
 			files = (
 				FA0571332446413000D39462 /* LaunchScreen.storyboard in Resources */,
 				FA0571302446413000D39462 /* Assets.xcassets in Resources */,
-				FA05717324464A5C00D39462 /* GoogleService-Info.plist in Resources */,
 				FA057149244644F800D39462 /* README.md in Resources */,
 				FA05712E2446412E00D39462 /* Main.storyboard in Resources */,
 				FA05717724464AC200D39462 /* OnboardingViewController.xib in Resources */,
 				FA05717B24464AD000D39462 /* QrLinkViewController.xib in Resources */,
+				FA0571AD2448773A00D39462 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
