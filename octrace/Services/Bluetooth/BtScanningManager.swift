@@ -10,8 +10,7 @@ class BtScanningManager: NSObject {
     
     private var manager: CBCentralManager!
     
-    private var blePeripheral: CBPeripheral?
-    private var peripherals: [CBPeripheral:Int] = [:]
+    private var peripheralsRssi: [CBPeripheral:Int] = [:]
     
     override private init() {
         super.init()
@@ -45,10 +44,9 @@ extension BtScanningManager: CBCentralManagerDelegate {
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
         log("Found peripheral: \(peripheral.identifier.uuidString), RSSI: \(RSSI.stringValue), advertisementData: \(advertisementData.debugDescription)")
         
-        peripherals[peripheral] = RSSI.intValue
+        peripheralsRssi[peripheral] = RSSI.intValue
         
-        blePeripheral = peripheral
-        blePeripheral?.delegate = self
+        peripheral.delegate = self
         
         connect(to: peripheral)
     }
@@ -121,7 +119,7 @@ extension BtScanningManager: CBPeripheralDelegate {
             let lastLocation = LocationManager.lastLocation
             
             if let location = lastLocation,
-                let rssi = peripherals[peripheral] {
+                let rssi = peripheralsRssi[peripheral] {
                 let encounter = BtEncounter(rssi, location)
                 
                 BtContactsManager.addContact(rollingId, encounter)
