@@ -50,7 +50,7 @@ class LogsViewController: UIViewController {
         var logString = ""
         
         LogsManager.logs.forEach { item in
-            logString += "[\(LogsViewController.dateFormatter.string(from: item.date))] \(item.text)\n"
+            logString += "[\(LogsViewController.dateFormatter.string(from: item.date))] <\(item.tag)> \(item.text)\n"
         }
         
         if logString.isEmpty {

@@ -5,6 +5,8 @@ class BtAdvertisingManager: NSObject {
     
     static let shared = BtAdvertisingManager()
     
+    private static let tag = "ADV"
+    
     private var manager: CBPeripheralManager!
     
     override private init() {
@@ -32,9 +34,12 @@ class BtAdvertisingManager: NSObject {
     private func startAdvertising() {
         manager.startAdvertising([CBAdvertisementDataLocalNameKey: "BLEPrototype", CBAdvertisementDataServiceUUIDsKey: [BLE_SERVICE_UUID]])
         
-        LogsManager.append("<ADV> Advertising has started")
+        log("Advertising has started")
     }
     
+    private func log(_ text: String) {
+        LogsManager.append(tag: BtAdvertisingManager.tag, text: text)
+    }
 }
 
 extension BtAdvertisingManager: CBPeripheralManagerDelegate {
@@ -42,19 +47,19 @@ extension BtAdvertisingManager: CBPeripheralManagerDelegate {
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
         switch peripheral.state {
         case .unknown:
-            LogsManager.append("<ADV> Bluetooth Device is UNKNOWN")
+            log("Bluetooth Device is UNKNOWN")
         case .unsupported:
-            LogsManager.append("<ADV> Bluetooth Device is UNSUPPORTED")
+            log("Bluetooth Device is UNSUPPORTED")
         case .unauthorized:
-            LogsManager.append("<ADV> Bluetooth Device is UNAUTHORIZED")
+            log("Bluetooth Device is UNAUTHORIZED")
         case .resetting:
-            LogsManager.append("<ADV> Bluetooth Device is RESETTING")
+            log("Bluetooth Device is RESETTING")
         case .poweredOff:
-            LogsManager.append("<ADV> Bluetooth Device is POWERED OFF")
+            log("Bluetooth Device is POWERED OFF")
         case .poweredOn:
-            LogsManager.append("<ADV> Bluetooth Device is POWERED ON")
+            log("Bluetooth Device is POWERED ON")
         @unknown default:
-            LogsManager.append("<ADV> Unknown State")
+            log("Unknown State")
         }
     }
     

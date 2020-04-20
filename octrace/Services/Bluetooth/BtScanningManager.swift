@@ -6,10 +6,11 @@ class BtScanningManager: NSObject {
     
     static let shared = BtScanningManager()
     
+    private static let tag = "SCAN"
+    
     private var manager: CBCentralManager!
     
     private var blePeripheral: CBPeripheral?
-    
     private var peripherals: [CBPeripheral:Int] = [:]
     
     override private init() {
@@ -23,23 +24,26 @@ class BtScanningManager: NSObject {
     func startScan() {
         manager.scanForPeripherals(withServices: [BLE_SERVICE_UUID], options: [CBCentralManagerScanOptionAllowDuplicatesKey: false])
         
-        LogsManager.append("<SCAN> Scanning has started")
+        log("Scanning has started")
     }
     
+    private func log(_ text: String) {
+        LogsManager.append(tag: BtScanningManager.tag, text: text)
+    }
 }
 
 extension BtScanningManager: CBCentralManagerDelegate {
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state == CBManagerState.poweredOn {
-            LogsManager.append("<SCAN> Bluetooth Enabled")
+            log("Bluetooth Enabled")
         } else {
-            LogsManager.append("<SCAN> Bluetooth Disabled - Make sure your Bluetooth is turned on")
+            log("Bluetooth Disabled - Make sure your Bluetooth is turned on")
         }
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
-        LogsManager.append("<SCAN> Found peripheral: \(peripheral.identifier.uuidString), RSSI: \(RSSI.stringValue), advertisementData: \(advertisementData.debugDescription)")
+        log("Found peripheral: \(peripheral.identifier.uuidString), RSSI: \(RSSI.stringValue), advertisementData: \(advertisementData.debugDescription)")
         
         peripherals[peripheral] = RSSI.intValue
         
@@ -57,15 +61,15 @@ extension BtScanningManager: CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         peripheral.discoverServices(nil)
-        LogsManager.append("<SCAN> Connect to: \(peripheral.identifier.uuidString)")
+        log("Connect to: \(peripheral.identifier.uuidString)")
     }
     
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
-        LogsManager.append("<SCAN> Fail Connect to: \(peripheral.identifier.uuidString)")
+        log("Fail Connect to: \(peripheral.identifier.uuidString)")
     }
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-        LogsManager.append("<SCAN> Disconnected from: \(peripheral.identifier.uuidString)")
+        log("Disconnected from: \(peripheral.identifier.uuidString)")
     }
     
 }
@@ -74,7 +78,7 @@ extension BtScanningManager: CBPeripheralDelegate {
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         if let errorValue = error {
-            LogsManager.append("<SCAN> Error discovering services: \(errorValue.localizedDescription)")
+            log("Error discovering services: \(errorValue.localizedDescription)")
             
             return
         }
@@ -82,14 +86,14 @@ extension BtScanningManager: CBPeripheralDelegate {
         let bleService = peripheral.services?.first(where: { $0.uuid == BLE_SERVICE_UUID })
         guard let unwrappedBleService = bleService else { return }
         
-        LogsManager.append("<SCAN> Discover service: \(unwrappedBleService.uuid.uuidString)")
+        log("Discover service: \(unwrappedBleService.uuid.uuidString)")
         
         peripheral.discoverCharacteristics([BLE_CHARACTERISTIC_UUID], for: unwrappedBleService)
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         if let errorValue = error {
-            LogsManager.append("<SCAN> Error discovering services: \(errorValue.localizedDescription)")
+            log("Error discovering services: \(errorValue.localizedDescription)")
             
             return
         }
@@ -99,7 +103,7 @@ extension BtScanningManager: CBPeripheralDelegate {
         if let characteristic = char {
             peripheral.readValue(for: characteristic)
 
-            LogsManager.append("<SCAN> Read value for Characteristic: \(characteristic.uuid)")
+            log("Read value for Characteristic: \(characteristic.uuid)")
         }
         
     }
@@ -108,11 +112,11 @@ extension BtScanningManager: CBPeripheralDelegate {
         guard let data = characteristic.value else { return }
         
         if data.count != 16 {
-            LogsManager.append("<SCAN> Recieved unexpected data length \(data.count)")
+            log("Recieved unexpected data length \(data.count)")
         } else {
             let rollingId = data.base64EncodedString()
             
-            LogsManager.append("<SCAN> Recieved rollingId from peripheral: \(rollingId)")
+            log("Recieved rollingId from peripheral: \(rollingId)")
             
             let lastLocation = LocationManager.lastLocation
             
@@ -123,9 +127,9 @@ extension BtScanningManager: CBPeripheralDelegate {
                 BtContactsManager.addContact(rollingId, encounter)
             } else {
                 if lastLocation == nil {
-                    LogsManager.append("<SCAN> Failed to record contact: no location data.")
+                    log("Failed to record contact: no location data.")
                 } else {
-                    LogsManager.append("<SCAN> Failed to record contact: no rssi data.")
+                    log("Failed to record contact: no rssi data.")
                 }
             }
         }
@@ -135,13 +139,13 @@ extension BtScanningManager: CBPeripheralDelegate {
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
         if let errorValue = error {
-            LogsManager.append("<SCAN> Error changing notification state: \(errorValue.localizedDescription)")
+            log("Error changing notification state: \(errorValue.localizedDescription)")
             
             return
         }
         
         if characteristic.isNotifying {
-            LogsManager.append("<SCAN> Subscribed. Notification has begun for: \(characteristic.uuid.uuidString)")
+            log("Subscribed. Notification has begun for: \(characteristic.uuid.uuidString)")
         }
     }
     

@@ -46,10 +46,10 @@ class LogsManager {
         logs = newItems
     }
 
-    static func append(_ text: String) {
+    static func append(tag: String, text: String) {
         var newItems = logs
         
-        newItems.append(LogItem(text))
+        newItems.append(LogItem(tag: tag, text: text))
         
         logs = newItems
     }
@@ -57,10 +57,12 @@ class LogsManager {
 }
 
 struct LogItem : Codable {
+    let tag: String
     let text: String
     let date: Date
     
-    init(_ text: String) {
+    init(tag: String, text: String) {
+        self.tag = tag
         self.text = text
         date = Date()
     }
