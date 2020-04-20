@@ -45,22 +45,10 @@ class ContactsManager {
         
         newContacts.forEach { contact in
             let contactDay = SecurityUtil.getDayNumber(from: contact.contact.tst)
-            keysData.keys.filter { key in
-                key.day == contactDay
-            }.forEach { key in
-                let timeIntervalNumber = SecurityUtil.getTimeIntervalNumber(for: Int(contact.contact.tst/1000))
-                
-                let dailyKey = Data(base64Encoded: key.value)!
-                
-                // We check 3 nearest ids in case of timestamp rolling
-                let idExact = SecurityUtil.getRollingId(dailyKey, timeIntervalNumber).base64EncodedString()
-                let idBefore = SecurityUtil.getRollingId(dailyKey, timeIntervalNumber - 1).base64EncodedString()
-                let idAfter = SecurityUtil.getRollingId(dailyKey, timeIntervalNumber + 1).base64EncodedString()
-                
-                if contact.contact.id == idExact || contact.contact.id == idBefore || contact.contact.id == idAfter {
-                    contact.infected = true
-                    lastInfectedContact = contact.contact
-                }
+            if keysData.keys.contains(where: { $0.day == contactDay &&
+                SecurityUtil.match(contact.contact.id, contact.contact.tst, $0) }) {
+                contact.infected = true
+                lastInfectedContact = contact.contact
             }
         }
         
@@ -68,7 +56,7 @@ class ContactsManager {
         
         return lastInfectedContact
     }
-
+    
     static func addContact(_ contact: Contact) {
         var newContacts = contacts
         

@@ -30,6 +30,8 @@ class RootViewController: UITabBarController {
         
         if KeyManager.hasKey() {
             LocationManager.requestLocationUpdates()
+            BtAdvertisingManager.shared.startService()
+            BtScanningManager.shared.startScan()
         } else {
             navigationController?.pushViewController(
                 OnboardingViewController.instanciate(),
@@ -202,6 +204,8 @@ class RootViewController: UITabBarController {
                             self.mapViewController.goToContact(lastInfectedContact)
                             self.mapViewController.updateContacts()
                         }
+                        
+                        // TODO match bt contacts
                     } else {
                         response.reportError("GET /keys")
                     }

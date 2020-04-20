@@ -72,6 +72,19 @@ class SecurityUtil {
         return Data(bytes.prefix(16))
     }
     
+    static func match(_ rollingId: String, _ tst: Int64, _ dailyKey: Key) -> Bool {
+        let timeIntervalNumber = SecurityUtil.getTimeIntervalNumber(for: Int(tst/1000))
+        
+        let dailyKey = Data(base64Encoded: dailyKey.value)!
+        
+        // We check 3 nearest ids in case of timestamp rolling
+        let idExact = SecurityUtil.getRollingId(dailyKey, timeIntervalNumber).base64EncodedString()
+        let idBefore = SecurityUtil.getRollingId(dailyKey, timeIntervalNumber - 1).base64EncodedString()
+        let idAfter = SecurityUtil.getRollingId(dailyKey, timeIntervalNumber + 1).base64EncodedString()
+        
+        return rollingId == idExact || rollingId == idBefore || rollingId == idAfter
+    }
+    
     static func getDayNumber(from tst: Int64) -> Int {
         return Int(tst/1000) / daySeconds
     }

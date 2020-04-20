@@ -40,6 +40,10 @@
 		FA05717B24464AD000D39462 /* QrLinkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA05717924464AD000D39462 /* QrLinkViewController.xib */; };
 		FA0571AD2448773A00D39462 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA0571AC2448773A00D39462 /* GoogleService-Info.plist */; };
 		FA0571AF2448990500D39462 /* LocationBordersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0571AE2448990500D39462 /* LocationBordersManager.swift */; };
+		FA0571B3244DB98900D39462 /* BtAdvertisingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0571B1244DB98900D39462 /* BtAdvertisingManager.swift */; };
+		FA0571B6244DBB8700D39462 /* BtServiceDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0571B5244DBB8700D39462 /* BtServiceDefinition.swift */; };
+		FAAE8C8E244DC464000882A1 /* BtScanningManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE8C8D244DC464000882A1 /* BtScanningManager.swift */; };
+		FAAE8C90244DEC88000882A1 /* BtContactsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE8C8F244DEC88000882A1 /* BtContactsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +86,10 @@
 		FA05717924464AD000D39462 /* QrLinkViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QrLinkViewController.xib; sourceTree = "<group>"; };
 		FA0571AC2448773A00D39462 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FA0571AE2448990500D39462 /* LocationBordersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationBordersManager.swift; sourceTree = "<group>"; };
+		FA0571B1244DB98900D39462 /* BtAdvertisingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BtAdvertisingManager.swift; sourceTree = "<group>"; };
+		FA0571B5244DBB8700D39462 /* BtServiceDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BtServiceDefinition.swift; sourceTree = "<group>"; };
+		FAAE8C8D244DC464000882A1 /* BtScanningManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BtScanningManager.swift; sourceTree = "<group>"; };
+		FAAE8C8F244DEC88000882A1 /* BtContactsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BtContactsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,13 +153,12 @@
 				FA0571672446458300D39462 /* Localizable.strings */,
 				FA0571262446412E00D39462 /* AppDelegate.swift */,
 				FA05713E244644C400D39462 /* DeviceTokenManager.swift */,
-				FA05713C244644C300D39462 /* LocationManager.swift */,
 				FA05713B244644C300D39462 /* NetworkUtil.swift */,
 				FA05713D244644C400D39462 /* RoundButton.swift */,
 				FA05713A244644C300D39462 /* SecurityUtil.swift */,
 				FA05712F2446413000D39462 /* Assets.xcassets */,
 				FA05714A2446452400D39462 /* Controllers */,
-				FA05714B2446454300D39462 /* Persistence */,
+				FA0571B7244DBFFC00D39462 /* Services */,
 				FA0571312446413000D39462 /* LaunchScreen.storyboard */,
 				FA05712C2446412E00D39462 /* Main.storyboard */,
 			);
@@ -178,6 +185,7 @@
 		FA05714B2446454300D39462 /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
+				FAAE8C8F244DEC88000882A1 /* BtContactsManager.swift */,
 				FA0571622446456C00D39462 /* ContactsManager.swift */,
 				FA0571652446456C00D39462 /* DataManager.swift */,
 				FA0571632446456C00D39462 /* EncryptionKeysManager.swift */,
@@ -189,6 +197,34 @@
 				FA0571662446456C00D39462 /* UserStatusManager.swift */,
 			);
 			path = Persistence;
+			sourceTree = "<group>";
+		};
+		FA0571B4244DB99A00D39462 /* Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				FAAE8C8D244DC464000882A1 /* BtScanningManager.swift */,
+				FA0571B1244DB98900D39462 /* BtAdvertisingManager.swift */,
+				FA0571B5244DBB8700D39462 /* BtServiceDefinition.swift */,
+			);
+			path = Bluetooth;
+			sourceTree = "<group>";
+		};
+		FA0571B7244DBFFC00D39462 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				FA0571B4244DB99A00D39462 /* Bluetooth */,
+				FA0571B8244DC04000D39462 /* Location */,
+				FA05714B2446454300D39462 /* Persistence */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		FA0571B8244DC04000D39462 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				FA05713C244644C300D39462 /* LocationManager.swift */,
+			);
+			path = Location;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,7 +346,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA0571B6244DBB8700D39462 /* BtServiceDefinition.swift in Sources */,
+				FA0571B3244DB98900D39462 /* BtAdvertisingManager.swift in Sources */,
 				FA05715C2446455000D39462 /* StatusViewController.swift in Sources */,
+				FAAE8C8E244DC464000882A1 /* BtScanningManager.swift in Sources */,
+				FAAE8C90244DEC88000882A1 /* BtContactsManager.swift in Sources */,
 				FA05716A244647A400D39462 /* DataManager.swift in Sources */,
 				FA057169244647A400D39462 /* ContactsManager.swift in Sources */,
 				FA0571592446455000D39462 /* IndicatorViewController.swift in Sources */,
