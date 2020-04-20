@@ -5,7 +5,6 @@ class BtAdvertisingManager: NSObject {
     
     static let shared = BtAdvertisingManager()
     
-    
     private var manager: CBPeripheralManager!
     
     override private init() {

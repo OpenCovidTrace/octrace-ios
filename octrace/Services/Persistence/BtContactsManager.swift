@@ -99,4 +99,13 @@ struct BtEncounter : Codable {
     let lng: Double
     let accuracy: Int
     let tst: Int64
+    
+    init(_ rssi: Int, _ location: CLLocation) {
+        self.rssi = rssi
+        self.lat = location.coordinate.latitude
+        self.lng = location.coordinate.longitude
+        self.accuracy = Int(location.horizontalAccuracy)
+        
+        tst = Date.timestamp()
+    }
 }
