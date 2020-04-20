@@ -58,6 +58,12 @@ class MapViewController: UIViewController {
         goToLocation(location)
     }
     
+    @IBAction func openLog(_ sender: Any) {
+        let logsController = LogsViewController(nibName: "LogsViewController", bundle: nil)
+        
+        rootViewController.navigationController?.present(logsController, animated: true)
+    }
+    
     @IBAction func makeContact(_ sender: Any) {
         let linkController = QrLinkViewController(nibName: "QrLinkViewController", bundle: nil)
         

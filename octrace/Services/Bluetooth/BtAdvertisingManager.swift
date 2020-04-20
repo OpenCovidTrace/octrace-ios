@@ -32,7 +32,7 @@ class BtAdvertisingManager: NSObject {
     private func startAdvertising() {
         manager.startAdvertising([CBAdvertisementDataLocalNameKey: "BLEPrototype", CBAdvertisementDataServiceUUIDsKey: [BLE_SERVICE_UUID]])
         
-        NSLog("[BT_ADV] Advertising has started.")
+        LogsManager.append("<ADV> Advertising has started")
     }
     
 }
@@ -42,19 +42,19 @@ extension BtAdvertisingManager: CBPeripheralManagerDelegate {
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
         switch peripheral.state {
         case .unknown:
-            NSLog("[BT_ADV] Bluetooth Device is UNKNOWN")
+            LogsManager.append("<ADV> Bluetooth Device is UNKNOWN")
         case .unsupported:
-            NSLog("[BT_ADV] Bluetooth Device is UNSUPPORTED")
+            LogsManager.append("<ADV> Bluetooth Device is UNSUPPORTED")
         case .unauthorized:
-            NSLog("[BT_ADV] Bluetooth Device is UNAUTHORIZED")
+            LogsManager.append("<ADV> Bluetooth Device is UNAUTHORIZED")
         case .resetting:
-            NSLog("[BT_ADV] Bluetooth Device is RESETTING")
+            LogsManager.append("<ADV> Bluetooth Device is RESETTING")
         case .poweredOff:
-            NSLog("[BT_ADV] Bluetooth Device is POWERED OFF")
+            LogsManager.append("<ADV> Bluetooth Device is POWERED OFF")
         case .poweredOn:
-            NSLog("[BT_ADV] Bluetooth Device is POWERED ON")
+            LogsManager.append("<ADV> Bluetooth Device is POWERED ON")
         @unknown default:
-            NSLog("[BT_ADV] Unknown State")
+            LogsManager.append("<ADV> Unknown State")
         }
     }
     

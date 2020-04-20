@@ -11,7 +11,7 @@
         <!--Map-->
         <scene sceneID="ra5-8h-WRz">
             <objects>
-                <viewController id="HgP-L2-cB3" customClass="MapViewController" customModule="OCTrace" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="HgP-L2-cB3" customClass="MapViewController" customModule="OCTrace_DEV" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DTc-0Q-8MU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -19,7 +19,7 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="u1L-zC-Iyl">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                             </mapView>
-                            <button opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tfk-CK-TcZ" customClass="RoundButton" customModule="OCTrace" customModuleProvider="target">
+                            <button opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tfk-CK-TcZ" customClass="RoundButton" customModule="OCTrace_DEV" customModuleProvider="target">
                                 <rect key="frame" x="16" y="741" width="40" height="40"/>
                                 <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -34,7 +34,7 @@
                                     <action selector="goToMyLocation:" destination="HgP-L2-cB3" eventType="touchUpInside" id="xyZ-2Z-Wgr"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aPZ-lL-MTC" customClass="RoundButton" customModule="OCTrace" customModuleProvider="target">
+                            <button opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aPZ-lL-MTC" customClass="RoundButton" customModule="OCTrace_DEV" customModuleProvider="target">
                                 <rect key="frame" x="16" y="637" width="40" height="40"/>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -49,7 +49,7 @@
                                     <action selector="zoomIn:" destination="HgP-L2-cB3" eventType="touchUpInside" id="LXC-fb-sdn"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jki-vL-Ib2" customClass="RoundButton" customModule="OCTrace" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jki-vL-Ib2" customClass="RoundButton" customModule="OCTrace_DEV" customModuleProvider="target">
                                 <rect key="frame" x="72" y="741" width="326" height="40"/>
                                 <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -78,7 +78,7 @@
                                 <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bzt-Bm-9e7" customClass="RoundButton" customModule="OCTrace" customModuleProvider="target">
+                            <button opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bzt-Bm-9e7" customClass="RoundButton" customModule="OCTrace_DEV" customModuleProvider="target">
                                 <rect key="frame" x="16" y="685" width="40" height="40"/>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -96,10 +96,26 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="D8o-Gm-RNU">
                                 <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
                             </activityIndicatorView>
+                            <button opaque="NO" alpha="0.85000002384185791" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ec3-OL-HrX" customClass="RoundButton" customModule="OCTrace_DEV" customModuleProvider="target">
+                                <rect key="frame" x="358" y="685" width="40" height="40"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="2Dh-u0-AgU"/>
+                                    <constraint firstAttribute="height" constant="40" id="v9a-tM-9r8"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <state key="normal" image="outline_bluetooth_black_24pt">
+                                    <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="openLog:" destination="HgP-L2-cB3" eventType="touchUpInside" id="QdO-Hq-KO4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Tfk-CK-TcZ" firstAttribute="leading" secondItem="aPZ-lL-MTC" secondAttribute="leading" id="40x-9r-hqh"/>
+                            <constraint firstItem="Jki-vL-Ib2" firstAttribute="top" secondItem="ec3-OL-HrX" secondAttribute="bottom" constant="16" id="84M-fr-DaM"/>
                             <constraint firstItem="Jki-vL-Ib2" firstAttribute="top" secondItem="pLf-Qi-GWp" secondAttribute="bottom" constant="16" id="8Zl-DG-jnj"/>
                             <constraint firstItem="Tfk-CK-TcZ" firstAttribute="top" secondItem="bzt-Bm-9e7" secondAttribute="bottom" constant="16" id="92d-tE-PBv"/>
                             <constraint firstItem="68J-pO-N1J" firstAttribute="centerX" secondItem="DTc-0Q-8MU" secondAttribute="centerX" id="CbE-ko-XTd"/>
@@ -111,6 +127,7 @@
                             <constraint firstItem="Tfk-CK-TcZ" firstAttribute="leading" secondItem="wVp-A6-3Pn" secondAttribute="leading" constant="16" id="JN4-Aw-WGR"/>
                             <constraint firstItem="u1L-zC-Iyl" firstAttribute="leading" secondItem="wVp-A6-3Pn" secondAttribute="leading" id="O5k-kQ-cVE"/>
                             <constraint firstItem="Tfk-CK-TcZ" firstAttribute="bottom" secondItem="Jki-vL-Ib2" secondAttribute="bottom" id="PGY-yG-Qj5"/>
+                            <constraint firstItem="wVp-A6-3Pn" firstAttribute="trailing" secondItem="ec3-OL-HrX" secondAttribute="trailing" constant="16" id="VYK-2N-EtJ"/>
                             <constraint firstItem="bzt-Bm-9e7" firstAttribute="leading" secondItem="aPZ-lL-MTC" secondAttribute="leading" id="WgK-TL-rae"/>
                             <constraint firstItem="bzt-Bm-9e7" firstAttribute="top" secondItem="aPZ-lL-MTC" secondAttribute="bottom" constant="8" id="Xxj-yb-BET"/>
                             <constraint firstItem="D8o-Gm-RNU" firstAttribute="centerX" secondItem="DTc-0Q-8MU" secondAttribute="centerX" id="cTZ-uM-sXX"/>
@@ -138,12 +155,12 @@
         <!--My status-->
         <scene sceneID="5nK-cd-NM7">
             <objects>
-                <viewController id="6ld-MF-qcp" customClass="StatusViewController" customModule="OCTrace" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="6ld-MF-qcp" customClass="StatusViewController" customModule="OCTrace_DEV" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="c4l-F0-NZf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tVG-dr-mgC" customClass="RoundButton" customModule="OCTrace" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tVG-dr-mgC" customClass="RoundButton" customModule="OCTrace_DEV" customModuleProvider="target">
                                 <rect key="frame" x="32" y="426" width="350" height="44"/>
                                 <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -186,7 +203,7 @@
         <!--Newsroom-->
         <scene sceneID="pg1-uu-GLu">
             <objects>
-                <viewController id="ADf-XR-BQe" customClass="InfoViewController" customModule="OCTrace" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ADf-XR-BQe" customClass="InfoViewController" customModule="OCTrace_DEV" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9nF-6C-ZLm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -237,7 +254,7 @@
         <!--Root View Controller-->
         <scene sceneID="3ZZ-zh-3qj">
             <objects>
-                <tabBarController id="hZj-V4-8r7" customClass="RootViewController" customModule="OCTrace" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="hZj-V4-8r7" customClass="RootViewController" customModule="OCTrace_DEV" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="6eM-Ck-MTh"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="AKA-ak-vOa">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -257,6 +274,7 @@
     </scenes>
     <resources>
         <image name="outline_add_black_24pt" width="24" height="24"/>
+        <image name="outline_bluetooth_black_24pt" width="24" height="24"/>
         <image name="outline_near_me_black_24pt" width="24" height="24"/>
         <image name="outline_remove_black_24pt" width="24" height="24"/>
         <image name="tab_map" width="24" height="24"/>

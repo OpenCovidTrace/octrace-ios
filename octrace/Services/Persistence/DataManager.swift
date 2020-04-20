@@ -8,8 +8,12 @@ class DataManager {
     
     static let docsDir = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
     
+    static func expirationDate() -> Date {
+        return Calendar.current.date(byAdding: .day, value: -maxDays, to: Date())!
+    }
+    
     static func expirationTimestamp() -> Int64 {
-        return Calendar.current.date(byAdding: .day, value: -maxDays, to: Date())!.timestamp()
+        expirationDate().timestamp()
     }
     
 }
