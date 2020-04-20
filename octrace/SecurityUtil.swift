@@ -22,7 +22,7 @@ class SecurityUtil {
     private static func getAes(from key: Data) -> AES {
         return try! AES(
             key: key.bytes,
-            blockMode: CBC(iv: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+            blockMode: CBC(iv: [UInt8](repeating: 0, count: 16)),
             padding: .pkcs5
         )
     }
