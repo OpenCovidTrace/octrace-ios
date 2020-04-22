@@ -8,27 +8,17 @@ class BtScanningManager: NSObject {
     
     private static let tag = "SCAN"
     
+    var state: CBManagerState?
+    
     private var manager: CBCentralManager!
     
     private var peripheralsRssi: [CBPeripheral:Int] = [:]
     
+    // This link is required
     private var tempPeripheral: CBPeripheral?
 
-    private var managerPoweredOn: (() -> Void)?
-    
-    override private init() {
-        super.init()
-        
+    func setup() {
         manager = CBCentralManager(delegate: self, queue: nil, options: nil)
-    }
-    
-    // MARK: - Scan
-    
-    func startScan() {
-        managerPoweredOn = { [weak self] in
-            self?.manager.scanForPeripherals(withServices: [BLE_SERVICE_UUID], options: [CBCentralManagerScanOptionAllowDuplicatesKey: false])
-            self?.log("Scanning has started")
-        }
     }
     
     private func log(_ text: String) {
@@ -39,11 +29,16 @@ class BtScanningManager: NSObject {
 extension BtScanningManager: CBCentralManagerDelegate {
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        if central.state == CBManagerState.poweredOn {
-            log("Bluetooth Enabled")
-            managerPoweredOn?()
-        } else {
-            log("Bluetooth Disabled - Make sure your Bluetooth is turned on")
+        log(central.state.name())
+        
+        state = central.state
+        
+        if state == .poweredOn {
+            manager.scanForPeripherals(withServices: [BLE_SERVICE_UUID], options: [CBCentralManagerScanOptionAllowDuplicatesKey: false])
+            
+            log("Scanning has started")
+        } else if state == .poweredOff, let rootViewController = RootViewController.instance {
+            rootViewController.showBluetoothOffWarning()
         }
     }
     

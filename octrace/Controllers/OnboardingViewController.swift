@@ -24,8 +24,8 @@ class OnboardingViewController: IndicatorViewController {
             goNext(.bluetooth)
             
         case .bluetooth:
-            BtAdvertisingManager.shared.startService()
-            BtScanningManager.shared.startScan()
+            BtAdvertisingManager.shared.setup()
+            BtScanningManager.shared.setup()
             
             goNext(.notifications)
         
