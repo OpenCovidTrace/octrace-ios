@@ -45,22 +45,7 @@ class BtAdvertisingManager: NSObject {
 extension BtAdvertisingManager: CBPeripheralManagerDelegate {
     
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
-        switch peripheral.state {
-        case .unknown:
-            log("Bluetooth Device is UNKNOWN")
-        case .unsupported:
-            log("Bluetooth Device is UNSUPPORTED")
-        case .unauthorized:
-            log("Bluetooth Device is UNAUTHORIZED")
-        case .resetting:
-            log("Bluetooth Device is RESETTING")
-        case .poweredOff:
-            log("Bluetooth Device is POWERED OFF")
-        case .poweredOn:
-            log("Bluetooth Device is POWERED ON")
-        @unknown default:
-            log("Unknown State")
-        }
+        log(peripheral.state.name())
     }
     
     func peripheralManagerDidStartAdvertising(_ peripheral: CBPeripheralManager, error: Error?) {

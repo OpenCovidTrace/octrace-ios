@@ -70,6 +70,10 @@ class RootViewController: UITabBarController {
             if UserStatusManager.sick() {
                 KeysManager.uploadNewKeys()
             }
+            
+            if BtScanningManager.shared.state == .poweredOff {
+                showBluetoothOffWarning()
+            }
         }
         
         RootViewController.instance = self
@@ -77,6 +81,10 @@ class RootViewController: UITabBarController {
     
     override func viewWillDisappear(_ animated: Bool) {
         RootViewController.instance = nil
+    }
+    
+    func showBluetoothOffWarning() {
+        showInfo("Please turn on Bluetooth to enable automatic contact tracing!")
     }
     
     func addContact(_ contact: Contact) {

@@ -8,6 +8,8 @@ class BtScanningManager: NSObject {
     
     private static let tag = "SCAN"
     
+    var state: CBManagerState?
+    
     private var manager: CBCentralManager!
     
     private var peripheralsRssi: [CBPeripheral:Int] = [:]
@@ -34,10 +36,12 @@ class BtScanningManager: NSObject {
 extension BtScanningManager: CBCentralManagerDelegate {
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        if central.state == CBManagerState.poweredOn {
-            log("Bluetooth Enabled")
-        } else {
-            log("Bluetooth Disabled - Make sure your Bluetooth is turned on")
+        log(central.state.name())
+        
+        state = central.state
+        
+        if state == .poweredOff, let rootViewController = RootViewController.instance {
+            rootViewController.showBluetoothOffWarning()
         }
     }
     
