@@ -17,21 +17,8 @@ class BtScanningManager: NSObject {
     // This link is required
     private var tempPeripheral: CBPeripheral?
 
-    private var managerPoweredOn: (() -> Void)?
-    
-    override private init() {
-        super.init()
-        
+    func setup() {
         manager = CBCentralManager(delegate: self, queue: nil, options: nil)
-    }
-    
-    // MARK: - Scan
-    
-    func startScan() {
-        managerPoweredOn = { [weak self] in
-            self?.manager.scanForPeripherals(withServices: [BLE_SERVICE_UUID], options: [CBCentralManagerScanOptionAllowDuplicatesKey: false])
-            self?.log("Scanning has started")
-        }
     }
     
     private func log(_ text: String) {
@@ -47,7 +34,9 @@ extension BtScanningManager: CBCentralManagerDelegate {
         state = central.state
         
         if state == .poweredOn {
-            managerPoweredOn?()
+            manager.scanForPeripherals(withServices: [BLE_SERVICE_UUID], options: [CBCentralManagerScanOptionAllowDuplicatesKey: false])
+            
+            log("Scanning has started")
         } else if state == .poweredOff, let rootViewController = RootViewController.instance {
             rootViewController.showBluetoothOffWarning()
         }

@@ -30,8 +30,8 @@ class RootViewController: UITabBarController {
         
         if KeyManager.hasKey() {
             LocationManager.requestLocationUpdates()
-            BtAdvertisingManager.shared.startService()
-            BtScanningManager.shared.startScan()
+            BtAdvertisingManager.shared.setup()
+            BtScanningManager.shared.setup()
         } else {
             navigationController?.pushViewController(
                 OnboardingViewController.instanciate(),
