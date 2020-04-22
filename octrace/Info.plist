@@ -32,6 +32,8 @@
 	<string>We use your location to record tracks of your movement. All the data is stored on your device unless you get infected and want to shared it with others.</string>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>bluetooth-central</string>
+		<string>bluetooth-peripheral</string>
 		<string>location</string>
 		<string>remote-notification</string>
 	</array>
