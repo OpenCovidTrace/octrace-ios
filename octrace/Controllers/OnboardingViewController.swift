@@ -21,8 +21,14 @@ class OnboardingViewController: IndicatorViewController {
         case .location:
             LocationManager.requestAuthorization()
             
-            goNext(.notifications)
+            goNext(.bluetooth)
             
+        case .bluetooth:
+            BtAdvertisingManager.shared.startService()
+            BtScanningManager.shared.startScan()
+            
+            goNext(.notifications)
+        
         case .notifications:
             UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (granted, _) in
                 DispatchQueue.main.async {
@@ -46,6 +52,11 @@ class OnboardingViewController: IndicatorViewController {
             titleLabel.text = "Location Data"
             descriptionLabel.text = "All location tracking data is securely stored and does not leave your phone unless you get sick and want to notify your contacts, in either an anonymous or a transparent way."
             button.setTitle("Enable location", for: .normal)
+            
+        case .bluetooth:
+            titleLabel.text = "Bluetooth access"
+            descriptionLabel.text = "We use bluetooth for automatic contact tracing. All contacts are securely stored and never leave your phone."
+            button.setTitle("Enable Bluetooth", for: .normal)
             
         case .notifications:
             titleLabel.text = "Notifications"
@@ -75,12 +86,14 @@ class OnboardingViewController: IndicatorViewController {
         popOut()
         parentController.popOut()
         parentController.parentController.popOut()
+        parentController.parentController.parentController.popOut()
     }
     
 }
 
-enum OnboaringStage: String {
-    case welcome = "WELCOME"
-    case location = "LOCATION"
-    case notifications = "NOTIFICATIONS"
+enum OnboaringStage {
+    case welcome
+    case location
+    case bluetooth
+    case notifications
 }
