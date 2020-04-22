@@ -8,33 +8,13 @@ class BtAdvertisingManager: NSObject {
     private static let tag = "ADV"
     
     private var manager: CBPeripheralManager!
-    
-    override private init() {
-        super.init()
-        
-        manager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
-    }
-    
-    // MARK: - Services
-    
-    func startService() {
-        addServices()
-    }
-    
-    private func addServices() {
-        let characteristic = CBMutableCharacteristic(type: BLE_CHARACTERISTIC_UUID, properties: [.notify, .write, .read], value: nil, permissions: [.readable, .writeable])
 
-        let service = CBMutableService(type: BLE_SERVICE_UUID, primary: true)
-        service.characteristics = [characteristic]
-        manager.add(service)
-        
-        startAdvertising()
+    func setup() {
+        manager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
     }
     
     private func startAdvertising() {
         manager.startAdvertising([CBAdvertisementDataLocalNameKey: "BLEPrototype", CBAdvertisementDataServiceUUIDsKey: [BLE_SERVICE_UUID]])
-        
-        log("Advertising has started")
     }
     
     private func log(_ text: String) {
@@ -45,25 +25,21 @@ class BtAdvertisingManager: NSObject {
 extension BtAdvertisingManager: CBPeripheralManagerDelegate {
     
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
-        switch peripheral.state {
-        case .unknown:
-            log("Bluetooth Device is UNKNOWN")
-        case .unsupported:
-            log("Bluetooth Device is UNSUPPORTED")
-        case .unauthorized:
-            log("Bluetooth Device is UNAUTHORIZED")
-        case .resetting:
-            log("Bluetooth Device is RESETTING")
-        case .poweredOff:
-            log("Bluetooth Device is POWERED OFF")
-        case .poweredOn:
-            log("Bluetooth Device is POWERED ON")
-        @unknown default:
-            log("Unknown State")
+        log(peripheral.state.name())
+
+        if peripheral.state == .poweredOn {
+            let characteristic = CBMutableCharacteristic(type: BLE_CHARACTERISTIC_UUID, properties: [.notify, .write, .read], value: nil, permissions: [.readable, .writeable])
+
+            let service = CBMutableService(type: BLE_SERVICE_UUID, primary: true)
+            service.characteristics = [characteristic]
+            manager.add(service)
+            
+            startAdvertising()
         }
     }
     
     func peripheralManagerDidStartAdvertising(_ peripheral: CBPeripheralManager, error: Error?) {
+        log("Advertising has started")
     }
     
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveRead request: CBATTRequest) {

@@ -8,22 +8,17 @@ class BtScanningManager: NSObject {
     
     private static let tag = "SCAN"
     
+    var state: CBManagerState?
+    
     private var manager: CBCentralManager!
     
     private var peripheralsRssi: [CBPeripheral:Int] = [:]
     
-    override private init() {
-        super.init()
-        
+    // This link is required
+    private var tempPeripheral: CBPeripheral?
+
+    func setup() {
         manager = CBCentralManager(delegate: self, queue: nil, options: nil)
-    }
-    
-    // MARK: - Scan
-    
-    func startScan() {
-        manager.scanForPeripherals(withServices: [BLE_SERVICE_UUID], options: [CBCentralManagerScanOptionAllowDuplicatesKey: false])
-        
-        log("Scanning has started")
     }
     
     private func log(_ text: String) {
@@ -34,21 +29,28 @@ class BtScanningManager: NSObject {
 extension BtScanningManager: CBCentralManagerDelegate {
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        if central.state == CBManagerState.poweredOn {
-            log("Bluetooth Enabled")
-        } else {
-            log("Bluetooth Disabled - Make sure your Bluetooth is turned on")
+        log(central.state.name())
+        
+        state = central.state
+        
+        if state == .poweredOn {
+            manager.scanForPeripherals(withServices: [BLE_SERVICE_UUID], options: [CBCentralManagerScanOptionAllowDuplicatesKey: false])
+            
+            log("Scanning has started")
+        } else if state == .poweredOff, let rootViewController = RootViewController.instance {
+            rootViewController.showBluetoothOffWarning()
         }
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
         log("Found peripheral: \(peripheral.identifier.uuidString), RSSI: \(RSSI.stringValue), advertisementData: \(advertisementData.debugDescription)")
-        
         peripheralsRssi[peripheral] = RSSI.intValue
+        tempPeripheral = peripheral
         
-        peripheral.delegate = self
-        
-        connect(to: peripheral)
+        tempPeripheral?.delegate = self
+        if let tempPeripheral = tempPeripheral {
+            connect(to: tempPeripheral)
+        }
     }
     
     // MARK: - Connect to peripheral
@@ -58,7 +60,7 @@ extension BtScanningManager: CBCentralManagerDelegate {
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        peripheral.discoverServices(nil)
+        peripheral.discoverServices([BLE_SERVICE_UUID])
         log("Connect to: \(peripheral.identifier.uuidString)")
     }
     
