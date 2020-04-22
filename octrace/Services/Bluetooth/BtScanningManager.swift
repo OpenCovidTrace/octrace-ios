@@ -12,6 +12,8 @@ class BtScanningManager: NSObject {
     
     private var peripheralsRssi: [CBPeripheral:Int] = [:]
     
+    private var tempPeripheral: CBPeripheral?
+
     private var managerPoweredOn: (() -> Void)?
     
     override private init() {
@@ -47,12 +49,13 @@ extension BtScanningManager: CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
         log("Found peripheral: \(peripheral.identifier.uuidString), RSSI: \(RSSI.stringValue), advertisementData: \(advertisementData.debugDescription)")
-        
         peripheralsRssi[peripheral] = RSSI.intValue
-//        если не будет дополнительной ссылки на peripheral, не будет коннектится и получите ошибку [CoreBluetooth] API MISUSE: Cancelling connection for unused peripheral <CBPeripheral>, Did you forget to keep a reference to it?
-
-        peripheral.delegate = self
-        connect(to: peripheral)
+        tempPeripheral = peripheral
+        
+        tempPeripheral?.delegate = self
+        if let tempPeripheral = tempPeripheral {
+            connect(to: tempPeripheral)
+        }
     }
     
     // MARK: - Connect to peripheral
