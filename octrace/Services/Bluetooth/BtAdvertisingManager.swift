@@ -8,7 +8,8 @@ class BtAdvertisingManager: NSObject {
     private static let tag = "ADV"
     
     private var manager: CBPeripheralManager!
-    
+    private var managerPoweredOn: (() -> Void)?
+
     override private init() {
         super.init()
         
@@ -18,7 +19,9 @@ class BtAdvertisingManager: NSObject {
     // MARK: - Services
     
     func startService() {
-        addServices()
+        managerPoweredOn = { [weak self] in
+            self?.addServices()
+        }
     }
     
     private func addServices() {
@@ -46,6 +49,10 @@ extension BtAdvertisingManager: CBPeripheralManagerDelegate {
     
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
         log(peripheral.state.name())
+
+        if peripheral.state == .poweredOn {
+            managerPoweredOn?()
+        }
     }
     
     func peripheralManagerDidStartAdvertising(_ peripheral: CBPeripheralManager, error: Error?) {
