@@ -21,9 +21,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>App uses bluetooth to find, connect and transfer data between different devices.</string>
+	<string>App use bluetooth to find, connect and transfer data between different devices</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>App uses bluetooth to find, connect and transfer data between different devices.</string>
+	<string>App use bluetooth to find, connect and transfer data between different devices</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>We use your location to record tracks of your movement. All the data is stored on your device unless you get infected and want to shared it with others. Allow location usage in background so it will stil work while you switch to other apps or when your device is locked.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
@@ -32,6 +32,8 @@
 	<string>We use your location to record tracks of your movement. All the data is stored on your device unless you get infected and want to shared it with others.</string>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>bluetooth-central</string>
+		<string>bluetooth-peripheral</string>
 		<string>location</string>
 		<string>remote-notification</string>
 	</array>

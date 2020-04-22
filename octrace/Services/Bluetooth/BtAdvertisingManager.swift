@@ -8,7 +8,8 @@ class BtAdvertisingManager: NSObject {
     private static let tag = "ADV"
     
     private var manager: CBPeripheralManager!
-    
+    private var managerPoweredOn: (() -> Void)?
+
     override private init() {
         super.init()
         
@@ -18,7 +19,9 @@ class BtAdvertisingManager: NSObject {
     // MARK: - Services
     
     func startService() {
-        addServices()
+        managerPoweredOn = { [weak self] in
+            self?.addServices()
+        }
     }
     
     private func addServices() {
@@ -58,6 +61,7 @@ extension BtAdvertisingManager: CBPeripheralManagerDelegate {
             log("Bluetooth Device is POWERED OFF")
         case .poweredOn:
             log("Bluetooth Device is POWERED ON")
+            managerPoweredOn?()
         @unknown default:
             log("Unknown State")
         }
