@@ -11,6 +11,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     static var deviceTokenEncoded: String?
     
+    private static let tag = "APP"
+    
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -54,6 +56,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          */
         
         LocationManager.initialize(self)
+        
+        
+        log("App did finish launching")
         
         return true
     }
@@ -106,16 +111,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         LocationManager.updateAccuracy(foreground: false)
         
         print("App did enter background")
+        log("App did enter background")
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
         print("App will enter foreground")
+        log("App will enter foreground")
         
         LocationManager.updateAccuracy(foreground: true)
         
         // This is called in order for viewWillAppear to be executed
         self.window?.rootViewController?.beginAppearanceTransition(true, animated: false)
         self.window?.rootViewController?.endAppearanceTransition()
+    }
+    
+    private func log(_ text: String) {
+        LogsManager.append(tag: AppDelegate.tag, text: text)
     }
 }
 
