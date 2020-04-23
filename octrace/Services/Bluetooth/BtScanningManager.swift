@@ -112,11 +112,11 @@ extension BtScanningManager: CBPeripheralDelegate {
         guard let data = characteristic.value else { return }
         
         if data.count != 16 {
-            log("Recieved unexpected data length \(data.count)")
+            log("Received unexpected data length \(data.count)")
         } else {
             let rollingId = data.base64EncodedString()
             
-            log("Recieved rollingId from peripheral: \(rollingId)")
+            log("Received rollingId from peripheral: \(rollingId)")
             
             let lastLocation = LocationManager.lastLocation
             
