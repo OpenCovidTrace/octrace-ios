@@ -7,6 +7,9 @@ class SecurityUtil {
     
     private init() {}
     
+    
+    // MARK: - AES
+    
     static func encodeAES(_ value: String, with key: Data) -> Data {
         let aes = getAes(from: key)
         
@@ -26,6 +29,9 @@ class SecurityUtil {
             padding: .pkcs5
         )
     }
+    
+    
+    // MARK: - Apple/Google crypto spec: https://www.blog.google/documents/56/Contact_Tracing_-_Cryptography_Specification.pdf
     
     static func generateKey() -> Data {
         var bytes = [UInt8](repeating: 0, count: 32)
@@ -72,6 +78,7 @@ class SecurityUtil {
         return Data(bytes.prefix(16))
     }
     
+    /// This is extension to Apple/Google spec: we use contact timestamp to match daily key
     static func match(_ rollingId: String, _ tst: Int64, _ dailyKey: Key) -> Bool {
         let timeIntervalNumber = SecurityUtil.getTimeIntervalNumber(for: Int(tst/1000))
         

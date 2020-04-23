@@ -15,7 +15,6 @@
 		FA0571332446413000D39462 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA0571312446413000D39462 /* LaunchScreen.storyboard */; };
 		FA05713F244644C400D39462 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA05713C244644C300D39462 /* LocationManager.swift */; };
 		FA057140244644C400D39462 /* SecurityUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA05713A244644C300D39462 /* SecurityUtil.swift */; };
-		FA057141244644C400D39462 /* DeviceTokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA05713E244644C400D39462 /* DeviceTokenManager.swift */; };
 		FA057142244644C400D39462 /* NetworkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA05713B244644C300D39462 /* NetworkUtil.swift */; };
 		FA057143244644C400D39462 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA05713D244644C400D39462 /* RoundButton.swift */; };
 		FA057145244644DB00D39462 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA057144244644DA00D39462 /* MapKit.framework */; };
@@ -66,7 +65,6 @@
 		FA05713B244644C300D39462 /* NetworkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtil.swift; sourceTree = "<group>"; };
 		FA05713C244644C300D39462 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		FA05713D244644C400D39462 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
-		FA05713E244644C400D39462 /* DeviceTokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTokenManager.swift; sourceTree = "<group>"; };
 		FA057144244644DA00D39462 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		FA057146244644E300D39462 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		FA057148244644F800D39462 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -162,15 +160,12 @@
 				FA0571342446413000D39462 /* Info.plist */,
 				FA0571672446458300D39462 /* Localizable.strings */,
 				FA0571262446412E00D39462 /* AppDelegate.swift */,
-				FA05713E244644C400D39462 /* DeviceTokenManager.swift */,
-				FA05713B244644C300D39462 /* NetworkUtil.swift */,
-				FA05713D244644C400D39462 /* RoundButton.swift */,
-				FA05713A244644C300D39462 /* SecurityUtil.swift */,
 				FA05712F2446413000D39462 /* Assets.xcassets */,
-				FA05714A2446452400D39462 /* Controllers */,
-				FA0571B7244DBFFC00D39462 /* Services */,
 				FA0571312446413000D39462 /* LaunchScreen.storyboard */,
 				FA05712C2446412E00D39462 /* Main.storyboard */,
+				FA0571B7244DBFFC00D39462 /* Services */,
+				FAEE90A92451C4FC009A46E7 /* UI */,
+				FAEE90AA2451C508009A46E7 /* Util */,
 			);
 			path = octrace;
 			sourceTree = "<group>";
@@ -238,6 +233,24 @@
 				FA05713C244644C300D39462 /* LocationManager.swift */,
 			);
 			path = Location;
+			sourceTree = "<group>";
+		};
+		FAEE90A92451C4FC009A46E7 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				FA05713D244644C400D39462 /* RoundButton.swift */,
+				FA05714A2446452400D39462 /* Controllers */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		FAEE90AA2451C508009A46E7 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				FA05713B244644C300D39462 /* NetworkUtil.swift */,
+				FA05713A244644C300D39462 /* SecurityUtil.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -387,7 +400,6 @@
 				FA05716D244647A400D39462 /* KeysManager.swift in Sources */,
 				FA05713F244644C400D39462 /* LocationManager.swift in Sources */,
 				FA057171244647A400D39462 /* UserStatusManager.swift in Sources */,
-				FA057141244644C400D39462 /* DeviceTokenManager.swift in Sources */,
 				FA057140244644C400D39462 /* SecurityUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

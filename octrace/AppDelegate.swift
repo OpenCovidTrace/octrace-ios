@@ -9,6 +9,8 @@ let EXPOSED_CONTACT_CATEGORY = "EXPOSED_CONTACT"
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
+    static var deviceTokenEncoded: String?
+    
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -92,9 +94,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        let deviceTokenString = deviceToken.reduce("", { $0 + String(format: "%02X", $1) })
-        
-        DeviceTokenManager.updateToken(deviceTokenString)
+        // Transforming to format acceptable by backend
+        AppDelegate.deviceTokenEncoded = deviceToken.reduce("", { $0 + String(format: "%02X", $1) })
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
