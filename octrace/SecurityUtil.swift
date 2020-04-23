@@ -43,7 +43,7 @@ class SecurityUtil {
     static func getDailyKey(_ key: Data, _ dayNumber: Int) -> Data {
         var info = "CT-DTK".bytes
         
-        info.append(contentsOf: withUnsafeBytes(of: dayNumber.bigEndian, Array.init))
+        info.append(contentsOf: withUnsafeBytes(of: dayNumber.littleEndian, Array.init))
         
         return Data(try! HKDF(password: key.bytes, info: info, keyLength: 16).calculate())
     }
@@ -65,7 +65,7 @@ class SecurityUtil {
     static func getRollingId(_ dailyKey: Data, _ timeIntervalNumber: UInt8) -> Data {
         var info = "CT-RPI".bytes
         
-        info.append(contentsOf: withUnsafeBytes(of: timeIntervalNumber.bigEndian, Array.init))
+        info.append(contentsOf: [timeIntervalNumber])
         
         let bytes = try! HMAC(key: info, variant: .sha256).authenticate(dailyKey.bytes)
         
