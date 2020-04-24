@@ -15,7 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         /*
          * Firebase
          */
@@ -39,9 +40,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                                 intentIdentifiers: [],
                                                                 options: .customDismissAction)
         let exposedContactMessageCategory = UNNotificationCategory(identifier: EXPOSED_CONTACT_CATEGORY,
-                                                                    actions: [],
-                                                                    intentIdentifiers: [],
-                                                                    options: .customDismissAction)
+                                                                   actions: [],
+                                                                   intentIdentifiers: [],
+                                                                   options: .customDismissAction)
         
         let center = UNUserNotificationCenter.current()
         
@@ -84,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     let tst = url.valueOf("t") {
                     self.withRootController { rootViewController in
                         rootViewController.makeContact(
-                            id: id,
+                            rId: id,
                             key: key,
                             token: token,
                             platform: platform,
@@ -185,7 +186,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
-                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Swift.Void) {
+                                withCompletionHandler completionHandler:
+        @escaping (UNNotificationPresentationOptions) -> Swift.Void) {
         completionHandler([.alert, .sound])
     }
     

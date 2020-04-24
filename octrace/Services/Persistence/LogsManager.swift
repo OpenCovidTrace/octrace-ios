@@ -37,7 +37,6 @@ class LogsManager {
         logs = []
     }
     
-    // TODO call this method
     static func removeOldItems() {
         let expirationDate = DataManager.expirationDate()
         
@@ -56,7 +55,7 @@ class LogsManager {
     
 }
 
-struct LogItem : Codable {
+struct LogItem: Codable {
     let tag: String
     let text: String
     let date: Date

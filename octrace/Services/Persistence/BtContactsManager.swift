@@ -8,11 +8,11 @@ class BtContactsManager {
     private init() {
     }
     
-    static var contacts: [String:BtContactHealth] {
+    static var contacts: [String: BtContactHealth] {
         get {
             guard let data = NSKeyedUnarchiver.unarchiveObject(withFile: path) as? Data else { return [:] }
             do {
-                return try PropertyListDecoder().decode([String:BtContactHealth].self, from: data)
+                return try PropertyListDecoder().decode([String: BtContactHealth].self, from: data)
             } catch {
                 print("Retrieve Failed")
                 
@@ -43,7 +43,7 @@ class BtContactsManager {
     static func matchContacts(_ keysData: KeysData) -> BtContact? {
         let newContacts = contacts
         
-        var lastInfectedContact: BtContact? = nil
+        var lastInfectedContact: BtContact?
         
         newContacts.forEach { (id, health) in
             let contactTst = health.contact.encounters.first!.tst
@@ -74,7 +74,7 @@ class BtContactsManager {
     
 }
 
-class BtContactHealth : Codable {
+class BtContactHealth: Codable {
     let contact: BtContact
     var infected: Bool = false
     
@@ -83,7 +83,7 @@ class BtContactHealth : Codable {
     }
 }
 
-class BtContact : Codable {
+class BtContact: Codable {
     let id: String
     var encounters: [BtEncounter]
     
@@ -93,7 +93,7 @@ class BtContact : Codable {
     }
 }
 
-struct BtEncounter : Codable {
+struct BtEncounter: Codable {
     let rssi: Int
     let lat: Double
     let lng: Double

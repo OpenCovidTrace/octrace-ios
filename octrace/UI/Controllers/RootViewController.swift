@@ -26,7 +26,7 @@ class RootViewController: UITabBarController {
         statusViewController = viewControllers?[2] as? StatusViewController
         
         // preload all tabs
-        viewControllers?.forEach { let _ = $0.view }
+        viewControllers?.forEach { _ = $0.view }
         
         if KeyManager.hasKey() {
             LocationManager.requestLocationUpdates()
@@ -60,6 +60,7 @@ class RootViewController: UITabBarController {
                 TrackingManager.removeOldPoints()
                 LocationBordersManager.removeOldLocationBorders()
                 EncryptionKeysManager.removeOldKeys()
+                LogsManager.removeOldItems()
             }
             
             print("Cleaning old data complete!.")
@@ -92,7 +93,7 @@ class RootViewController: UITabBarController {
         mapViewController.goToContact(contact)
     }
     
-    func makeContact(id: String, key: String, token: String, platform: String, tst: Int64) {
+    func makeContact(rId: String, key: String, token: String, platform: String, tst: Int64) {
         if abs(Int(Date.timestamp() - tst)) > 60000 {
             // QR contact should be valid for 1 minute only
             showError("Contact code has expired, please try again.")
@@ -108,7 +109,10 @@ class RootViewController: UITabBarController {
         
         let rollingId = SecurityUtil.getRollingId().base64EncodedString()
         let secret = SecurityUtil.encodeAES(rollingId, with: Data(base64Encoded: key)!)
-        let contactRequest = ContactRequest(token: token, platform: platform, secret: secret.base64EncodedString(), tst: tst)
+        let contactRequest = ContactRequest(token: token,
+                                            platform: platform,
+                                            secret: secret.base64EncodedString(),
+                                            tst: tst)
         
         indicator.show()
         
@@ -120,7 +124,7 @@ class RootViewController: UITabBarController {
                     
                     let statusCode: Int = response.response?.statusCode ?? 0
                     if statusCode == 200 {
-                        let contact = Contact(id, location, tst)
+                        let contact = Contact(rId, location, tst)
                         
                         ContactsManager.addContact(contact)
                         
@@ -136,45 +140,43 @@ class RootViewController: UITabBarController {
     private func loadTracks() {
         indicator.show()
         
-        LocationManager.registerCallback { location in
-            let lastUpdateTimestamp = TracksManager.lastUpdateTimestamp
-            if let border = self.getQueryBorder(for: lastUpdateTimestamp) {
-                AF.request(
-                    STORAGE_ENDPOINT + "tracks",
-                    parameters: [
-                        "lastUpdateTimestamp": lastUpdateTimestamp,
-                        "minLat": border.minLat,
-                        "maxLat": border.maxLat,
-                        "minLng": border.minLng,
-                        "maxLng": border.maxLng
-                    ]
-                ).responseDecodable(of: TracksData.self) { response in
-                    self.indicator.hide()
+        let lastUpdateTimestamp = TracksManager.lastUpdateTimestamp
+        if let border = self.getQueryBorder(for: lastUpdateTimestamp) {
+            AF.request(
+                STORAGE_ENDPOINT + "tracks",
+                parameters: [
+                    "lastUpdateTimestamp": lastUpdateTimestamp,
+                    "minLat": border.minLat,
+                    "maxLat": border.maxLat,
+                    "minLng": border.minLng,
+                    "maxLng": border.maxLng
+                ]
+            ).responseDecodable(of: TracksData.self) { response in
+                self.indicator.hide()
+                
+                if let data = response.value {
+                    TracksManager.setUpdated()
                     
-                    if let data = response.value {
-                        TracksManager.setUpdated()
-                        
-                        if data.tracks.isEmpty {
-                            return
-                        }
-                        
-                        let latestDailyKeys = KeyManager.getLatestDailyKeys()
-                        
-                        let tracksFiltered = data.tracks.filter { track in
-                            !latestDailyKeys.contains(Data(base64Encoded: track.key)!)
-                        }
-                        
-                        print("Got \(tracksFiltered.count) new tracks since \(lastUpdateTimestamp).")
-                        
-                        if tracksFiltered.isEmpty {
-                            return
-                        }
-                        
-                        TracksManager.addTracks(tracksFiltered)
-                        self.mapViewController.updateExtTracks()
-                    } else {
-                        response.reportError("GET /tracks")
+                    if data.tracks.isEmpty {
+                        return
                     }
+                    
+                    let latestDailyKeys = KeyManager.getLatestDailyKeys()
+                    
+                    let tracksFiltered = data.tracks.filter { track in
+                        !latestDailyKeys.contains(Data(base64Encoded: track.key)!)
+                    }
+                    
+                    print("Got \(tracksFiltered.count) new tracks since \(lastUpdateTimestamp).")
+                    
+                    if tracksFiltered.isEmpty {
+                        return
+                    }
+                    
+                    TracksManager.addTracks(tracksFiltered)
+                    self.mapViewController.updateExtTracks()
+                } else {
+                    response.reportError("GET /tracks")
                 }
             }
         }
@@ -183,43 +185,41 @@ class RootViewController: UITabBarController {
     private func loadDiagnosticKeys() {
         indicator.show()
         
-        LocationManager.registerCallback { location in
-            let lastUpdateTimestamp = KeysManager.lastUpdateTimestamp
-            if let border = self.getQueryBorder(for: lastUpdateTimestamp) {
-                AF.request(
-                    STORAGE_ENDPOINT + "keys",
-                    parameters: [
-                        "lastUpdateTimestamp": lastUpdateTimestamp,
-                        "minLat": border.minLat,
-                        "maxLat": border.maxLat,
-                        "minLng": border.minLng,
-                        "maxLng": border.maxLng
-                    ]
-                ).responseDecodable(of: KeysData.self) { response in
-                    if let data = response.value {
-                        print("Got \(data.keys.count) new keys since \(lastUpdateTimestamp).")
-                        
-                        KeysManager.setUpdated()
-                        
-                        if data.keys.isEmpty {
-                            return
-                        }
-                        
-                        let lastInfectedContact = ContactsManager.matchContacts(data)
-                        
-                        if let contact = lastInfectedContact {
-                            self.showExposedNotification()
-                            
-                            self.mapViewController.goToContact(contact)
-                            self.mapViewController.updateContacts()
-                        }
-                        
-                        if BtContactsManager.matchContacts(data) != nil && lastInfectedContact == nil {
-                            self.showExposedNotification()
-                        }
-                    } else {
-                        response.reportError("GET /keys")
+        let lastUpdateTimestamp = KeysManager.lastUpdateTimestamp
+        if let border = self.getQueryBorder(for: lastUpdateTimestamp) {
+            AF.request(
+                STORAGE_ENDPOINT + "keys",
+                parameters: [
+                    "lastUpdateTimestamp": lastUpdateTimestamp,
+                    "minLat": border.minLat,
+                    "maxLat": border.maxLat,
+                    "minLng": border.minLng,
+                    "maxLng": border.maxLng
+                ]
+            ).responseDecodable(of: KeysData.self) { response in
+                if let data = response.value {
+                    print("Got \(data.keys.count) new keys since \(lastUpdateTimestamp).")
+                    
+                    KeysManager.setUpdated()
+                    
+                    if data.keys.isEmpty {
+                        return
                     }
+                    
+                    let lastInfectedContact = ContactsManager.matchContacts(data)
+                    
+                    if let contact = lastInfectedContact {
+                        self.showExposedNotification()
+                        
+                        self.mapViewController.goToContact(contact)
+                        self.mapViewController.updateContacts()
+                    }
+                    
+                    if BtContactsManager.matchContacts(data) != nil && lastInfectedContact == nil {
+                        self.showExposedNotification()
+                    }
+                } else {
+                    response.reportError("GET /keys")
                 }
             }
         }
