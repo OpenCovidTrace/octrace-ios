@@ -29,13 +29,11 @@ extension BtAdvertisingManager: CBPeripheralManagerDelegate {
         log(peripheral.state.name())
 
         if peripheral.state == .poweredOn {
-			let data = SecurityUtil.getRollingId()
-            
-            let characteristic = CBMutableCharacteristic(
-                type: BLE_CHARACTERISTIC_UUID,
-                properties: [.read],
-                value: data,
-                permissions: [.readable])
+            let data = SecurityUtil.getRollingId()
+            let characteristic = CBMutableCharacteristic(type: BLE_CHARACTERISTIC_UUID,
+                                                         properties: [.read],
+                                                         value: data,
+                                                         permissions: [.readable])
             
             let service = CBMutableService(type: BLE_SERVICE_UUID, primary: true)
             service.characteristics = [characteristic]
