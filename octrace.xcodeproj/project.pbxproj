@@ -41,6 +41,7 @@
 		FA0571AF2448990500D39462 /* LocationBordersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0571AE2448990500D39462 /* LocationBordersManager.swift */; };
 		FA0571B3244DB98900D39462 /* BtAdvertisingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0571B1244DB98900D39462 /* BtAdvertisingManager.swift */; };
 		FA0571B6244DBB8700D39462 /* BtServiceDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0571B5244DBB8700D39462 /* BtServiceDefinition.swift */; };
+		FA3A89AC2453586D00A7A6E8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA0571672446458300D39462 /* Localizable.strings */; };
 		FAAE8C8E244DC464000882A1 /* BtScanningManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE8C8D244DC464000882A1 /* BtScanningManager.swift */; };
 		FAAE8C90244DEC88000882A1 /* BtContactsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE8C8F244DEC88000882A1 /* BtContactsManager.swift */; };
 		FAAE8C92244E1506000882A1 /* LogsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE8C91244E1506000882A1 /* LogsManager.swift */; };
@@ -322,6 +323,7 @@
 				FA0571302446413000D39462 /* Assets.xcassets in Resources */,
 				FA057149244644F800D39462 /* README.md in Resources */,
 				FAAE8C96244E171F000882A1 /* LogsViewController.xib in Resources */,
+				FA3A89AC2453586D00A7A6E8 /* Localizable.strings in Resources */,
 				FA05712E2446412E00D39462 /* Main.storyboard in Resources */,
 				FA05717724464AC200D39462 /* OnboardingViewController.xib in Resources */,
 				FA05717B24464AD000D39462 /* QrLinkViewController.xib in Resources */,
