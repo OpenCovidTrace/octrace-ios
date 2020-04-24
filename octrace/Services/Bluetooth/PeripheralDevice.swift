@@ -1,10 +1,10 @@
 import CoreBluetooth
 
-class PeripheralDevice {
+struct PeripheralDevice {
     
-    var peripheral: CBPeripheral
-    var response: String?
-    var rssi: Int
+    let peripheral: CBPeripheral
+    let response: String?
+    let rssi: Int
     
     init(peripheral: CBPeripheral, rssi: Int, response: String? = nil) {
         self.peripheral = peripheral
