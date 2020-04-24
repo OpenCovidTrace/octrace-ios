@@ -161,7 +161,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             let tst = userInfo["tst"] as! Int64
             
             if let key = EncryptionKeysManager.encryptionKeys[tst] {
-                let id = SecurityUtil.decodeAES(secret, with: key).base64EncodedString()
+                let id = SecurityUtil.decodeAES(Data(base64Encoded: secret)!, with: key).base64EncodedString()
                 
                 // TODO verify that we have location here
                 LocationManager.registerCallback { location in
@@ -177,7 +177,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                         rootViewController.addContact(contact)
                     }
                 }
-                
             }
         }
         

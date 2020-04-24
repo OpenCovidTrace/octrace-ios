@@ -107,11 +107,11 @@ class RootViewController: UITabBarController {
             return
         }
         
-        let rollingId = SecurityUtil.getRollingId().base64EncodedString()
-        let secret = SecurityUtil.encodeAES(rollingId, with: Data(base64Encoded: key)!)
+        let rollingId = SecurityUtil.getRollingId()
+        let secret = SecurityUtil.encodeAES(rollingId, with: Data(base64Encoded: key)!).base64EncodedString()
         let contactRequest = ContactRequest(token: token,
                                             platform: platform,
-                                            secret: secret.base64EncodedString(),
+                                            secret: secret,
                                             tst: tst)
         
         indicator.show()
