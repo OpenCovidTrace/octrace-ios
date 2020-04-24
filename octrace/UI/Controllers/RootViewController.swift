@@ -118,6 +118,8 @@ class RootViewController: UITabBarController {
                         ContactsManager.addContact(contact)
                         
                         self.addContact(contact)
+                        
+                        self.showInfo("The contact has been recorded!")
                     } else {
                         self.showError("Status code: \(statusCode)")
                     }

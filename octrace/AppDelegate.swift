@@ -81,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     let key = url.valueOf("k"),
                     let token = url.valueOf("d"),
                     let platform = url.valueOf("p"),
-                    let tst = url.valueOf("tst") {
+                    let tst = url.valueOf("t") {
                     self.withRootController { rootViewController in
                         rootViewController.makeContact(
                             id: id,
