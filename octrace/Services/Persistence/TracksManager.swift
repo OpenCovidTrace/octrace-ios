@@ -84,7 +84,7 @@ class TracksManager {
             point.tst > oldLastUploadTimestamp
         }
         
-        var tracksByDay: [Int:Track] = [:]
+        var tracksByDay: [Int: Track] = [:]
         
         points.forEach { point in
             let dayNumber = point.dayNumber()
@@ -114,7 +114,7 @@ class TracksManager {
     
 }
 
-class TracksData : Codable {
+class TracksData: Codable {
     let tracks: [Track]
     
     init(tracks: [Track]) {
@@ -122,7 +122,7 @@ class TracksData : Codable {
     }
 }
 
-class Track : Codable {
+class Track: Codable {
     var points: [TrackingPoint]
     let day: Int
     let key: String

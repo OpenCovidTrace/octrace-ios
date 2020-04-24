@@ -31,7 +31,8 @@ class SecurityUtil {
     }
     
     
-    // MARK: - Apple/Google crypto spec: https://www.blog.google/documents/56/Contact_Tracing_-_Cryptography_Specification.pdf
+    // MARK: - Apple/Google crypto spec:
+    // https://www.blog.google/documents/56/Contact_Tracing_-_Cryptography_Specification.pdf
     
     static func generateKey() -> Data {
         var bytes = [UInt8](repeating: 0, count: 32)

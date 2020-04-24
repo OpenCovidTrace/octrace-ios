@@ -8,8 +8,9 @@ def pods
   pod 'Alamofire' # 5.1.0
   pod 'AlamofireNetworkActivityIndicator' # 3.1.0
   pod 'CryptoSwift' # 1.3.1
-  pod 'Firebase/Analytics' # 6.4.1
+  pod 'Firebase/Analytics' # 6.4.2
   pod 'Firebase/Crashlytics' # 4.0.0-beta.7
+  pod 'SwiftLint' # 0.39.2
 end
 
 target 'octrace DEV' do

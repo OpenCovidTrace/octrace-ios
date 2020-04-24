@@ -50,7 +50,9 @@ extension UIViewController {
     }
     
     func confirm(_ message: String, _ handler: @escaping () -> Swift.Void) {
-        let alert = UIAlertController(title: "Please confirm", message: message, preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "Please confirm",
+                                      message: message,
+                                      preferredStyle: UIAlertController.Style.alert)
         
         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: { _ in handler() }))
         
@@ -60,7 +62,9 @@ extension UIViewController {
     }
     
     func inputText(_ message: String, _ handler: @escaping (String) -> Swift.Void) {
-        let alert = UIAlertController(title: "Input required", message: message, preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "Input required",
+                                      message: message,
+                                      preferredStyle: UIAlertController.Style.alert)
         
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { _ in
             handler(alert.textFields?[0].text ?? "")

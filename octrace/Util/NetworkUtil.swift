@@ -14,7 +14,10 @@ class NetworkUtil {
 }
 
 class EternalRetry: RequestInterceptor {
-    func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
+    func retry(_ request: Request,
+               for session: Session,
+               dueTo error: Error,
+               completion: @escaping (RetryResult) -> Void) {
         completion(.retryWithDelay(3))
         
         print("Scheduled request retry in 3 seconds due to error: \(error.localizedDescription)")

@@ -2,9 +2,9 @@ import UIKit
 import WebKit
 import Alamofire
 
-let NEWS_ENDPOINT = "https://\(HOST)/newsroom.html?from=app"
-
 class InfoViewController: UIViewController {
+    
+    private static let newsEndpoint = "https://\(HOST)/newsroom.html?from=app"
     
     @IBOutlet weak var webView: WKWebView!
     
@@ -13,10 +13,11 @@ class InfoViewController: UIViewController {
         
         let websiteDataTypes = NSSet(array: [WKWebsiteDataTypeDiskCache, WKWebsiteDataTypeMemoryCache])
         let date = Date(timeIntervalSince1970: 0)
-        WKWebsiteDataStore.default().removeData(ofTypes: websiteDataTypes as! Set<String>, modifiedSince: date, completionHandler:{ })
+        WKWebsiteDataStore.default().removeData(ofTypes: websiteDataTypes as! Set<String>,
+                                                modifiedSince: date) {}
         
         webView.load(
-            URLRequest(url: URL(string: NEWS_ENDPOINT)!)
+            URLRequest(url: URL(string: InfoViewController.newsEndpoint)!)
         )
     }
     

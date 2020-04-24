@@ -41,7 +41,7 @@ class ContactsManager {
     static func matchContacts(_ keysData: KeysData) -> Contact? {
         let newContacts = contacts
         
-        var lastInfectedContact: Contact? = nil
+        var lastInfectedContact: Contact?
         
         newContacts.forEach { contact in
             let contactDay = SecurityUtil.getDayNumber(from: contact.contact.tst)
@@ -67,7 +67,7 @@ class ContactsManager {
     
 }
 
-class ContactHealth : Codable {
+class ContactHealth: Codable {
     let contact: Contact
     var infected: Bool = false
     
@@ -76,7 +76,7 @@ class ContactHealth : Codable {
     }
 }
 
-struct Contact : Codable {
+struct Contact: Codable {
     let id: String
     let lat: Double
     let lng: Double

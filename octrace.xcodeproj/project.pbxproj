@@ -46,6 +46,7 @@
 		FAAE8C92244E1506000882A1 /* LogsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE8C91244E1506000882A1 /* LogsManager.swift */; };
 		FAAE8C95244E171F000882A1 /* LogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE8C93244E171F000882A1 /* LogsViewController.swift */; };
 		FAAE8C96244E171F000882A1 /* LogsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAAE8C94244E171F000882A1 /* LogsViewController.xib */; };
+		FAEE90AD245319FD009A46E7 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = FAEE90AC245319FD009A46E7 /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +97,7 @@
 		FAAE8C91244E1506000882A1 /* LogsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsManager.swift; sourceTree = "<group>"; };
 		FAAE8C93244E171F000882A1 /* LogsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsViewController.swift; sourceTree = "<group>"; };
 		FAAE8C94244E171F000882A1 /* LogsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogsViewController.xib; sourceTree = "<group>"; };
+		FAEE90AC245319FD009A46E7 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 		FA05711A2446412E00D39462 = {
 			isa = PBXGroup;
 			children = (
+				FAEE90AC245319FD009A46E7 /* .swiftlint.yml */,
 				FA057148244644F800D39462 /* README.md */,
 				FA0571252446412E00D39462 /* octrace */,
 				FA0571242446412E00D39462 /* Products */,
@@ -265,6 +268,7 @@
 				FA0571202446412E00D39462 /* Frameworks */,
 				FA0571212446412E00D39462 /* Resources */,
 				432B66A2517D31F1C6F9DDCF /* [CP] Embed Pods Frameworks */,
+				FAEE90AB2453188D009A46E7 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -313,6 +317,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAEE90AD245319FD009A46E7 /* .swiftlint.yml in Resources */,
 				FA0571332446413000D39462 /* LaunchScreen.storyboard in Resources */,
 				FA0571302446413000D39462 /* Assets.xcassets in Resources */,
 				FA057149244644F800D39462 /* README.md in Resources */,
@@ -365,6 +370,23 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		FAEE90AB2453188D009A46E7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

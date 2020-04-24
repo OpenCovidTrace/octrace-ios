@@ -8,9 +8,20 @@ class StatusViewController: IndicatorViewController {
     
     @IBAction func statusChange(_ sender: Any) {
         if UserStatusManager.sick() {
-            showInfo("We are planning to introduce new statuses: covid-confirmed and covid-recovered (immune) in the nearest future.")
+            showInfo(
+                """
+                We are planning to introduce new statuses: covid-confirmed and covid-recovered (immune) in the nearest
+                future.
+                """
+            )
         } else {
-            confirm("You are about to anonymously self-report having symptoms of Covid-19 (Coronavirus). Your tracking records will be uploaded to the server for processing.\nNOTE: This procedure is anonymous, your privacy is kept at all times.") {
+            confirm(
+                """
+                You are about to anonymously self-report having symptoms of Covid-19 (Coronavirus). Your tracking
+                records will be uploaded to the server for processing.\nNOTE: This procedure is anonymous, your privacy
+                is kept at all times.
+                """
+            ) {
                 self.updateUserStatus(UserStatusManager.symptoms)
             }
         }

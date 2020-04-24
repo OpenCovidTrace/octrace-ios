@@ -12,8 +12,8 @@ class BtScanningManager: NSObject {
     
     private var manager: CBCentralManager!
     
-    private var peripheralsRssi: [CBPeripheral:Int] = [:]
-    
+    private var peripheralsRssi: [CBPeripheral: Int] = [:]
+
     private var foundedDevices = [PeripheralDevice]()
 
     func setup() {
@@ -33,7 +33,8 @@ extension BtScanningManager: CBCentralManagerDelegate {
         state = central.state
         
         if state == .poweredOn {
-            manager.scanForPeripherals(withServices: [BLE_SERVICE_UUID], options: [CBCentralManagerScanOptionAllowDuplicatesKey: false])
+            manager.scanForPeripherals(withServices: [BLE_SERVICE_UUID],
+                                       options: [CBCentralManagerScanOptionAllowDuplicatesKey: false])
             
             log("Scanning has started")
         } else if state == .poweredOff {
@@ -44,11 +45,15 @@ extension BtScanningManager: CBCentralManagerDelegate {
         }
     }
     
-    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
+    func centralManager(_ central: CBCentralManager,
+                        didDiscover peripheral: CBPeripheral,
+                        advertisementData: [String: Any],
+                        rssi RSSI: NSNumber) {
+
         let foundDevice = PeripheralDevice(peripheral: peripheral)
         if foundedDevices.contains(foundDevice) { return }
-        
-        log("Found peripheral: \(peripheral.identifier.uuidString), RSSI: \(RSSI.stringValue), advertisementData: \(advertisementData.debugDescription)")
+        log("Found peripheral: \(peripheral.identifier.uuidString), RSSI: \(RSSI.stringValue), " +
+            "advertisementData: \(advertisementData.debugDescription)")
         peripheralsRssi[peripheral] = RSSI.intValue
         peripheral.delegate = self
         connect(to: peripheral)
@@ -133,7 +138,9 @@ extension BtScanningManager: CBPeripheralDelegate {
         manager.cancelPeripheralConnection(peripheral)
     }
 
-    func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
+    func peripheral(_ peripheral: CBPeripheral,
+                    didUpdateNotificationStateFor characteristic: CBCharacteristic,
+                    error: Error?) {
         if let errorValue = error {
             log("Error changing notification state: \(errorValue.localizedDescription)")
 
