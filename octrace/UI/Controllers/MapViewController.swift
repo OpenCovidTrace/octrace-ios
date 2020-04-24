@@ -18,7 +18,7 @@ class MapViewController: UIViewController {
     
     var rootViewController: RootViewController!
     
-    private var mkContactPoints: [MKPointAnnotation:ContactHealth] = [:]
+    private var mkContactPoints: [MKPointAnnotation: ContactHealth] = [:]
     private var mkCountriesPoints: [MKPointAnnotation] = []
     private var mkUserPolylines: [MKPolyline] = []
     private var mkSickPolylines: [MKPolyline] = []
@@ -173,7 +173,10 @@ class MapViewController: UIViewController {
     }
     
     private func showGlobalMap() {
-        let countriesRequest = URLRequest(url: URL(string: "https://services.arcgis.com/5T5nSi527N4F7luB/arcgis/rest/services/Cases_by_country_Plg_V3/FeatureServer/0/query?f=json&where=1%3D1&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&orderByFields=cum_conf%20desc&resultOffset=0&resultRecordCount=310&cacheHint=true")!)
+        let countriesRequest = URLRequest(url: URL(string: "https://services.arcgis.com/5T5nSi527N4F7luB/arcgis/" +
+            "rest/services/Cases_by_country_Plg_V3/FeatureServer/0/query?f=json&where=1%3D1&returnGeometry=false&" +
+            "spatialRel=esriSpatialRelIntersects&outFields=*&orderByFields=cum_conf%20desc&resultOffset=0&" +
+            "resultRecordCount=310&cacheHint=true")!)
         
         indicator.show()
         AF.request(countriesRequest,
@@ -196,7 +199,9 @@ class MapViewController: UIViewController {
         LocationManager.registerCallback { location in
             self.goToLocation(location)
             
-            let distance = global ? MapViewController.globalLocationDistanceMeters : MapViewController.localLocationDistanceMeters
+            let distance = global ?
+                MapViewController.globalLocationDistanceMeters :
+                MapViewController.localLocationDistanceMeters
             
             let region = MKCoordinateRegion(
                 center: location.coordinate,
@@ -225,11 +230,9 @@ class MapViewController: UIViewController {
                 
                 let annotation = MKPointAnnotation()
                 
-                annotation.coordinate = CLLocationCoordinate2D(
-                    latitude:  lat,
-                    longitude: lng
-                )
-                annotation.title = "\(feature.attributes.ADM0_NAME): \(feature.attributes.cum_conf) cases, \(feature.attributes.cum_death) deaths"
+                annotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lng)
+                annotation.title = "\(feature.attributes.ADM0_NAME): \(feature.attributes.cum_conf) cases," +
+                "\(feature.attributes.cum_death) deaths"
                 
                 mkCountriesPoints.append(annotation)
             }
@@ -275,7 +278,7 @@ class MapViewController: UIViewController {
     }
 }
 
-extension MapViewController : MKMapViewDelegate {
+extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         guard let polyline = overlay as? MKPolyline else {
@@ -297,8 +300,8 @@ extension MapViewController : MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard annotation is MKPointAnnotation else { return nil }
-        var annotationView: MKAnnotationView? = nil
-        var identifier: String? = nil
+        var annotationView: MKAnnotationView?
+        var identifier: String?
         
         if let contact = mkContactPoints[annotation as! MKPointAnnotation] {
             if contact.infected {
@@ -339,16 +342,17 @@ extension MKMapView {
     
     var zoomLevel: Int {
         get {
-            return Int(log2(360 * (Double(frame.size.width/256) / region.span.longitudeDelta)) + 1);
+            return Int(log2(360 * (Double(frame.size.width/256) / region.span.longitudeDelta)) + 1)
         }
         
         set (newZoomLevel) {
-            setCenterCoordinate(coordinate:centerCoordinate, zoomLevel: newZoomLevel, animated: true)
+            setCenterCoordinate(coordinate: centerCoordinate, zoomLevel: newZoomLevel, animated: true)
         }
     }
     
     private func setCenterCoordinate(coordinate: CLLocationCoordinate2D, zoomLevel: Int, animated: Bool) {
-        let span = MKCoordinateSpan(latitudeDelta: 0, longitudeDelta: 360 / pow(2, Double(zoomLevel)) * Double(self.frame.size.width) / 256)
+        let span = MKCoordinateSpan(latitudeDelta: 0, longitudeDelta: 360 / pow(2, Double(zoomLevel)) *
+            Double(self.frame.size.width) / 256)
         setRegion(MKCoordinateRegion(center: coordinate, span: span), animated: animated)
     }
     

@@ -67,11 +67,13 @@ class LocationManager {
         
         if let rootViewController = RootViewController.instance {
             rootViewController.mapViewController.accuracyLabel.isHidden = false
-            rootViewController.mapViewController.accuracyLabel.text = "Location accuracy: \(Int(location.horizontalAccuracy)) meters"
+            rootViewController.mapViewController.accuracyLabel.text = "Location accuracy: " +
+            "\(Int(location.horizontalAccuracy)) meters"
         }
         
         let now = Date.timestamp()
-        if now - lastTrackingUpdate > TrackingManager.trackingIntervalMs && location.horizontalAccuracy > 0 && location.horizontalAccuracy < 30 {
+        if now - lastTrackingUpdate > TrackingManager.trackingIntervalMs &&
+            location.horizontalAccuracy > 0 && location.horizontalAccuracy < 30 {
             print("Updating tracking location")
             
             let point = TrackingPoint(location.coordinate)

@@ -8,11 +8,14 @@ class LocationBordersManager {
     private init() {
     }
     
-    static var locationBorders: [Int:LocationBorder] {
+    static var locationBorders: [Int: LocationBorder] {
         get {
-            guard let data = NSKeyedUnarchiver.unarchiveObject(withFile: locationBordersPath) as? Data else { return [:] }
+            guard let data = NSKeyedUnarchiver.unarchiveObject(withFile: locationBordersPath) as? Data else {
+                return [:]
+            }
+            
             do {
-                return try PropertyListDecoder().decode([Int:LocationBorder].self, from: data)
+                return try PropertyListDecoder().decode([Int: LocationBorder].self, from: data)
             } catch {
                 print("Retrieve Failed")
                 
@@ -35,7 +38,7 @@ class LocationBordersManager {
         
         let oldBorders = locationBorders
         
-        var newBorders: [Int:LocationBorder] = [:]
+        var newBorders: [Int: LocationBorder] = [:]
                 
         oldBorders.keys.forEach { dayNumber in
             if dayNumber > lastDay {

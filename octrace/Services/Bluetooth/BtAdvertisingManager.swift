@@ -14,7 +14,8 @@ class BtAdvertisingManager: NSObject {
     }
     
     private func startAdvertising() {
-        manager.startAdvertising([CBAdvertisementDataLocalNameKey: "BLEPrototype", CBAdvertisementDataServiceUUIDsKey: [BLE_SERVICE_UUID]])
+        manager.startAdvertising([CBAdvertisementDataLocalNameKey: "BLEPrototype",
+                                  CBAdvertisementDataServiceUUIDsKey: [BLE_SERVICE_UUID]])
     }
     
     private func log(_ text: String) {
@@ -28,7 +29,12 @@ extension BtAdvertisingManager: CBPeripheralManagerDelegate {
         log(peripheral.state.name())
 
         if peripheral.state == .poweredOn {
-            let characteristic = CBMutableCharacteristic(type: BLE_CHARACTERISTIC_UUID, properties: [.notify, .write, .read], value: nil, permissions: [.readable, .writeable])
+            let characteristic = CBMutableCharacteristic(
+                type: BLE_CHARACTERISTIC_UUID,
+                properties: [.notify, .write, .read],
+                value: nil,
+                permissions: [.readable, .writeable]
+            )
 
             let service = CBMutableService(type: BLE_SERVICE_UUID, primary: true)
             service.characteristics = [characteristic]
@@ -59,10 +65,14 @@ extension BtAdvertisingManager: CBPeripheralManagerDelegate {
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveWrite requests: [CBATTRequest]) {
     }
     
-    func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didSubscribeTo characteristic: CBCharacteristic) {
+    func peripheralManager(_ peripheral: CBPeripheralManager,
+                           central: CBCentral,
+                           didSubscribeTo characteristic: CBCharacteristic) {
     }
     
-    func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didUnsubscribeFrom characteristic: CBCharacteristic) {
+    func peripheralManager(_ peripheral: CBPeripheralManager,
+                           central: CBCentral,
+                           didUnsubscribeFrom characteristic: CBCharacteristic) {
     }
     
     func peripheralManagerIsReady(toUpdateSubscribers peripheral: CBPeripheralManager) {

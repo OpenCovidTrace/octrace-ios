@@ -18,13 +18,18 @@ class QrLinkViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        // FIXME this won't work if user disabled notifications
         if let token = AppDelegate.deviceTokenEncoded {
-            let rollingId = SecurityUtil.getRollingId().base64EncodedString().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+            let rollingId = SecurityUtil.getRollingId()
+                .base64EncodedString()
+                .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
             let tst = Date.timestamp()
-            let key = EncryptionKeysManager.generateKey(for: tst).base64EncodedString().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+            let key = EncryptionKeysManager.generateKey(for: tst)
+                .base64EncodedString()
+                .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
             
-            imageView.image = generateQRCode(from: CONTACT_ENDPOINT + "app/contact?d=\(token)&i=\(rollingId)&k=\(key)&p=i&t=\(tst)")
+            imageView.image = generateQRCode(
+                from: CONTACT_ENDPOINT + "app/contact?d=\(token)&i=\(rollingId)&k=\(key)&p=i&t=\(tst)"
+            )
             
             label.isHidden = false
             indicator.hide()

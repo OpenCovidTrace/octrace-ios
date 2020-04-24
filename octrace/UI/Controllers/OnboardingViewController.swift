@@ -28,9 +28,9 @@ class OnboardingViewController: IndicatorViewController {
             BtScanningManager.shared.setup()
             
             goNext(.notifications)
-        
+            
         case .notifications:
-            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (granted, _) in
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { _, _  in
                 DispatchQueue.main.async {
                     self.complete()
                 }
@@ -44,23 +44,36 @@ class OnboardingViewController: IndicatorViewController {
         switch stage {
         case .welcome:
             titleLabel.text = "Welcome!"
-            descriptionLabel.text = "Covid Control is here to help you and your community to keep safe and take the appropriate measures in case necessary.\n\nWe are in this together, and each one of us plays an important role."
+            descriptionLabel.text = """
+            Covid Control is here to help you and your community to keep safe and take the appropriate measures in case
+            necessary.\n\n
+            We are in this together, and each one of us plays an important role.
+            """
             button
                 .setTitle("Get started!", for: .normal)
             
         case .location:
             titleLabel.text = "Location Data"
-            descriptionLabel.text = "All location tracking data is securely stored and does not leave your phone unless you get sick and want to notify your contacts, in either an anonymous or a transparent way."
+            descriptionLabel.text = """
+            All location tracking data is securely stored and does not leave your phone unless you get sick and want to
+            notify your contacts, in either an anonymous or a transparent way.
+            """
             button.setTitle("Enable location", for: .normal)
             
         case .bluetooth:
             titleLabel.text = "Bluetooth access"
-            descriptionLabel.text = "We use bluetooth for automatic contact tracing. All contacts are securely stored and never leave your phone."
+            descriptionLabel.text = """
+            We use bluetooth for anonymous automatic contact tracing. All contacts are securely stored and never leave
+            your phone.
+            """
             button.setTitle("Enable Bluetooth", for: .normal)
             
         case .notifications:
             titleLabel.text = "Notifications"
-            descriptionLabel.text = "Notifications keep you up to date, and also alert you in case you have been in close contact with someone that now is infected."
+            descriptionLabel.text = """
+            Notifications keep you up to date, and also alert you in case you have been in close contact with someone
+            that now is infected.
+            """
             button.setTitle("Enable notifications", for: .normal)
         }
     }

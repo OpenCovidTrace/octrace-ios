@@ -51,7 +51,7 @@ class TrackingManager {
 }
 
 
-struct TrackingPoint : Codable {
+struct TrackingPoint: Codable {
     let lat: Double
     let lng: Double
     let tst: Int64

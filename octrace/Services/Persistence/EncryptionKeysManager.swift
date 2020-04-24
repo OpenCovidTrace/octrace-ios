@@ -7,11 +7,11 @@ class EncryptionKeysManager {
     private init() {
     }
     
-    static var encryptionKeys: [Int64:Data] {
+    static var encryptionKeys: [Int64: Data] {
         get {
             guard let data = NSKeyedUnarchiver.unarchiveObject(withFile: path) as? Data else { return [:] }
             do {
-                return try PropertyListDecoder().decode([Int64:Data].self, from: data)
+                return try PropertyListDecoder().decode([Int64: Data].self, from: data)
             } catch {
                 print("Retrieve Failed")
                 

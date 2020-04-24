@@ -5,12 +5,12 @@ class LogsViewController: UIViewController {
     static var instance: LogsViewController?
     
     private static let dateFormatter: DateFormatter = {
-        let df = DateFormatter()
+        let dateFormatter = DateFormatter()
         
-        df.dateStyle = .long
-        df.timeStyle = .medium
+        dateFormatter.dateStyle = .long
+        dateFormatter.timeStyle = .medium
         
-        return df
+        return dateFormatter
     }()
     
     @IBOutlet weak var textView: UITextView!
