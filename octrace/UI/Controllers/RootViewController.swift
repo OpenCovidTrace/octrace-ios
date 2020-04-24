@@ -93,6 +93,13 @@ class RootViewController: UITabBarController {
     }
     
     func makeContact(id: String, key: String, token: String, platform: String, tst: Int64) {
+        if abs(Int(Date.timestamp() - tst)) > 60000 {
+            // QR contact should be valid for 1 minute only
+            showError("Contact code has expired, please try again.")
+            
+            return
+        }
+        
         guard let location = LocationManager.lastLocation else {
             showError("No location info")
             
