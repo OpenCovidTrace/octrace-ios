@@ -55,7 +55,7 @@ class OnboardingViewController: IndicatorViewController {
             
         case .bluetooth:
             titleLabel.text = "Bluetooth access"
-            descriptionLabel.text = "We use bluetooth for automatic contact tracing. All contacts are securely stored and never leave your phone."
+            descriptionLabel.text = "We use bluetooth for anonymous automatic contact tracing. All contacts are securely stored and never leave your phone."
             button.setTitle("Enable Bluetooth", for: .normal)
             
         case .notifications:
