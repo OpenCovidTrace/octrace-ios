@@ -93,6 +93,10 @@ class MapViewController: UIViewController {
         mapView.delegate = self
         mapView.showsUserLocation = true
         
+        if #available(iOS 13.0, *) {
+            indicator.style = .large
+        }
+        
         showLocalMap()
     }
     
