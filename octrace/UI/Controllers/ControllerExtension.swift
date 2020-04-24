@@ -104,7 +104,7 @@ extension UIViewController {
             }
         }
         alert.addAction(settingsAction)
-        let cancelAction = UIAlertAction(title: "No, thans", style: .default, handler: nil)
+        let cancelAction = UIAlertAction(title: "No, thanks", style: .default, handler: nil)
         alert.addAction(cancelAction)
         
         present(alert, animated: true)
