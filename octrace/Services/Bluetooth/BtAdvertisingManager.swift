@@ -30,7 +30,10 @@ extension BtAdvertisingManager: CBPeripheralManagerDelegate {
 
         if peripheral.state == .poweredOn {
 			let data = SecurityUtil.getRollingId()
-            let characteristic = CBMutableCharacteristic(type: BLE_CHARACTERISTIC_UUID, properties: [.read], value: data, permissions: [.readable])
+            let characteristic = CBMutableCharacteristic(type: BLE_CHARACTERISTIC_UUID,
+                                                         properties: [.read],
+                                                         value: data,
+                                                         permissions: [.readable])
             let service = CBMutableService(type: BLE_SERVICE_UUID, primary: true)
             service.characteristics = [characteristic]
             manager.add(service)

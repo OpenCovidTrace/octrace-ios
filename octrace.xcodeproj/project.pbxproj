@@ -575,7 +575,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = G879CH66J5;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = octrace/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -583,7 +583,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = org.opencovidtrace.octrace.dev.ngse;
+				PRODUCT_BUNDLE_IDENTIFIER = org.opencovidtrace.octrace.dev;
 				PRODUCT_NAME = "OCTrace DEV";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -600,7 +600,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = G879CH66J5;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = octrace/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -608,7 +608,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = org.opencovidtrace.octrace.dev.ngse;
+				PRODUCT_BUNDLE_IDENTIFIER = org.opencovidtrace.octrace.dev;
 				PRODUCT_NAME = "OCTrace DEV";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
