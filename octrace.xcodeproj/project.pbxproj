@@ -48,6 +48,7 @@
 		FAAE8C92244E1506000882A1 /* LogsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE8C91244E1506000882A1 /* LogsManager.swift */; };
 		FAAE8C95244E171F000882A1 /* LogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE8C93244E171F000882A1 /* LogsViewController.swift */; };
 		FAAE8C96244E171F000882A1 /* LogsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAAE8C94244E171F000882A1 /* LogsViewController.xib */; };
+		FAD74D0A2454DF2A00D3DCF2 /* LocationIndexManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD74D092454DF2A00D3DCF2 /* LocationIndexManager.swift */; };
 		FAEE90AD245319FD009A46E7 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = FAEE90AC245319FD009A46E7 /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
@@ -100,6 +101,7 @@
 		FAAE8C91244E1506000882A1 /* LogsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsManager.swift; sourceTree = "<group>"; };
 		FAAE8C93244E171F000882A1 /* LogsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsViewController.swift; sourceTree = "<group>"; };
 		FAAE8C94244E171F000882A1 /* LogsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogsViewController.xib; sourceTree = "<group>"; };
+		FAD74D092454DF2A00D3DCF2 /* LocationIndexManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationIndexManager.swift; sourceTree = "<group>"; };
 		FAEE90AC245319FD009A46E7 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -199,13 +201,14 @@
 			isa = PBXGroup;
 			children = (
 				FAAE8C8F244DEC88000882A1 /* BtContactsManager.swift */,
-				FAAE8C91244E1506000882A1 /* LogsManager.swift */,
 				FA0571622446456C00D39462 /* ContactsManager.swift */,
 				FA0571652446456C00D39462 /* DataManager.swift */,
 				FA0571632446456C00D39462 /* EncryptionKeysManager.swift */,
 				FA0571642446456C00D39462 /* KeyManager.swift */,
 				FA05715F2446456C00D39462 /* KeysManager.swift */,
 				FA0571AE2448990500D39462 /* LocationBordersManager.swift */,
+				FAD74D092454DF2A00D3DCF2 /* LocationIndexManager.swift */,
+				FAAE8C91244E1506000882A1 /* LogsManager.swift */,
 				FA0571612446456C00D39462 /* TrackingManager.swift */,
 				FA0571602446456C00D39462 /* TracksManager.swift */,
 				FA0571662446456C00D39462 /* UserStatusManager.swift */,
@@ -407,6 +410,7 @@
 				FAAE8C90244DEC88000882A1 /* BtContactsManager.swift in Sources */,
 				FA05716A244647A400D39462 /* DataManager.swift in Sources */,
 				FA057169244647A400D39462 /* ContactsManager.swift in Sources */,
+				FAD74D0A2454DF2A00D3DCF2 /* LocationIndexManager.swift in Sources */,
 				FA0571592446455000D39462 /* IndicatorViewController.swift in Sources */,
 				FA05715A2446455000D39462 /* ControllerExtension.swift in Sources */,
 				FA05716C244647A400D39462 /* KeyManager.swift in Sources */,
