@@ -29,10 +29,9 @@ extension BtAdvertisingManager: CBPeripheralManagerDelegate {
         log(peripheral.state.name())
 
         if peripheral.state == .poweredOn {
-            let data = SecurityUtil.getRollingId()
             let characteristic = CBMutableCharacteristic(type: BLE_CHARACTERISTIC_UUID,
                                                          properties: [.read],
-                                                         value: data,
+                                                         value: nil,
                                                          permissions: [.readable])
             
             let service = CBMutableService(type: BLE_SERVICE_UUID, primary: true)
@@ -48,6 +47,14 @@ extension BtAdvertisingManager: CBPeripheralManagerDelegate {
     }
     
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveRead request: CBATTRequest) {
+        let data = SecurityUtil.getRollingId()
+        if request.offset > data.count {
+            manager.respond(to: request, withResult: .invalidOffset)
+            return
+        }
+        let range = request.offset..<data.count
+        request.value = data.subdata(in: range)
+        manager.respond(to: request, withResult: .success)
     }
     
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveWrite requests: [CBATTRequest]) {
