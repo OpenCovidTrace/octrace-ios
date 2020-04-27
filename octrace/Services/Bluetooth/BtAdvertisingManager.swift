@@ -29,7 +29,7 @@ extension BtAdvertisingManager: CBPeripheralManagerDelegate {
         log(peripheral.state.name())
 
         if peripheral.state == .poweredOn {
-            let data = SecurityUtil.getRollingId()
+            let data = CryptoUtil.getRollingId()
             let characteristic = CBMutableCharacteristic(type: BLE_CHARACTERISTIC_UUID,
                                                          properties: [.read],
                                                          value: data,

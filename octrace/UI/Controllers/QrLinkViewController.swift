@@ -23,7 +23,7 @@ class QrLinkViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         if let token = AppDelegate.deviceTokenEncoded {
-            let rollingId = SecurityUtil.getRollingId()
+            let rollingId = CryptoUtil.getRollingId()
                 .base64EncodedString()
                 .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
             let tst = Date.timestamp()
@@ -52,8 +52,9 @@ class QrLinkViewController: UIViewController {
     }
     
     private func generateQRCode(from string: String) -> UIImage? {
+        print("Generating QR code for '\(string)'")
+        
         let data = string.data(using: String.Encoding.ascii)
-
         if let filter = CIFilter(name: "CIQRCodeGenerator") {
             filter.setValue(data, forKey: "inputMessage")
             let transform = CGAffineTransform(scaleX: 10, y: 10)

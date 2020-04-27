@@ -107,8 +107,8 @@ class RootViewController: UITabBarController {
             return
         }
         
-        let rollingId = SecurityUtil.getRollingId()
-        let secret = SecurityUtil.encodeAES(rollingId, with: Data(base64Encoded: key)!).base64EncodedString()
+        let rollingId = CryptoUtil.getRollingId()
+        let secret = CryptoUtil.encodeAES(rollingId, with: Data(base64Encoded: key)!).base64EncodedString()
         let contactRequest = ContactRequest(token: token,
                                             platform: platform,
                                             secret: secret,
@@ -163,10 +163,10 @@ class RootViewController: UITabBarController {
                     return
                 }
                 
-                let latestDailyKeys = KeyManager.getLatestDailyKeys()
+                let latestSecretDailyKeys = CryptoUtil.getLatestSecretDailyKeys()
                 
                 let tracksFiltered = data.tracks.filter { track in
-                    !latestDailyKeys.contains(Data(base64Encoded: track.key)!)
+                    !latestSecretDailyKeys.contains(track.key)
                 }
                 
                 print("Got \(tracksFiltered.count) new tracks since \(lastUpdateTimestamp) for \(border).")

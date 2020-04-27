@@ -34,7 +34,7 @@ class LocationBordersManager {
     }
     
     static func removeOldLocationBorders() {
-        let lastDay = SecurityUtil.currentDayNumber() - DataManager.maxDays
+        let lastDay = CryptoUtil.currentDayNumber() - DataManager.maxDays
         
         let oldBorders = locationBorders
         
@@ -52,7 +52,7 @@ class LocationBordersManager {
     static func updateLocationBorders(_ location: CLLocation) {
         var newBorders = locationBorders
         
-        let currentDayNumber = SecurityUtil.currentDayNumber()
+        let currentDayNumber = CryptoUtil.currentDayNumber()
         
         if let currentBorder = newBorders[currentDayNumber] {
             currentBorder.update(location)

@@ -14,7 +14,7 @@ class OnboardingViewController: IndicatorViewController {
     @IBAction func actionTap(_ sender: Any) {
         switch stage {
         case .welcome:
-            KeyManager.tracingKey = SecurityUtil.generateKey()
+            KeyManager.tracingKey = CryptoUtil.generateKey(32)
             
             goNext(.location)
             

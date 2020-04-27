@@ -44,9 +44,10 @@ class ContactsManager {
         var lastInfectedContact: Contact?
         
         newContacts.forEach { contact in
-            let contactDay = SecurityUtil.getDayNumber(from: contact.contact.tst)
+            let contactDate = Date(tst: contact.contact.tst)
+            let contactDay = CryptoUtil.getDayNumber(for: contactDate)
             if keysData.keys.contains(where: { $0.day == contactDay &&
-                SecurityUtil.match(contact.contact.id, contact.contact.tst, $0) }) {
+                CryptoUtil.spec.match(contact.contact.id, contactDate, Data(base64Encoded: $0.value)!) }) {
                 contact.infected = true
                 lastInfectedContact = contact.contact
             }

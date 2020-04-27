@@ -3,10 +3,12 @@ import Foundation
 class KeyManager {
     
     private static let kTracingKey = "kTracingKey"
+    private static let dailyKeysPath = DataManager.docsDir.appendingPathComponent("daily-keys").path
     
     private init() {
     }
     
+    /// Used in AG spec v1 and as onboarding indicator
     static var tracingKey: Data? {
         get {
             UserDefaults.standard.data(forKey: kTracingKey)
@@ -21,42 +23,28 @@ class KeyManager {
         return tracingKey != nil
     }
     
-    static func getDailyKey(for dayNumber: Int) -> Data {
-        return SecurityUtil.getDailyKey(tracingKey!, dayNumber)
-    }
     
-    static func getSecretDailyKey(for dayNumber: Int) -> String {
-        return SecurityUtil.getSecretDailyKey(tracingKey!, dayNumber)
-    }
-    
-    static func getLatestDailyKeys() -> [Data] {
-        var result: [Data] = []
-        
-        let dayNumber = SecurityUtil.currentDayNumber()
-        
-        var offset = 0
-        while offset < DataManager.maxDays {
-            result.append(SecurityUtil.getDailyKey(tracingKey!, dayNumber - offset))
-            
-            offset += 1
+    /// Used in AG spec v1.1
+    static var dailyKeys: [Int: Data] {
+        get {
+            guard let data = NSKeyedUnarchiver.unarchiveObject(withFile: dailyKeysPath) as? Data else { return [:] }
+            do {
+                return try PropertyListDecoder().decode([Int: Data].self, from: data)
+            } catch {
+                print("Retrieve Failed")
+                
+                return [:]
+            }
         }
         
-        return result
-    }
-    
-    static func getLatestSecretDailyKeys() -> [String] {
-        var result: [String] = []
-        
-        let dayNumber = SecurityUtil.currentDayNumber()
-        
-        var offset = 0
-        while offset < DataManager.maxDays {
-            result.append(SecurityUtil.getSecretDailyKey(tracingKey!, dayNumber - offset))
-            
-            offset += 1
+        set {
+            do {
+                let data = try PropertyListEncoder().encode(newValue)
+                NSKeyedArchiver.archiveRootObject(data, toFile: dailyKeysPath)
+            } catch {
+                print("Save Failed")
+            }
         }
-        
-        return result
     }
     
 }

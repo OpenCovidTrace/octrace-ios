@@ -15,7 +15,7 @@
 		FA0571302446413000D39462 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA05712F2446413000D39462 /* Assets.xcassets */; };
 		FA0571332446413000D39462 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA0571312446413000D39462 /* LaunchScreen.storyboard */; };
 		FA05713F244644C400D39462 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA05713C244644C300D39462 /* LocationManager.swift */; };
-		FA057140244644C400D39462 /* SecurityUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA05713A244644C300D39462 /* SecurityUtil.swift */; };
+		FA057140244644C400D39462 /* CryptoUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA05713A244644C300D39462 /* CryptoUtil.swift */; };
 		FA057142244644C400D39462 /* NetworkUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA05713B244644C300D39462 /* NetworkUtil.swift */; };
 		FA057143244644C400D39462 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA05713D244644C400D39462 /* RoundButton.swift */; };
 		FA057145244644DB00D39462 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA057144244644DA00D39462 /* MapKit.framework */; };
@@ -66,7 +66,7 @@
 		FA05712F2446413000D39462 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA0571322446413000D39462 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA0571342446413000D39462 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FA05713A244644C300D39462 /* SecurityUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityUtil.swift; sourceTree = "<group>"; };
+		FA05713A244644C300D39462 /* CryptoUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoUtil.swift; sourceTree = "<group>"; };
 		FA05713B244644C300D39462 /* NetworkUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtil.swift; sourceTree = "<group>"; };
 		FA05713C244644C300D39462 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		FA05713D244644C400D39462 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
@@ -258,7 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				FA05713B244644C300D39462 /* NetworkUtil.swift */,
-				FA05713A244644C300D39462 /* SecurityUtil.swift */,
+				FA05713A244644C300D39462 /* CryptoUtil.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -432,7 +432,7 @@
 				FA05716D244647A400D39462 /* KeysManager.swift in Sources */,
 				FA05713F244644C400D39462 /* LocationManager.swift in Sources */,
 				FA057171244647A400D39462 /* UserStatusManager.swift in Sources */,
-				FA057140244644C400D39462 /* SecurityUtil.swift in Sources */,
+				FA057140244644C400D39462 /* CryptoUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

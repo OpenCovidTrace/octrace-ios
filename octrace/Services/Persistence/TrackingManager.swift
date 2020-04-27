@@ -71,6 +71,6 @@ struct TrackingPoint: Codable {
     }
     
     func dayNumber() -> Int {
-        return SecurityUtil.getDayNumber(from: tst)
+        return CryptoUtil.getDayNumber(from: tst)
     }
 }
