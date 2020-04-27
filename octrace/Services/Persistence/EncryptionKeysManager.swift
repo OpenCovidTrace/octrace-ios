@@ -40,7 +40,7 @@ class EncryptionKeysManager {
     }
     
     static func generateKey(for tst: Int64) -> Data {
-        let key = SecurityUtil.generateKey()
+        let key = CryptoUtil.generateKey(16)
         
         var newKeys = encryptionKeys
         newKeys[tst] = key

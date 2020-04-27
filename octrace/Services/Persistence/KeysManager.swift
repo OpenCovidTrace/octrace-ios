@@ -23,7 +23,7 @@ class KeysManager {
         let oldLastUploadDay = lastUpdloadDay
         
         // Uploading after EOD to include widest borders
-        let previousDayNumber = SecurityUtil.currentDayNumber() - 1
+        let previousDayNumber = CryptoUtil.currentDayNumber() - 1
         
         if oldLastUploadDay == previousDayNumber {
             return
@@ -40,7 +40,7 @@ class KeysManager {
             
             // We currently don't upload diagnostic keys without location data!
             if let border = borders[dayNumber] {
-                let keyValue = KeyManager.getDailyKey(for: dayNumber).base64EncodedString()
+                let keyValue = CryptoUtil.spec.getDailyKey(for: dayNumber).base64EncodedString()
                 border.secure()
                 let key = Key(value: keyValue, day: dayNumber, border: border)
                 

@@ -33,7 +33,7 @@ class TracksManager {
     }
     
     static func removeOldTracks() {
-        let lastDay = SecurityUtil.currentDayNumber() - 14
+        let lastDay = CryptoUtil.currentDayNumber() - 14
         
         let newTracks = tracks.filter { track in
             track.day > lastDay
@@ -76,7 +76,10 @@ class TracksManager {
             if let track = tracksByDay[dayNumber] {
                 track.points.append(point)
             } else {
-                tracksByDay[dayNumber] = Track([point], dayNumber, KeyManager.getSecretDailyKey(for: dayNumber))
+                let dailyKey = CryptoUtil.spec.getDailyKey(for: dayNumber)
+                let secretKey = CryptoUtil.toSecretKey(dailyKey)
+                
+                tracksByDay[dayNumber] = Track([point], dayNumber, secretKey)
             }
         }
         

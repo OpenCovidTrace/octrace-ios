@@ -46,10 +46,10 @@ class BtContactsManager {
         var lastInfectedContact: BtContact?
         
         newContacts.forEach { (id, health) in
-            let contactTst = health.contact.encounters.first!.tst
-            let contactDay = SecurityUtil.getDayNumber(from: contactTst)
+            let contactDate = Date(tst: health.contact.encounters.first!.tst)
+            let contactDay = CryptoUtil.getDayNumber(for: contactDate)
             if keysData.keys.contains(where: { $0.day == contactDay &&
-                SecurityUtil.match(id, contactTst, $0) }) {
+                CryptoUtil.spec.match(id, contactDate, Data(base64Encoded: $0.value)!) }) {
                 health.infected = true
                 lastInfectedContact = health.contact
             }
