@@ -3,8 +3,6 @@ import Alamofire
 
 class TracksManager {
     
-    private static let lastUpdatePath = DataManager.docsDir.appendingPathComponent("tracks-last-update").path
-    
     private static let lastUploadPath = DataManager.docsDir.appendingPathComponent("tracks-last-updload").path
     
     private static let tracksPath = DataManager.docsDir.appendingPathComponent("tracks").path
@@ -50,20 +48,6 @@ class TracksManager {
         newTracks.append(contentsOf: items)
         
         tracks = newTracks
-    }
-    
-    static var lastUpdateTimestamp: Int64 {
-        get {
-            NSKeyedUnarchiver.unarchiveObject(withFile: lastUpdatePath) as? Int64 ?? 0
-        }
-        
-        set {
-            NSKeyedArchiver.archiveRootObject(newValue, toFile: lastUpdatePath)
-        }
-    }
-    
-    static func setUpdated() {
-        lastUpdateTimestamp = Date.timestamp()
     }
     
     static var lastUploadTimestamp: Int64 {

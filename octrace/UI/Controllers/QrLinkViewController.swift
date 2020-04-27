@@ -14,6 +14,10 @@ class QrLinkViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        if #available(iOS 13.0, *) {
+            indicator.style = .large
+        }
+        
         indicator.show()
     }
     

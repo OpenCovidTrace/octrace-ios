@@ -65,9 +65,26 @@ class MapViewController: UIViewController {
     }
     
     @IBAction func makeContact(_ sender: Any) {
-        let linkController = QrLinkViewController(nibName: "QrLinkViewController", bundle: nil)
-        
-        rootViewController.navigationController?.present(linkController, animated: true)
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            DispatchQueue.main.async {
+                switch settings.authorizationStatus {
+                case .denied:
+                    self.showSettings("Need to enable notifications in Settings.")
+                    
+                case .notDetermined:
+                    self.confirm("You need to enable notifications first, would you like to do it now?") {
+                        UNUserNotificationCenter.current()
+                            .requestAuthorization(options: [.alert, .badge, .sound]) { _, _  in
+                        }
+                    }
+                    
+                default:
+                    let linkController = QrLinkViewController(nibName: "QrLinkViewController", bundle: nil)
+                    
+                    self.rootViewController.navigationController?.present(linkController, animated: true)
+                }
+            }
+        }
     }
     
     override func viewDidLoad() {
@@ -75,6 +92,10 @@ class MapViewController: UIViewController {
         
         mapView.delegate = self
         mapView.showsUserLocation = true
+        
+        if #available(iOS 13.0, *) {
+            indicator.style = .large
+        }
         
         showLocalMap()
     }
