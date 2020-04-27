@@ -49,12 +49,12 @@ extension BtScanningManager: CBCentralManagerDelegate {
                         didDiscover peripheral: CBPeripheral,
                         advertisementData: [String: Any],
                         rssi RSSI: NSNumber) {
-
-        let foundDevice = PeripheralDevice(peripheral: peripheral)
-        if foundedDevices.contains(foundDevice) { return }
         log("Found peripheral: \(peripheral.identifier.uuidString), RSSI: \(RSSI.stringValue), " +
             "advertisementData: \(advertisementData.debugDescription)")
         peripheralsRssi[peripheral] = RSSI.intValue
+        let foundDevice = PeripheralDevice(peripheral: peripheral, rssi: RSSI.intValue)
+        if foundedDevices.contains(foundDevice) { return }
+
         peripheral.delegate = self
         connect(to: peripheral)
 
@@ -123,7 +123,7 @@ extension BtScanningManager: CBPeripheralDelegate {
             if let location = lastLocation,
                 let rssi = peripheralsRssi[peripheral] {
                 let encounter = BtEncounter(rssi, location)
-                let foundDevice = PeripheralDevice(peripheral: peripheral, response: rollingId)
+                let foundDevice = PeripheralDevice(peripheral: peripheral, rssi: rssi, response: rollingId)
                 foundedDevices.append(foundDevice)
                 BtContactsManager.addContact(rollingId, encounter)
             } else {

@@ -10,13 +10,13 @@ class SecurityUtil {
     
     // MARK: - AES
     
-    static func encodeAES(_ value: String, with key: Data) -> Data {
+    static func encodeAES(_ value: Data, with key: Data) -> Data {
         let aes = getAes(from: key)
         
         return Data(try! aes.encrypt(value.bytes))
     }
     
-    static func decodeAES(_ value: String, with key: Data) -> Data {
+    static func decodeAES(_ value: Data, with key: Data) -> Data {
         let aes = getAes(from: key)
         
         return Data(try! aes.decrypt(value.bytes))
