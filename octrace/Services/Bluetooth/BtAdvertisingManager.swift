@@ -19,7 +19,7 @@ class BtAdvertisingManager: NSObject {
     }
     
     private func log(_ text: String) {
-        LogsManager.append(tag: BtAdvertisingManager.tag, text: text)
+        BtLogsManager.append(tag: BtAdvertisingManager.tag, text: text)
     }
 }
 

@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LogsViewController" customModule="OCTrace_DEV" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BtLogsViewController" customModule="OCTrace_DEV" customModuleProvider="target">
             <connections>
                 <outlet property="indicator" destination="VWO-gN-oX6" id="elO-Sa-3i4"/>
                 <outlet property="textView" destination="nhK-Tb-Clq" id="ux1-om-lza"/>

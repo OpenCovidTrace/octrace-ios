@@ -1,6 +1,7 @@
 import Alamofire
 import UIKit
 import CoreLocation
+import DP3TSDK
 
 class RootViewController: UITabBarController {
     
@@ -33,6 +34,14 @@ class RootViewController: UITabBarController {
             LocationManager.requestLocationUpdates()
             BtAdvertisingManager.shared.setup()
             BtScanningManager.shared.setup()
+            
+            do {
+                try DP3TTracing.startTracing()
+                
+                Dp3tLogsManager.append("Started tracing")
+            } catch {
+                Dp3tLogsManager.append("Failed to start tracing: \(error.localizedDescription)")
+            }
         } else {
             navigationController?.pushViewController(
                 OnboardingViewController.instanciate(),
@@ -59,13 +68,24 @@ class RootViewController: UITabBarController {
             TrackingManager.removeOldPoints()
             LocationBordersManager.removeOldLocationBorders()
             EncryptionKeysManager.removeOldKeys()
-            LogsManager.removeOldItems()
+            BtLogsManager.removeOldItems()
+            Dp3tLogsManager.removeOldItems()
             
             print("Cleaning old data complete!.")
 
             LocationManager.registerCallback { location in
                 self.loadTracks(location)
                 self.loadDiagnosticKeys(location)
+            }
+            
+            DP3TTracing.sync { result in
+                switch result {
+                case .success:
+                    Dp3tLogsManager.append("Successfully synced with backend")
+                
+                case .failure(let error):
+                    Dp3tLogsManager.append("Failed to sync with backend: \(error.localizedDescription)")
+                }
             }
             
             if UserStatusManager.sick() {

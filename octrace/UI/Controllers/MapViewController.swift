@@ -58,8 +58,14 @@ class MapViewController: UIViewController {
         goToLocation(location)
     }
     
-    @IBAction func openLog(_ sender: Any) {
-        let logsController = LogsViewController(nibName: "LogsViewController", bundle: nil)
+    @IBAction func openBtLog(_ sender: Any) {
+        let logsController = BtLogsViewController(nibName: "BtLogsViewController", bundle: nil)
+        
+        rootViewController.navigationController?.present(logsController, animated: true)
+    }
+    
+    @IBAction func openDp3tLog(_ sender: Any) {
+        let logsController = Dp3tLogsViewController(nibName: "Dp3tLogsViewController", bundle: nil)
         
         rootViewController.navigationController?.present(logsController, animated: true)
     }

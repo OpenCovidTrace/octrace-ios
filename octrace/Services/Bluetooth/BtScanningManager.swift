@@ -21,7 +21,7 @@ class BtScanningManager: NSObject {
     }
     
     private func log(_ text: String) {
-        LogsManager.append(tag: BtScanningManager.tag, text: text)
+        BtLogsManager.append(tag: BtScanningManager.tag, text: text)
     }
 }
 
