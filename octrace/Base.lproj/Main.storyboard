@@ -108,12 +108,28 @@
                                     <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="openLog:" destination="HgP-L2-cB3" eventType="touchUpInside" id="QdO-Hq-KO4"/>
+                                    <action selector="openBtLog:" destination="HgP-L2-cB3" eventType="touchUpInside" id="QdO-Hq-KO4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.85000002384185791" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pH4-Y2-gFH" customClass="RoundButton" customModule="OCTrace_DEV" customModuleProvider="target">
+                                <rect key="frame" x="358" y="637" width="40" height="40"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="eXF-xp-uOi"/>
+                                    <constraint firstAttribute="width" constant="40" id="iXW-NW-l0e"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <state key="normal" title="D">
+                                    <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="openDp3tLog:" destination="HgP-L2-cB3" eventType="touchUpInside" id="FwN-gy-hDf"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="ec3-OL-HrX" firstAttribute="top" secondItem="pH4-Y2-gFH" secondAttribute="bottom" constant="8" id="0W1-z2-nSc"/>
                             <constraint firstItem="Tfk-CK-TcZ" firstAttribute="leading" secondItem="aPZ-lL-MTC" secondAttribute="leading" id="40x-9r-hqh"/>
                             <constraint firstItem="Jki-vL-Ib2" firstAttribute="top" secondItem="ec3-OL-HrX" secondAttribute="bottom" constant="16" id="84M-fr-DaM"/>
                             <constraint firstItem="Jki-vL-Ib2" firstAttribute="top" secondItem="pLf-Qi-GWp" secondAttribute="bottom" constant="16" id="8Zl-DG-jnj"/>
@@ -122,6 +138,7 @@
                             <constraint firstItem="wVp-A6-3Pn" firstAttribute="trailing" secondItem="u1L-zC-Iyl" secondAttribute="trailing" id="Dvu-hG-QAL"/>
                             <constraint firstItem="wVp-A6-3Pn" firstAttribute="bottom" secondItem="u1L-zC-Iyl" secondAttribute="bottom" id="Eci-vf-yAP"/>
                             <constraint firstItem="D8o-Gm-RNU" firstAttribute="centerY" secondItem="DTc-0Q-8MU" secondAttribute="centerY" id="Gk3-Gt-oYE"/>
+                            <constraint firstItem="wVp-A6-3Pn" firstAttribute="trailing" secondItem="pH4-Y2-gFH" secondAttribute="trailing" constant="16" id="I7h-aZ-JGB"/>
                             <constraint firstItem="Jki-vL-Ib2" firstAttribute="leading" secondItem="Tfk-CK-TcZ" secondAttribute="trailing" constant="16" id="IYx-6j-TJZ"/>
                             <constraint firstItem="wVp-A6-3Pn" firstAttribute="trailing" secondItem="Jki-vL-Ib2" secondAttribute="trailing" constant="16" id="Ic2-bm-Okl"/>
                             <constraint firstItem="Tfk-CK-TcZ" firstAttribute="leading" secondItem="wVp-A6-3Pn" secondAttribute="leading" constant="16" id="JN4-Aw-WGR"/>

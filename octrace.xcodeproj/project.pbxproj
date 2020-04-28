@@ -45,10 +45,13 @@
 		FA3A89AC2453586D00A7A6E8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA0571672446458300D39462 /* Localizable.strings */; };
 		FAAE8C8E244DC464000882A1 /* BtScanningManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE8C8D244DC464000882A1 /* BtScanningManager.swift */; };
 		FAAE8C90244DEC88000882A1 /* BtContactsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE8C8F244DEC88000882A1 /* BtContactsManager.swift */; };
-		FAAE8C92244E1506000882A1 /* LogsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE8C91244E1506000882A1 /* LogsManager.swift */; };
-		FAAE8C95244E171F000882A1 /* LogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE8C93244E171F000882A1 /* LogsViewController.swift */; };
-		FAAE8C96244E171F000882A1 /* LogsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAAE8C94244E171F000882A1 /* LogsViewController.xib */; };
+		FAAE8C92244E1506000882A1 /* BtLogsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE8C91244E1506000882A1 /* BtLogsManager.swift */; };
+		FAAE8C95244E171F000882A1 /* BtLogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE8C93244E171F000882A1 /* BtLogsViewController.swift */; };
+		FAAE8C96244E171F000882A1 /* BtLogsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAAE8C94244E171F000882A1 /* BtLogsViewController.xib */; };
 		FAD74D0A2454DF2A00D3DCF2 /* LocationIndexManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD74D092454DF2A00D3DCF2 /* LocationIndexManager.swift */; };
+		FAD74D0C2458889C00D3DCF2 /* Dp3tLogsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD74D0B2458889C00D3DCF2 /* Dp3tLogsManager.swift */; };
+		FAD74D0F2458892E00D3DCF2 /* Dp3tLogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD74D0D2458892E00D3DCF2 /* Dp3tLogsViewController.swift */; };
+		FAD74D102458892E00D3DCF2 /* Dp3tLogsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAD74D0E2458892E00D3DCF2 /* Dp3tLogsViewController.xib */; };
 		FAEE90AD245319FD009A46E7 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = FAEE90AC245319FD009A46E7 /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
@@ -98,10 +101,13 @@
 		FA0571B5244DBB8700D39462 /* BtServiceDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BtServiceDefinition.swift; sourceTree = "<group>"; };
 		FAAE8C8D244DC464000882A1 /* BtScanningManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BtScanningManager.swift; sourceTree = "<group>"; };
 		FAAE8C8F244DEC88000882A1 /* BtContactsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BtContactsManager.swift; sourceTree = "<group>"; };
-		FAAE8C91244E1506000882A1 /* LogsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsManager.swift; sourceTree = "<group>"; };
-		FAAE8C93244E171F000882A1 /* LogsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsViewController.swift; sourceTree = "<group>"; };
-		FAAE8C94244E171F000882A1 /* LogsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogsViewController.xib; sourceTree = "<group>"; };
+		FAAE8C91244E1506000882A1 /* BtLogsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BtLogsManager.swift; sourceTree = "<group>"; };
+		FAAE8C93244E171F000882A1 /* BtLogsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BtLogsViewController.swift; sourceTree = "<group>"; };
+		FAAE8C94244E171F000882A1 /* BtLogsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BtLogsViewController.xib; sourceTree = "<group>"; };
 		FAD74D092454DF2A00D3DCF2 /* LocationIndexManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationIndexManager.swift; sourceTree = "<group>"; };
+		FAD74D0B2458889C00D3DCF2 /* Dp3tLogsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dp3tLogsManager.swift; sourceTree = "<group>"; };
+		FAD74D0D2458892E00D3DCF2 /* Dp3tLogsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dp3tLogsViewController.swift; sourceTree = "<group>"; };
+		FAD74D0E2458892E00D3DCF2 /* Dp3tLogsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Dp3tLogsViewController.xib; sourceTree = "<group>"; };
 		FAEE90AC245319FD009A46E7 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -181,16 +187,18 @@
 		FA05714A2446452400D39462 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FAAE8C93244E171F000882A1 /* BtLogsViewController.swift */,
+				FAD74D0D2458892E00D3DCF2 /* Dp3tLogsViewController.swift */,
 				FA05714E2446454F00D39462 /* ControllerExtension.swift */,
 				FA0571522446454F00D39462 /* IndicatorViewController.swift */,
 				FA05714C2446454E00D39462 /* InfoViewController.swift */,
-				FAAE8C93244E171F000882A1 /* LogsViewController.swift */,
 				FA0571502446454F00D39462 /* MapViewController.swift */,
 				FA05717424464AC200D39462 /* OnboardingViewController.swift */,
 				FA05717824464AD000D39462 /* QrLinkViewController.swift */,
 				FA05712A2446412E00D39462 /* RootViewController.swift */,
 				FA05714F2446454F00D39462 /* StatusViewController.swift */,
-				FAAE8C94244E171F000882A1 /* LogsViewController.xib */,
+				FAD74D0E2458892E00D3DCF2 /* Dp3tLogsViewController.xib */,
+				FAAE8C94244E171F000882A1 /* BtLogsViewController.xib */,
 				FA05717524464AC200D39462 /* OnboardingViewController.xib */,
 				FA05717924464AD000D39462 /* QrLinkViewController.xib */,
 			);
@@ -201,6 +209,8 @@
 			isa = PBXGroup;
 			children = (
 				FAAE8C8F244DEC88000882A1 /* BtContactsManager.swift */,
+				FAAE8C91244E1506000882A1 /* BtLogsManager.swift */,
+				FAD74D0B2458889C00D3DCF2 /* Dp3tLogsManager.swift */,
 				FA0571622446456C00D39462 /* ContactsManager.swift */,
 				FA0571652446456C00D39462 /* DataManager.swift */,
 				FA0571632446456C00D39462 /* EncryptionKeysManager.swift */,
@@ -208,7 +218,6 @@
 				FA05715F2446456C00D39462 /* KeysManager.swift */,
 				FA0571AE2448990500D39462 /* LocationBordersManager.swift */,
 				FAD74D092454DF2A00D3DCF2 /* LocationIndexManager.swift */,
-				FAAE8C91244E1506000882A1 /* LogsManager.swift */,
 				FA0571612446456C00D39462 /* TrackingManager.swift */,
 				FA0571602446456C00D39462 /* TracksManager.swift */,
 				FA0571662446456C00D39462 /* UserStatusManager.swift */,
@@ -328,7 +337,8 @@
 				FA0571332446413000D39462 /* LaunchScreen.storyboard in Resources */,
 				FA0571302446413000D39462 /* Assets.xcassets in Resources */,
 				FA057149244644F800D39462 /* README.md in Resources */,
-				FAAE8C96244E171F000882A1 /* LogsViewController.xib in Resources */,
+				FAAE8C96244E171F000882A1 /* BtLogsViewController.xib in Resources */,
+				FAD74D102458892E00D3DCF2 /* Dp3tLogsViewController.xib in Resources */,
 				FA3A89AC2453586D00A7A6E8 /* Localizable.strings in Resources */,
 				FA05712E2446412E00D39462 /* Main.storyboard in Resources */,
 				FA05717724464AC200D39462 /* OnboardingViewController.xib in Resources */,
@@ -404,10 +414,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA0571B6244DBB8700D39462 /* BtServiceDefinition.swift in Sources */,
+				FAD74D0C2458889C00D3DCF2 /* Dp3tLogsManager.swift in Sources */,
 				FA0571B3244DB98900D39462 /* BtAdvertisingManager.swift in Sources */,
 				FA05715C2446455000D39462 /* StatusViewController.swift in Sources */,
 				FAAE8C8E244DC464000882A1 /* BtScanningManager.swift in Sources */,
 				FAAE8C90244DEC88000882A1 /* BtContactsManager.swift in Sources */,
+				FAD74D0F2458892E00D3DCF2 /* Dp3tLogsViewController.swift in Sources */,
 				FA05716A244647A400D39462 /* DataManager.swift in Sources */,
 				FA057169244647A400D39462 /* ContactsManager.swift in Sources */,
 				FAD74D0A2454DF2A00D3DCF2 /* LocationIndexManager.swift in Sources */,
@@ -416,8 +428,8 @@
 				FA05716C244647A400D39462 /* KeyManager.swift in Sources */,
 				FA05716B244647A400D39462 /* EncryptionKeysManager.swift in Sources */,
 				FA05712B2446412E00D39462 /* RootViewController.swift in Sources */,
-				FAAE8C95244E171F000882A1 /* LogsViewController.swift in Sources */,
-				FAAE8C92244E1506000882A1 /* LogsManager.swift in Sources */,
+				FAAE8C95244E171F000882A1 /* BtLogsViewController.swift in Sources */,
+				FAAE8C92244E1506000882A1 /* BtLogsManager.swift in Sources */,
 				FA05716F244647A400D39462 /* TrackingManager.swift in Sources */,
 				FA05717624464AC200D39462 /* OnboardingViewController.swift in Sources */,
 				FA0571272446412E00D39462 /* AppDelegate.swift in Sources */,
@@ -580,7 +592,7 @@
 				CODE_SIGN_ENTITLEMENTS = octrace/OCTrace.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = S5ENNERNQZ;
 				INFOPLIST_FILE = octrace/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -605,7 +617,7 @@
 				CODE_SIGN_ENTITLEMENTS = octrace/OCTrace.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = S5ENNERNQZ;
 				INFOPLIST_FILE = octrace/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

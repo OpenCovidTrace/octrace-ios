@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Dp3tLogsViewController" customModule="OCTrace_DEV" customModuleProvider="target">
+            <connections>
+                <outlet property="indicator" destination="pV3-jG-sog" id="wBh-yg-wnT"/>
+                <outlet property="textView" destination="FvT-CE-Hp2" id="PxC-w6-4hx"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="FvT-CE-Hp2">
+                    <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pps-E9-kj5">
+                    <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <items>
+                        <navigationItem id="dtZ-h3-wBF">
+                            <barButtonItem key="leftBarButtonItem" title="Close" id="L6f-56-sOE">
+                                <connections>
+                                    <action selector="close:" destination="-1" id="mYw-Wb-8ch"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem key="rightBarButtonItem" systemItem="trash" id="uaW-Aa-cQa">
+                                <connections>
+                                    <action selector="clear:" destination="-1" id="Yi3-Od-xy8"/>
+                                </connections>
+                            </barButtonItem>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="pV3-jG-sog">
+                    <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                </activityIndicatorView>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="FvT-CE-Hp2" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="0YP-TI-HF1"/>
+                <constraint firstItem="pps-E9-kj5" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="APa-iA-xL6"/>
+                <constraint firstItem="pV3-jG-sog" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ITv-gb-bUB"/>
+                <constraint firstItem="FvT-CE-Hp2" firstAttribute="top" secondItem="pps-E9-kj5" secondAttribute="bottom" id="N7F-zk-dUi"/>
+                <constraint firstItem="pps-E9-kj5" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="OuR-Rt-jKe"/>
+                <constraint firstItem="pV3-jG-sog" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="TgA-1D-3mV"/>
+                <constraint firstItem="FvT-CE-Hp2" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="ZHi-sj-PWb"/>
+                <constraint firstItem="FvT-CE-Hp2" firstAttribute="top" secondItem="pps-E9-kj5" secondAttribute="bottom" id="c4B-Kb-mw9"/>
+                <constraint firstItem="FvT-CE-Hp2" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="mPU-l0-Toe"/>
+                <constraint firstItem="pps-E9-kj5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="o3K-FL-Ob4"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="139" y="125"/>
+        </view>
+    </objects>
+</document>
