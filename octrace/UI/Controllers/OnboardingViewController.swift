@@ -1,6 +1,7 @@
 import UIKit
 import CoreLocation
 import Alamofire
+import DP3TSDK
 
 class OnboardingViewController: IndicatorViewController {
     
@@ -26,6 +27,14 @@ class OnboardingViewController: IndicatorViewController {
         case .bluetooth:
             BtAdvertisingManager.shared.setup()
             BtScanningManager.shared.setup()
+            
+            do {
+                try DP3TTracing.startTracing()
+                
+                Dp3tLogsManager.append("Started tracing")
+            } catch {
+                Dp3tLogsManager.append("Failed to start tracing: \(error.localizedDescription)")
+            }
             
             goNext(.notifications)
             

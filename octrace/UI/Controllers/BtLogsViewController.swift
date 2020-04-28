@@ -1,8 +1,8 @@
 import UIKit
 
-class LogsViewController: UIViewController {
+class BtLogsViewController: UIViewController {
 
-    static var instance: LogsViewController?
+    static var instance: BtLogsViewController?
     
     private static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -22,7 +22,7 @@ class LogsViewController: UIViewController {
     
     @IBAction func clear(_ sender: Any) {
         confirm("Are you sure you want to clear all logs?") {
-            LogsManager.clear()
+            BtLogsManager.clear()
         }
     }
     
@@ -43,18 +43,18 @@ class LogsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        LogsViewController.instance = self
+        BtLogsViewController.instance = self
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        LogsViewController.instance = nil
+        BtLogsViewController.instance = nil
     }
     
     func refresh() {
         var logString = ""
         
-        LogsManager.logs.forEach { item in
-            logString += "[\(LogsViewController.dateFormatter.string(from: item.date))] <\(item.tag)> \(item.text)\n"
+        BtLogsManager.logs.forEach { item in
+            logString += "[\(BtLogsViewController.dateFormatter.string(from: item.date))] <\(item.tag)> \(item.text)\n"
         }
         
         if logString.isEmpty {
