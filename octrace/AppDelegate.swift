@@ -64,8 +64,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          * DP3T integration
          */
         
+        let dp3tBackendUrl = URL(string: "https://demo.dpppt.org/")!
         do {
-            try DP3TTracing.initialize(with: .discovery("com.example.your.app", enviroment: .prod))
+            try DP3TTracing.initialize(
+                with: .manual(
+                    .init(appId: Bundle.main.bundleIdentifier!,
+                          bucketBaseUrl: dp3tBackendUrl,
+                          reportBaseUrl: dp3tBackendUrl,
+                          jwtPublicKey: nil)
+                )
+            )
             
             DP3TTracing.delegate = self
 

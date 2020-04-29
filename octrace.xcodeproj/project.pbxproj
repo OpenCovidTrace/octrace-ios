@@ -209,9 +209,9 @@
 			isa = PBXGroup;
 			children = (
 				FAAE8C8F244DEC88000882A1 /* BtContactsManager.swift */,
+				FA0571622446456C00D39462 /* QrContactsManager.swift */,
 				FAAE8C91244E1506000882A1 /* BtLogsManager.swift */,
 				FAD74D0B2458889C00D3DCF2 /* Dp3tLogsManager.swift */,
-				FA0571622446456C00D39462 /* QrContactsManager.swift */,
 				FA0571652446456C00D39462 /* DataManager.swift */,
 				FA0571632446456C00D39462 /* EncryptionKeysManager.swift */,
 				FA0571642446456C00D39462 /* KeyManager.swift */,
@@ -592,7 +592,7 @@
 				CODE_SIGN_ENTITLEMENTS = octrace/OCTrace.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = S5ENNERNQZ;
 				INFOPLIST_FILE = octrace/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -617,7 +617,7 @@
 				CODE_SIGN_ENTITLEMENTS = octrace/OCTrace.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = S5ENNERNQZ;
 				INFOPLIST_FILE = octrace/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
