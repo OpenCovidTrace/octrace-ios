@@ -72,6 +72,8 @@ class RootViewController: UITabBarController {
             Dp3tLogsManager.removeOldItems()
             
             print("Cleaning old data complete!.")
+            
+            mapViewController.updateUserTracks()
 
             LocationManager.registerCallback { location in
                 self.loadTracks(location)
