@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -135,14 +135,14 @@
                             <constraint firstItem="Jki-vL-Ib2" firstAttribute="top" secondItem="pLf-Qi-GWp" secondAttribute="bottom" constant="16" id="8Zl-DG-jnj"/>
                             <constraint firstItem="Tfk-CK-TcZ" firstAttribute="top" secondItem="bzt-Bm-9e7" secondAttribute="bottom" constant="16" id="92d-tE-PBv"/>
                             <constraint firstItem="68J-pO-N1J" firstAttribute="centerX" secondItem="DTc-0Q-8MU" secondAttribute="centerX" id="CbE-ko-XTd"/>
-                            <constraint firstItem="wVp-A6-3Pn" firstAttribute="trailing" secondItem="u1L-zC-Iyl" secondAttribute="trailing" id="Dvu-hG-QAL"/>
+                            <constraint firstAttribute="trailing" secondItem="u1L-zC-Iyl" secondAttribute="trailing" id="Dvu-hG-QAL"/>
                             <constraint firstItem="wVp-A6-3Pn" firstAttribute="bottom" secondItem="u1L-zC-Iyl" secondAttribute="bottom" id="Eci-vf-yAP"/>
                             <constraint firstItem="D8o-Gm-RNU" firstAttribute="centerY" secondItem="DTc-0Q-8MU" secondAttribute="centerY" id="Gk3-Gt-oYE"/>
                             <constraint firstItem="wVp-A6-3Pn" firstAttribute="trailing" secondItem="pH4-Y2-gFH" secondAttribute="trailing" constant="16" id="I7h-aZ-JGB"/>
                             <constraint firstItem="Jki-vL-Ib2" firstAttribute="leading" secondItem="Tfk-CK-TcZ" secondAttribute="trailing" constant="16" id="IYx-6j-TJZ"/>
                             <constraint firstItem="wVp-A6-3Pn" firstAttribute="trailing" secondItem="Jki-vL-Ib2" secondAttribute="trailing" constant="16" id="Ic2-bm-Okl"/>
                             <constraint firstItem="Tfk-CK-TcZ" firstAttribute="leading" secondItem="wVp-A6-3Pn" secondAttribute="leading" constant="16" id="JN4-Aw-WGR"/>
-                            <constraint firstItem="u1L-zC-Iyl" firstAttribute="leading" secondItem="wVp-A6-3Pn" secondAttribute="leading" id="O5k-kQ-cVE"/>
+                            <constraint firstItem="u1L-zC-Iyl" firstAttribute="leading" secondItem="DTc-0Q-8MU" secondAttribute="leading" id="O5k-kQ-cVE"/>
                             <constraint firstItem="Tfk-CK-TcZ" firstAttribute="bottom" secondItem="Jki-vL-Ib2" secondAttribute="bottom" id="PGY-yG-Qj5"/>
                             <constraint firstItem="wVp-A6-3Pn" firstAttribute="trailing" secondItem="ec3-OL-HrX" secondAttribute="trailing" constant="16" id="VYK-2N-EtJ"/>
                             <constraint firstItem="bzt-Bm-9e7" firstAttribute="leading" secondItem="aPZ-lL-MTC" secondAttribute="leading" id="WgK-TL-rae"/>
