@@ -63,7 +63,7 @@ class RootViewController: UITabBarController {
         if KeyManager.hasKey() {
             print("Cleaning old data...")
             
-            ContactsManager.removeOldContacts()
+            QrContactsManager.removeOldContacts()
             TracksManager.removeOldTracks()
             TrackingManager.removeOldPoints()
             LocationBordersManager.removeOldLocationBorders()
@@ -108,7 +108,7 @@ class RootViewController: UITabBarController {
         showInfo("Please turn on Bluetooth to enable automatic contact tracing!")
     }
     
-    func addContact(_ contact: Contact) {
+    func addContact(_ contact: QrContact) {
         mapViewController.updateContacts()
         mapViewController.goToContact(contact)
     }
@@ -144,9 +144,9 @@ class RootViewController: UITabBarController {
                     
                     let statusCode: Int = response.response?.statusCode ?? 0
                     if statusCode == 200 {
-                        let contact = Contact(rId, location, tst)
+                        let contact = QrContact(rId, location, tst)
                         
-                        ContactsManager.addContact(contact)
+                        QrContactsManager.addContact(contact)
                         
                         self.addContact(contact)
                         
@@ -227,8 +227,7 @@ class RootViewController: UITabBarController {
                     return
                 }
                 
-                let lastInfectedContact = ContactsManager.matchContacts(data)
-                
+                let lastInfectedContact = QrContactsManager.matchContacts(data)
                 if let contact = lastInfectedContact {
                     self.showExposedNotification()
                     

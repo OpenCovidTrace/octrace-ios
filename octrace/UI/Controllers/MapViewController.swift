@@ -18,7 +18,7 @@ class MapViewController: UIViewController {
     
     var rootViewController: RootViewController!
     
-    private var mkContactPoints: [MKPointAnnotation: ContactHealth] = [:]
+    private var mkContactPoints: [MKPointAnnotation: QrContactHealth] = [:]
     private var mkCountriesPoints: [MKPointAnnotation] = []
     private var mkUserPolylines: [MKPolyline] = []
     private var mkSickPolylines: [MKPolyline] = []
@@ -276,7 +276,7 @@ class MapViewController: UIViewController {
         mkContactPoints.keys.forEach(mapView.removeAnnotation)
         mkContactPoints.removeAll()
         
-        ContactsManager.contacts.forEach { contact in
+        QrContactsManager.contacts.forEach { contact in
             let annotation = MKPointAnnotation()
             
             annotation.coordinate = contact.contact.coordinate()
@@ -288,7 +288,7 @@ class MapViewController: UIViewController {
         mkContactPoints.keys.forEach(mapView.addAnnotation)
     }
     
-    func goToContact(_ contact: Contact) {
+    func goToContact(_ contact: QrContact) {
         if !isLocal() {
             segmentedControl.selectedSegmentIndex = 0
         }

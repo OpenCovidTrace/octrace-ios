@@ -184,9 +184,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                 let id = CryptoUtil.decodeAES(Data(base64Encoded: secret)!, with: key).base64EncodedString()
                 
                 LocationManager.registerCallback { location in
-                    let contact = Contact(id, location, tst)
+                    let contact = QrContact(id, location, tst)
                     
-                    ContactsManager.addContact(contact)
+                    QrContactsManager.addContact(contact)
                     
                     if let qrLinkViewController = QrLinkViewController.instance {
                         qrLinkViewController.dismiss(animated: true, completion: nil)

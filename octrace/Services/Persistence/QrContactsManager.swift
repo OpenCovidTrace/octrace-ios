@@ -1,18 +1,18 @@
 import Foundation
 import CoreLocation
 
-class ContactsManager {
+class QrContactsManager {
     
-    private static let path = DataManager.docsDir.appendingPathComponent("contacts").path
+    private static let path = DataManager.docsDir.appendingPathComponent("qr-contacts").path
     
     private init() {
     }
     
-    static var contacts: [ContactHealth] {
+    static var contacts: [QrContactHealth] {
         get {
             guard let data = NSKeyedUnarchiver.unarchiveObject(withFile: path) as? Data else { return [] }
             do {
-                return try PropertyListDecoder().decode([ContactHealth].self, from: data)
+                return try PropertyListDecoder().decode([QrContactHealth].self, from: data)
             } catch {
                 print("Retrieve Failed")
                 
@@ -38,10 +38,10 @@ class ContactsManager {
         contacts = newContacts
     }
     
-    static func matchContacts(_ keysData: KeysData) -> Contact? {
+    static func matchContacts(_ keysData: KeysData) -> QrContact? {
         let newContacts = contacts
         
-        var lastInfectedContact: Contact?
+        var lastInfectedContact: QrContact?
         
         newContacts.forEach { contact in
             let contactDate = Date(tst: contact.contact.tst)
@@ -58,26 +58,26 @@ class ContactsManager {
         return lastInfectedContact
     }
     
-    static func addContact(_ contact: Contact) {
+    static func addContact(_ contact: QrContact) {
         var newContacts = contacts
         
-        newContacts.append(ContactHealth(contact))
+        newContacts.append(QrContactHealth(contact))
         
         contacts = newContacts
     }
     
 }
 
-class ContactHealth: Codable {
-    let contact: Contact
+class QrContactHealth: Codable {
+    let contact: QrContact
     var infected: Bool = false
     
-    init(_ contact: Contact) {
+    init(_ contact: QrContact) {
         self.contact = contact
     }
 }
 
-struct Contact: Codable {
+struct QrContact: Codable {
     let id: String
     let lat: Double
     let lng: Double

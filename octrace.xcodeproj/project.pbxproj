@@ -26,7 +26,7 @@
 		FA05715A2446455000D39462 /* ControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA05714E2446454F00D39462 /* ControllerExtension.swift */; };
 		FA05715B2446455000D39462 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0571502446454F00D39462 /* MapViewController.swift */; };
 		FA05715C2446455000D39462 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA05714F2446454F00D39462 /* StatusViewController.swift */; };
-		FA057169244647A400D39462 /* ContactsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0571622446456C00D39462 /* ContactsManager.swift */; };
+		FA057169244647A400D39462 /* QrContactsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0571622446456C00D39462 /* QrContactsManager.swift */; };
 		FA05716A244647A400D39462 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0571652446456C00D39462 /* DataManager.swift */; };
 		FA05716B244647A400D39462 /* EncryptionKeysManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0571632446456C00D39462 /* EncryptionKeysManager.swift */; };
 		FA05716C244647A400D39462 /* KeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0571642446456C00D39462 /* KeyManager.swift */; };
@@ -84,7 +84,7 @@
 		FA05715F2446456C00D39462 /* KeysManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeysManager.swift; sourceTree = "<group>"; };
 		FA0571602446456C00D39462 /* TracksManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracksManager.swift; sourceTree = "<group>"; };
 		FA0571612446456C00D39462 /* TrackingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingManager.swift; sourceTree = "<group>"; };
-		FA0571622446456C00D39462 /* ContactsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsManager.swift; sourceTree = "<group>"; };
+		FA0571622446456C00D39462 /* QrContactsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrContactsManager.swift; sourceTree = "<group>"; };
 		FA0571632446456C00D39462 /* EncryptionKeysManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionKeysManager.swift; sourceTree = "<group>"; };
 		FA0571642446456C00D39462 /* KeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyManager.swift; sourceTree = "<group>"; };
 		FA0571652446456C00D39462 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -211,7 +211,7 @@
 				FAAE8C8F244DEC88000882A1 /* BtContactsManager.swift */,
 				FAAE8C91244E1506000882A1 /* BtLogsManager.swift */,
 				FAD74D0B2458889C00D3DCF2 /* Dp3tLogsManager.swift */,
-				FA0571622446456C00D39462 /* ContactsManager.swift */,
+				FA0571622446456C00D39462 /* QrContactsManager.swift */,
 				FA0571652446456C00D39462 /* DataManager.swift */,
 				FA0571632446456C00D39462 /* EncryptionKeysManager.swift */,
 				FA0571642446456C00D39462 /* KeyManager.swift */,
@@ -421,7 +421,7 @@
 				FAAE8C90244DEC88000882A1 /* BtContactsManager.swift in Sources */,
 				FAD74D0F2458892E00D3DCF2 /* Dp3tLogsViewController.swift in Sources */,
 				FA05716A244647A400D39462 /* DataManager.swift in Sources */,
-				FA057169244647A400D39462 /* ContactsManager.swift in Sources */,
+				FA057169244647A400D39462 /* QrContactsManager.swift in Sources */,
 				FAD74D0A2454DF2A00D3DCF2 /* LocationIndexManager.swift in Sources */,
 				FA0571592446455000D39462 /* IndicatorViewController.swift in Sources */,
 				FA05715A2446455000D39462 /* ControllerExtension.swift in Sources */,
