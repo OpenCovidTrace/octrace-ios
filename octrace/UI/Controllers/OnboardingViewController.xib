@@ -8,10 +8,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OnboardingViewController" customModule="OCTrace" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OnboardingViewController" customModule="OCTrace_DEV" customModuleProvider="target">
             <connections>
                 <outlet property="button" destination="cCp-7h-dXy" id="gD4-GW-R9Q"/>
                 <outlet property="descriptionLabel" destination="aef-yI-wid" id="vpy-YP-YIr"/>
+                <outlet property="skipButton" destination="2cb-FB-exl" id="LtK-ZT-0U5"/>
                 <outlet property="titleLabel" destination="pGo-Ce-SmP" id="d4d-5G-pWu"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -27,8 +28,8 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cCp-7h-dXy" customClass="RoundButton" customModule="CovidControl" customModuleProvider="target">
-                    <rect key="frame" x="32" y="786" width="350" height="44"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cCp-7h-dXy" customClass="RoundButton" customModule="OCTrace_DEV" customModuleProvider="target">
+                    <rect key="frame" x="32" y="756" width="350" height="44"/>
                     <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="Me3-l9-Qne"/>
@@ -46,17 +47,26 @@
                     <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2cb-FB-exl">
+                    <rect key="frame" x="178.5" y="816" width="57" height="30"/>
+                    <state key="normal" title="Not now"/>
+                    <connections>
+                        <action selector="skipTap:" destination="-1" eventType="touchUpInside" id="SGx-0d-pT8"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="2cb-FB-exl" secondAttribute="bottom" constant="16" id="3Ag-Ba-zeI"/>
                 <constraint firstItem="aef-yI-wid" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="CVv-h7-bcA"/>
                 <constraint firstItem="cCp-7h-dXy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="JA6-6c-adW"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="cCp-7h-dXy" secondAttribute="trailing" constant="32" id="Md5-at-ygJ"/>
                 <constraint firstItem="aef-yI-wid" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="NaM-D2-pzM"/>
+                <constraint firstItem="2cb-FB-exl" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="SW6-Hb-x70"/>
                 <constraint firstItem="pGo-Ce-SmP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="XG1-r8-Fmt"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="cCp-7h-dXy" secondAttribute="bottom" constant="32" id="ZKX-Sr-Usq"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="aef-yI-wid" secondAttribute="trailing" constant="32" id="b83-DI-Izp"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="pGo-Ce-SmP" secondAttribute="trailing" constant="32" id="g9W-I3-8bd"/>
+                <constraint firstItem="2cb-FB-exl" firstAttribute="top" secondItem="cCp-7h-dXy" secondAttribute="bottom" constant="16" id="jdi-QY-Eyk"/>
                 <constraint firstItem="pGo-Ce-SmP" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="64" id="rv9-TN-Rf2"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

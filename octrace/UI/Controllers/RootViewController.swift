@@ -30,8 +30,9 @@ class RootViewController: UITabBarController {
         // preload all tabs
         viewControllers?.forEach { _ = $0.view }
         
-        if KeyManager.hasKey() {
-            LocationManager.requestLocationUpdates()
+        if OnboardingManager.isComplete() {
+            LocationManager.requestLocationUpdates(self)
+            
             BtAdvertisingManager.shared.setup()
             BtScanningManager.shared.setup()
             
@@ -60,7 +61,7 @@ class RootViewController: UITabBarController {
             firstAppearance = false
         }
         
-        if KeyManager.hasKey() {
+        if OnboardingManager.isComplete() {
             print("Cleaning old data...")
             
             QrContactsManager.removeOldContacts()

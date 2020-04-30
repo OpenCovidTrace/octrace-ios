@@ -29,10 +29,12 @@ class LocationManager {
         }
     }
     
-    static func requestLocationUpdates() {
+    static func requestLocationUpdates(_ controller: UIViewController) {
         let authStatus = CLLocationManager.authorizationStatus()
         if authStatus == .notDetermined { // need to always check because of "Allow once" option
-            requestAuthorization()
+            controller.confirm("Would you like to enable location usage now?") {
+                requestAuthorization()
+            }
         } else if authStatus == .authorizedAlways || authStatus == .authorizedWhenInUse {
             startUpdatingLocation()
         }

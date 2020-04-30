@@ -76,7 +76,7 @@ class TracksManager {
             if let track = tracksByDay[dayNumber] {
                 track.points.append(point)
             } else {
-                let dailyKey = CryptoUtil.spec.getDailyKey(for: dayNumber)
+                let dailyKey = CryptoUtil.getDailyKey(for: dayNumber)
                 let secretKey = CryptoUtil.toSecretKey(dailyKey)
                 
                 tracksByDay[dayNumber] = Track([point], dayNumber, secretKey)

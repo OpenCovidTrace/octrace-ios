@@ -4,9 +4,33 @@ import CoreLocation
 
 class KeysManager {
     
+    private static let dailyKeysPath = DataManager.docsDir.appendingPathComponent("daily-keys").path
+    
     private static let kLastKeysUploadDay = "kLastKeysUploadDay"
     
     private init() {
+    }
+    
+    static var dailyKeys: [Int: Data] {
+        get {
+            guard let data = NSKeyedUnarchiver.unarchiveObject(withFile: dailyKeysPath) as? Data else { return [:] }
+            do {
+                return try PropertyListDecoder().decode([Int: Data].self, from: data)
+            } catch {
+                print("Retrieve Failed")
+                
+                return [:]
+            }
+        }
+        
+        set {
+            do {
+                let data = try PropertyListEncoder().encode(newValue)
+                NSKeyedArchiver.archiveRootObject(data, toFile: dailyKeysPath)
+            } catch {
+                print("Save Failed")
+            }
+        }
     }
     
     static var lastUpdloadDay: Int {
@@ -40,7 +64,7 @@ class KeysManager {
             
             // We currently don't upload diagnostic keys without location data!
             if let border = borders[dayNumber] {
-                let keyValue = CryptoUtil.spec.getDailyKey(for: dayNumber).base64EncodedString()
+                let keyValue = CryptoUtil.getDailyKey(for: dayNumber).base64EncodedString()
                 border.secure()
                 let key = Key(value: keyValue, day: dayNumber, border: border)
                 

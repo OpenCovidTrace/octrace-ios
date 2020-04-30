@@ -49,7 +49,7 @@ class BtContactsManager {
             let contactDate = Date(tst: health.contact.encounters.first!.tst)
             let contactDay = CryptoUtil.getDayNumber(for: contactDate)
             if keysData.keys.contains(where: { $0.day == contactDay &&
-                CryptoUtil.spec.match(id, contactDate, Data(base64Encoded: $0.value)!) }) {
+                CryptoUtil.match(id, contactDate, Data(base64Encoded: $0.value)!) }) {
                 health.infected = true
                 lastInfectedContact = health.contact
             }

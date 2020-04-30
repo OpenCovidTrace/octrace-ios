@@ -47,7 +47,7 @@ class QrContactsManager {
             let contactDate = Date(tst: contact.contact.tst)
             let contactDay = CryptoUtil.getDayNumber(for: contactDate)
             if keysData.keys.contains(where: { $0.day == contactDay &&
-                CryptoUtil.spec.match(contact.contact.id, contactDate, Data(base64Encoded: $0.value)!) }) {
+                CryptoUtil.match(contact.contact.id, contactDate, Data(base64Encoded: $0.value)!) }) {
                 contact.infected = true
                 lastInfectedContact = contact.contact
             }
