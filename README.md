@@ -2,6 +2,10 @@
 
 Visit <https://opencovidtrace.org> to learn more.
 
+## Gitter
+
+https://gitter.im/octrace-ios/community
+
 ## Building the code
 
 1. Install the latest [Xcode developer tools](https://developer.apple.com/xcode/downloads/) from Apple
