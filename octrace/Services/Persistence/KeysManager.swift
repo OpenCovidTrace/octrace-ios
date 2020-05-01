@@ -43,11 +43,12 @@ class KeysManager {
         }
     }
     
-    static func uploadNewKeys() {
+    static func uploadNewKeys(includeToday: Bool = false) {
         let oldLastUploadDay = lastUpdloadDay
         
         // Uploading after EOD to include widest borders
-        let previousDayNumber = CryptoUtil.currentDayNumber() - 1
+        let currentDayNumber = CryptoUtil.currentDayNumber()
+        let previousDayNumber = currentDayNumber - 1
         
         if oldLastUploadDay == previousDayNumber {
             return
@@ -56,12 +57,8 @@ class KeysManager {
         let borders = LocationBordersManager.locationBorders
         
         let keysData = KeysData()
-        let diff = min(previousDayNumber - oldLastUploadDay, DataManager.maxDays)
         
-        var offset = 0
-        while offset < diff {
-            let dayNumber = previousDayNumber - offset
-            
+        func addKey(for dayNumber: Int) {
             // We currently don't upload diagnostic keys without location data!
             if let border = borders[dayNumber] {
                 let keyValue = CryptoUtil.getDailyKey(for: dayNumber).base64EncodedString()
@@ -70,6 +67,21 @@ class KeysManager {
                 
                 keysData.keys.append(key)
             }
+        }
+        
+        if includeToday {
+            // Include key for today when reporting symptoms
+            // This key will be uploaded again next day with updated borders
+            addKey(for: currentDayNumber)
+        }
+        
+        let diff = min(previousDayNumber - oldLastUploadDay, DataManager.maxDays)
+        
+        var offset = 0
+        while offset < diff {
+            let dayNumber = previousDayNumber - offset
+            
+            addKey(for: dayNumber)
             
             offset += 1
         }

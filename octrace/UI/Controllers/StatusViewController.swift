@@ -39,7 +39,7 @@ class StatusViewController: IndicatorViewController {
         UserStatusManager.status = status
         
         TracksManager.uploadNewTracks()
-        KeysManager.uploadNewKeys()
+        KeysManager.uploadNewKeys(includeToday: true)
         
         refreshStatus()
     }
