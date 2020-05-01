@@ -131,7 +131,7 @@ class OnboardingViewController: IndicatorViewController {
     }
     
     static func instanciate() -> OnboardingViewController {
-        return OnboardingViewController(nibName: "OnboardingViewController", bundle: nil)
+        OnboardingViewController(nib: R.nib.onboardingViewController)
     }
     
     private func goNext(_ nextStage: String, skip: Bool = false) {

@@ -59,13 +59,13 @@ class MapViewController: UIViewController {
     }
     
     @IBAction func openBtLog(_ sender: Any) {
-        let logsController = BtLogsViewController(nibName: "BtLogsViewController", bundle: nil)
+        let logsController = BtLogsViewController(nib: R.nib.btLogsViewController)
         
         rootViewController.navigationController?.present(logsController, animated: true)
     }
     
     @IBAction func openDp3tLog(_ sender: Any) {
-        let logsController = Dp3tLogsViewController(nibName: "Dp3tLogsViewController", bundle: nil)
+        let logsController = BtLogsViewController(nib: R.nib.btLogsViewController)
         
         rootViewController.navigationController?.present(logsController, animated: true)
     }
@@ -85,7 +85,7 @@ class MapViewController: UIViewController {
                     }
                     
                 default:
-                    let linkController = QrLinkViewController(nibName: "QrLinkViewController", bundle: nil)
+                    let linkController = QrLinkViewController(nib: R.nib.qrLinkViewController)
                     
                     self.rootViewController.navigationController?.present(linkController, animated: true)
                 }
