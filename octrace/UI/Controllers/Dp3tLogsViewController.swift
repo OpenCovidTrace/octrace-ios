@@ -21,7 +21,7 @@ class Dp3tLogsViewController: UIViewController {
     }
     
     @IBAction func clear(_ sender: Any) {
-        confirm("Are you sure you want to clear all logs?") {
+        confirm(R.string.localizable.clear_log_confiration_question()) {
             Dp3tLogsManager.clear()
         }
     }

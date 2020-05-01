@@ -75,10 +75,10 @@ class MapViewController: UIViewController {
             DispatchQueue.main.async {
                 switch settings.authorizationStatus {
                 case .denied:
-                    self.showSettings("Need to enable notifications in Settings.")
+                    self.showSettings(R.string.localizable.notifications_disabled())
                     
                 case .notDetermined:
-                    self.confirm("You need to enable notifications first, would you like to do it now?") {
+                    self.confirm(R.string.localizable.notifications_disabled()) {
                         UNUserNotificationCenter.current()
                             .requestAuthorization(options: [.alert, .badge, .sound]) { _, _  in
                         }
@@ -258,8 +258,10 @@ class MapViewController: UIViewController {
                 let annotation = MKPointAnnotation()
                 
                 annotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lng)
-                annotation.title = "\(feature.attributes.ADM0_NAME): \(feature.attributes.cum_conf) cases," +
-                "\(feature.attributes.cum_death) deaths"
+                annotation.title = R.string.localizable.comma(
+                    R.string.localizable.count_cases(feature.attributes.cum_conf),
+                    R.string.localizable.count_deaths(feature.attributes.cum_death)
+                )
                 
                 mkCountriesPoints.append(annotation)
             }
@@ -280,7 +282,8 @@ class MapViewController: UIViewController {
             let annotation = MKPointAnnotation()
             
             annotation.coordinate = contact.contact.coordinate()
-            annotation.title = "Contact @ \(MapViewController.dateFormatter.string(from: contact.contact.date()))"
+            let date = MapViewController.dateFormatter.string(from: contact.contact.date())
+            annotation.title = R.string.localizable.contact_at_date(date)
             
             mkContactPoints[annotation] = contact
         }

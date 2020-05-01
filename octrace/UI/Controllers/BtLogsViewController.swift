@@ -21,7 +21,7 @@ class BtLogsViewController: UIViewController {
     }
     
     @IBAction func clear(_ sender: Any) {
-        confirm("Are you sure you want to clear all logs?") {
+        confirm(R.string.localizable.clear_log_confiration_question()) {
             BtLogsManager.clear()
         }
     }

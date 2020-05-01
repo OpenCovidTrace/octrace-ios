@@ -1,1 +1,124 @@
 "MAKE_CONTACT" = "You've recorded a contact.";
+
+/*  Onboarding screen title */
+"location_data" = "Location Data";
+
+/* Location data onboarding screen description */
+"location_data_description" = "All location tracking data is securely stored and does not leave your phone unless you get sick and want to notify your contacts, in either an anonymous or a transparent way.";
+
+/* Location data onboarding button */
+"enable_location" = "Enable location";
+
+/*  Onboarding screen title */
+"bluetooth_access" = "Bluetooth access";
+
+/* Bluetooth access onboarding screen description */
+"bluetooth_access_description" = "We use bluetooth for anonymous automatic contact tracing. All contacts are securely stored and never leave your phone.";
+
+/* Bluetooth access  onboarding button */
+"enable_bluetooth" = "Enable Bluetooth";
+
+/*  Onboarding screen title */
+"notifications" = "Notifications";
+
+/* Notifications onboarding screen description */
+"notifications_description" = "Notifications keep you up to date, and also alert you in case you have been in close contact with someone that now is infected.";
+
+/* Notifications onboarding button */
+"enable_notifications" = "Enable notifications";
+
+/*  Onboarding screen title */
+"welcome" = "Welcome!";
+
+/* Welcome onboarding screen description */
+"welcome_description" = "Covid Control is here to help you and your community to keep safe and take the appropriate measures in case necessary.\n\nWe are in this together, and each one of us plays an important role.";
+
+/* Welcome  onboarding button */
+"get_started" = "Get started!";
+
+/* Clear log alert confirmation*/
+"clear_log_confiration_question" = "Are you sure you want to clear all logs?";
+
+/* Cancel button title*/
+"cancel_button" = "Cancel";
+
+/* Confirmation title */
+"please_confirm" = "Please confirm";
+
+/* Alert button*/
+"yes_button" = "Yes";
+
+/* Alert title*/
+"input_required" = "Input required";
+
+/* Alert button */
+"ok_button" = "OK";
+
+/* Alert title */
+"error" = "Error";
+
+/* Alert title*/
+"settings" = "Settings";
+
+/*  Alert action */
+"no_thanks_button" = "No, thanks";
+
+"notifications_disabled" = "Need to enable notifications in Settings.";
+"enable_notifications_request" = "You need to enable notifications first, would you like to do it now?";
+
+/* Number of cases on the map tooltip */
+"count_cases" = "%d cases";
+
+/* Number of deaths on the map tooltip */
+"count_deaths" = "%d deaths";
+
+/* Elements iteration separator (comma) */
+"comma" = "%@, %@";
+
+/* Contatct at date */
+"contact_at_date" = "Contact \@%@";
+
+/* QR screen error */
+"get_notification_token_error" = "Failed to get notifications token.";
+
+/* Bluetooth turn on request*/
+"bluetooth_turn_on_request" = "Please turn on Bluetooth to enable automatic contact tracing!";
+
+/* Contact code expired error */
+"contact_code_expired_error" = "Contact code has expired, please try again.";
+
+/* No location info error*/
+"no_location_info_error" = "No location info";
+
+/* Contact recorded information */
+"contact_recoreded_info" = "The contact has been recorded!";
+
+/* Error with status code */
+"status_code_error" = "Status code: %d";
+
+/* Notification title*/
+"exposed_contact" = "Exposed contact";
+
+/* Notification body */
+"exposed_contact_message" = "A contact you have recorded has reported symptoms.";
+
+/* Alert text */
+"new_statuses_disclaimer" = "We are planning to introduce new statuses: covid-confirmed and covid-recovered (immune) in the nearest future.";
+
+/* Confirmation message*/
+"report_covid_confirmation" = "You are about to anonymously self-report having symptoms of Covid-19 (Coronavirus). Your tracking records will be uploaded to the server for processing.\nNOTE: This procedure is anonymous, your privacy is kept at all times.";
+
+/* Status title*/
+"status_title" = "Current status: %@";
+
+/* Status type*/
+"symptoms_status" = "Symptoms";
+
+/* Button title*/
+"whats_next_button" = "What's next?";
+
+/* Status type */
+"healthy" = "Healthy";
+
+/* Got symptoms button*/
+"got_symptoms_button" = "I got symptoms :(";

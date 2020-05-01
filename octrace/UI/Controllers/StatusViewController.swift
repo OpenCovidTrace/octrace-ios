@@ -8,20 +8,9 @@ class StatusViewController: IndicatorViewController {
     
     @IBAction func statusChange(_ sender: Any) {
         if UserStatusManager.sick() {
-            showInfo(
-                """
-                We are planning to introduce new statuses: covid-confirmed and covid-recovered (immune) in the nearest
-                future.
-                """
-            )
+            showInfo(R.string.localizable.new_statuses_disclaimer())
         } else {
-            confirm(
-                """
-                You are about to anonymously self-report having symptoms of Covid-19 (Coronavirus). Your tracking
-                records will be uploaded to the server for processing.\nNOTE: This procedure is anonymous, your privacy
-                is kept at all times.
-                """
-            ) {
+            confirm(R.string.localizable.report_covid_confirmation()) {
                 self.updateUserStatus(UserStatusManager.symptoms)
             }
         }
@@ -45,17 +34,20 @@ class StatusViewController: IndicatorViewController {
     }
     
     private func refreshStatus() {
+        let status: String
         if UserStatusManager.sick() {
-            statusLabel.text = "Current status: Symptoms"
-            
-            statusButton.setTitle("What's next?", for: .normal)
-            statusButton.backgroundColor = UIColor.systemGreen
+            status = R.string.localizable.symptoms_status()
+
+            statusButton.setTitle(R.string.localizable.whats_next_button(), for: .normal)
+            statusButton.backgroundColor = .systemGreen
         } else {
-            statusLabel.text = "Current status: Healthy"
+            status = R.string.localizable.healthy()
             
-            statusButton.setTitle("I got symptoms :(", for: .normal)
-            statusButton.backgroundColor = UIColor.systemRed
+            statusButton.setTitle(R.string.localizable.got_symptoms_button(), for: .normal)
+            statusButton.backgroundColor = .systemRed
         }
+
+        statusLabel.text = R.string.localizable.status_title(status)
     }
     
 }

@@ -64,38 +64,25 @@ class OnboardingViewController: IndicatorViewController {
         
         switch stage {
         case OnboardingStage.location:
-            titleLabel.text = "Location Data"
-            descriptionLabel.text = """
-            All location tracking data is securely stored and does not leave your phone unless you get sick and want to
-            notify your contacts, in either an anonymous or a transparent way.
-            """
-            button.setTitle("Enable location", for: .normal)
+            titleLabel.text = R.string.localizable.location_data()
+            descriptionLabel.text = R.string.localizable.location_data_description()
+            button.setTitle(R.string.localizable.enable_location(), for: .normal)
             
         case OnboardingStage.bluetooth:
-            titleLabel.text = "Bluetooth access"
-            descriptionLabel.text = """
-            We use bluetooth for anonymous automatic contact tracing. All contacts are securely stored and never leave
-            your phone.
-            """
-            button.setTitle("Enable Bluetooth", for: .normal)
+            titleLabel.text = R.string.localizable.bluetooth_access()
+            descriptionLabel.text = R.string.localizable.bluetooth_access_description()
+            button.setTitle(R.string.localizable.enable_bluetooth(), for: .normal)
             
         case OnboardingStage.notifications:
-            titleLabel.text = "Notifications"
-            descriptionLabel.text = """
-            Notifications keep you up to date, and also alert you in case you have been in close contact with someone
-            that now is infected.
-            """
-            button.setTitle("Enable notifications", for: .normal)
+            titleLabel.text = R.string.localizable.notifications()
+            descriptionLabel.text = R.string.localizable.notifications_description()
+            button.setTitle(R.string.localizable.enable_notifications(), for: .normal)
             
         default:
-            titleLabel.text = "Welcome!"
-            descriptionLabel.text = """
-            Covid Control is here to help you and your community to keep safe and take the appropriate measures in case
-            necessary.\n\n
-            We are in this together, and each one of us plays an important role.
-            """
+            titleLabel.text = R.string.localizable.welcome()
+            descriptionLabel.text = R.string.localizable.welcome_description()
             button
-                .setTitle("Get started!", for: .normal)
+                .setTitle(R.string.localizable.get_started(), for: .normal)
             skipButton.isHidden = true
         }
     }

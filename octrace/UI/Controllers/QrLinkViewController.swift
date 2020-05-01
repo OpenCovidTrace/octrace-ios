@@ -39,7 +39,7 @@ class QrLinkViewController: UIViewController {
             indicator.hide()
         } else {
             dismiss(animated: true)
-            showError("Failed to get notifications token.")
+            showError(R.string.localizable.get_notification_token_error())
         }
     }
     
