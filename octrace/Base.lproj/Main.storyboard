@@ -55,7 +55,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="5jj-b3-b9S"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Record contact"/>
                                 <connections>
@@ -103,6 +103,7 @@
                                     <constraint firstAttribute="width" constant="40" id="2Dh-u0-AgU"/>
                                     <constraint firstAttribute="height" constant="40" id="v9a-tM-9r8"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <state key="normal" image="outline_bluetooth_black_24pt">
                                     <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -118,6 +119,7 @@
                                     <constraint firstAttribute="height" constant="40" id="eXF-xp-uOi"/>
                                     <constraint firstAttribute="width" constant="40" id="iXW-NW-l0e"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <state key="normal" title="D">
                                     <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -183,16 +185,16 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="tR4-ym-Vok"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="STATUS CHANGE"/>
                                 <connections>
                                     <action selector="statusChange:" destination="6ld-MF-qcp" eventType="touchUpInside" id="qxM-pU-XIV"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CURRENT STATUS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqn-M2-hsL">
-                                <rect key="frame" x="119.5" y="368.5" width="175" height="25.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CURRENT STATUS" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqn-M2-hsL">
+                                <rect key="frame" x="20" y="367.5" width="374" height="26.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                 <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -200,7 +202,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="tVG-dr-mgC" firstAttribute="centerY" secondItem="c4l-F0-NZf" secondAttribute="centerY" id="5Qa-W5-sKm"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fqn-M2-hsL" secondAttribute="trailing" id="Fnp-9h-Ltt"/>
                             <constraint firstItem="tVG-dr-mgC" firstAttribute="leading" secondItem="Swx-qk-Fcc" secondAttribute="leading" constant="32" id="GLS-IB-CMX"/>
+                            <constraint firstItem="fqn-M2-hsL" firstAttribute="leading" secondItem="c4l-F0-NZf" secondAttribute="leadingMargin" id="WKc-6n-78K"/>
                             <constraint firstItem="Swx-qk-Fcc" firstAttribute="trailing" secondItem="tVG-dr-mgC" secondAttribute="trailing" constant="32" id="ddc-Je-yGW"/>
                             <constraint firstItem="fqn-M2-hsL" firstAttribute="centerX" secondItem="c4l-F0-NZf" secondAttribute="centerX" id="iCf-sD-sig"/>
                             <constraint firstItem="tVG-dr-mgC" firstAttribute="top" secondItem="fqn-M2-hsL" secondAttribute="bottom" constant="32" id="igP-kB-LIy"/>
