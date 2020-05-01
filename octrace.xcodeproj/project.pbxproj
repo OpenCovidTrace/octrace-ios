@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3A2469AA2451F6170082AA06 /* PeripheralDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2469A92451F6170082AA06 /* PeripheralDevice.swift */; };
 		44A619811F5AC4D47CDBE5D3 /* Pods_octrace_DEV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1A8BBD365D79BDF10195B3A /* Pods_octrace_DEV.framework */; };
+		B1B5D3CC245C35BF00D5D717 /* MapViewController + MapFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B5D3CB245C35BF00D5D717 /* MapViewController + MapFeature.swift */; };
 		FA0571272446412E00D39462 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0571262446412E00D39462 /* AppDelegate.swift */; };
 		FA05712B2446412E00D39462 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA05712A2446412E00D39462 /* RootViewController.swift */; };
 		FA05712E2446412E00D39462 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA05712C2446412E00D39462 /* Main.storyboard */; };
@@ -59,6 +60,7 @@
 		117D1C6D38F63D587FA1E1BD /* Pods-octrace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-octrace.release.xcconfig"; path = "Target Support Files/Pods-octrace/Pods-octrace.release.xcconfig"; sourceTree = "<group>"; };
 		15CB5B50BF58601BDC235F89 /* Pods-octrace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-octrace.debug.xcconfig"; path = "Target Support Files/Pods-octrace/Pods-octrace.debug.xcconfig"; sourceTree = "<group>"; };
 		3A2469A92451F6170082AA06 /* PeripheralDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeripheralDevice.swift; sourceTree = "<group>"; };
+		B1B5D3CB245C35BF00D5D717 /* MapViewController + MapFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapViewController + MapFeature.swift"; sourceTree = "<group>"; };
 		C1A8BBD365D79BDF10195B3A /* Pods_octrace_DEV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_octrace_DEV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C761838EBCA157C3CFEADE1F /* Pods-octrace DEV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-octrace DEV.release.xcconfig"; path = "Target Support Files/Pods-octrace DEV/Pods-octrace DEV.release.xcconfig"; sourceTree = "<group>"; };
 		E8132C6432B2B904E6C385FF /* Pods-octrace DEV.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-octrace DEV.debug.xcconfig"; path = "Target Support Files/Pods-octrace DEV/Pods-octrace DEV.debug.xcconfig"; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				FA0571522446454F00D39462 /* IndicatorViewController.swift */,
 				FA05714C2446454E00D39462 /* InfoViewController.swift */,
 				FA0571502446454F00D39462 /* MapViewController.swift */,
+				B1B5D3CB245C35BF00D5D717 /* MapViewController + MapFeature.swift */,
 				FA05717424464AC200D39462 /* OnboardingViewController.swift */,
 				FA05717824464AD000D39462 /* QrLinkViewController.swift */,
 				FA05712A2446412E00D39462 /* RootViewController.swift */,
@@ -435,6 +438,7 @@
 				FA0571272446412E00D39462 /* AppDelegate.swift in Sources */,
 				FA057170244647A400D39462 /* TracksManager.swift in Sources */,
 				FA057143244644C400D39462 /* RoundButton.swift in Sources */,
+				B1B5D3CC245C35BF00D5D717 /* MapViewController + MapFeature.swift in Sources */,
 				FA0571AF2448990500D39462 /* LocationBordersManager.swift in Sources */,
 				FA05717A24464AD000D39462 /* QrLinkViewController.swift in Sources */,
 				FA05715B2446455000D39462 /* MapViewController.swift in Sources */,
