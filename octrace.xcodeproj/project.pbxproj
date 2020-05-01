@@ -10,6 +10,7 @@
 		3A2469AA2451F6170082AA06 /* PeripheralDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2469A92451F6170082AA06 /* PeripheralDevice.swift */; };
 		44A619811F5AC4D47CDBE5D3 /* Pods_octrace_DEV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1A8BBD365D79BDF10195B3A /* Pods_octrace_DEV.framework */; };
 		B1B5D3CC245C35BF00D5D717 /* MapViewController + MapFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B5D3CB245C35BF00D5D717 /* MapViewController + MapFeature.swift */; };
+		B1B5D3E0245C7BA300D5D717 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B5D3DF245C7BA300D5D717 /* R.generated.swift */; };
 		FA0571272446412E00D39462 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0571262446412E00D39462 /* AppDelegate.swift */; };
 		FA05712B2446412E00D39462 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA05712A2446412E00D39462 /* RootViewController.swift */; };
 		FA05712E2446412E00D39462 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA05712C2446412E00D39462 /* Main.storyboard */; };
@@ -61,6 +62,7 @@
 		15CB5B50BF58601BDC235F89 /* Pods-octrace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-octrace.debug.xcconfig"; path = "Target Support Files/Pods-octrace/Pods-octrace.debug.xcconfig"; sourceTree = "<group>"; };
 		3A2469A92451F6170082AA06 /* PeripheralDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeripheralDevice.swift; sourceTree = "<group>"; };
 		B1B5D3CB245C35BF00D5D717 /* MapViewController + MapFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapViewController + MapFeature.swift"; sourceTree = "<group>"; };
+		B1B5D3DF245C7BA300D5D717 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		C1A8BBD365D79BDF10195B3A /* Pods_octrace_DEV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_octrace_DEV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C761838EBCA157C3CFEADE1F /* Pods-octrace DEV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-octrace DEV.release.xcconfig"; path = "Target Support Files/Pods-octrace DEV/Pods-octrace DEV.release.xcconfig"; sourceTree = "<group>"; };
 		E8132C6432B2B904E6C385FF /* Pods-octrace DEV.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-octrace DEV.debug.xcconfig"; path = "Target Support Files/Pods-octrace DEV/Pods-octrace DEV.debug.xcconfig"; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				FA05712F2446413000D39462 /* Assets.xcassets */,
 				FA0571312446413000D39462 /* LaunchScreen.storyboard */,
 				FA05712C2446412E00D39462 /* Main.storyboard */,
+				B1B5D3DF245C7BA300D5D717 /* R.generated.swift */,
 				FA0571B7244DBFFC00D39462 /* Services */,
 				FAEE90A92451C4FC009A46E7 /* UI */,
 				FAEE90AA2451C508009A46E7 /* Util */,
@@ -283,6 +286,7 @@
 			buildConfigurationList = FA0571372446413000D39462 /* Build configuration list for PBXNativeTarget "octrace DEV" */;
 			buildPhases = (
 				9A8A38F6739D115A89B97C5B /* [CP] Check Pods Manifest.lock */,
+				B1B5D3DD245C7A1200D5D717 /* ShellScript */,
 				FA05711F2446412E00D39462 /* Sources */,
 				FA0571202446412E00D39462 /* Frameworks */,
 				FA0571212446412E00D39462 /* Resources */,
@@ -392,6 +396,25 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B1B5D3DD245C7A1200D5D717 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$TEMP_DIR/rswift-lastrun",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
+		};
 		FAEE90AB2453188D009A46E7 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -441,6 +464,7 @@
 				B1B5D3CC245C35BF00D5D717 /* MapViewController + MapFeature.swift in Sources */,
 				FA0571AF2448990500D39462 /* LocationBordersManager.swift in Sources */,
 				FA05717A24464AD000D39462 /* QrLinkViewController.swift in Sources */,
+				B1B5D3E0245C7BA300D5D717 /* R.generated.swift in Sources */,
 				FA05715B2446455000D39462 /* MapViewController.swift in Sources */,
 				FA0571572446455000D39462 /* InfoViewController.swift in Sources */,
 				3A2469AA2451F6170082AA06 /* PeripheralDevice.swift in Sources */,
