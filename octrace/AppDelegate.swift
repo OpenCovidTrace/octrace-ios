@@ -5,7 +5,6 @@ import AlamofireNetworkActivityIndicator
 import DP3TSDK
 
 let MAKE_CONTACT_CATEGORY = "MAKE_CONTACT"
-let EXPOSED_CONTACT_CATEGORY = "EXPOSED_CONTACT"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -40,14 +39,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                                 actions: [],
                                                                 intentIdentifiers: [],
                                                                 options: .customDismissAction)
-        let exposedContactMessageCategory = UNNotificationCategory(identifier: EXPOSED_CONTACT_CATEGORY,
-                                                                   actions: [],
-                                                                   intentIdentifiers: [],
-                                                                   options: .customDismissAction)
         
         let center = UNUserNotificationCenter.current()
         
-        center.setNotificationCategories([makeContactMessageCategory, exposedContactMessageCategory])
+        center.setNotificationCategories([makeContactMessageCategory])
         center.delegate = self
         
         application.registerForRemoteNotifications()
