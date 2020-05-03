@@ -3,7 +3,7 @@ import CryptoSwift
 
 class CryptoUtil {
     
-    private static let keyLength = 16
+    static let keyLength = 16
     
     private init() {}
     
@@ -23,11 +23,7 @@ class CryptoUtil {
     }
     
     private static func getAes(from key: Data) -> AES {
-        return try! AES(
-            key: key.bytes,
-            blockMode: CBC(iv: [UInt8](repeating: 0, count: keyLength)),
-            padding: .pkcs5
-        )
+        return try! AES(key: key.bytes, blockMode: ECB(), padding: .noPadding)
     }
     
     
@@ -77,7 +73,7 @@ class CryptoUtil {
         return getDayNumber(for: Date())
     }
     
-    private static func getRollingId(_ rpiKey: Data, _ enIntervalNumber: Int) -> Data {
+    private static func getRollingId(_ rpiKey: Data, _ enIntervalNumber: UInt32) -> Data {
         var paddedData = rpiPrefix
         for _ in 6...11 {
             paddedData.append(0)
@@ -88,8 +84,8 @@ class CryptoUtil {
         return CryptoUtil.encodeAES(Data(paddedData), with: rpiKey)
     }
 
-    private static func getEnIntervalNumber(for date: Date) -> Int {
-        Int(date.timeIntervalSince1970) / (60 * 10)
+    private static func getEnIntervalNumber(for date: Date) -> UInt32 {
+        UInt32(Int(date.timeIntervalSince1970) / (60 * 10))
     }
     
     static func getDailyKey(for dayNumber: Int) -> Data {

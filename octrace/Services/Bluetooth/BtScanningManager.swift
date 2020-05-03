@@ -111,7 +111,7 @@ extension BtScanningManager: CBPeripheralDelegate {
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         guard let data = characteristic.value else { return }
 
-        if data.count != 16 {
+        if data.count != CryptoUtil.keyLength {
             log("Received unexpected data length \(data.count)")
         } else {
             let rollingId = data.base64EncodedString()

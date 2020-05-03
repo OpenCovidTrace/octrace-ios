@@ -248,18 +248,9 @@ class RootViewController: UITabBarController {
     }
     
     private func showExposedNotification() {
-        let content = UNMutableNotificationContent()
-        
-        content.categoryIdentifier = EXPOSED_CONTACT_CATEGORY
-        content.title = R.string.localizable.exposed_contact()
-        content.body = R.string.localizable.exposed_contact_message()
-        content.sound = UNNotificationSound.default
-        
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0, repeats: false)
-        
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-        UNUserNotificationCenter.current().add(request)
+        showInfo(R.string.localizable.exposed_contact_message())
     }
+    
 }
 
 
