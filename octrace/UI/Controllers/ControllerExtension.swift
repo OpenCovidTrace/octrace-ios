@@ -20,11 +20,11 @@ extension UIViewController {
         let indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
 
         if #available(iOS 13.0, *) {
-            indicator.style = UIActivityIndicatorView.Style.large
+            indicator.style = .large
         } else {
-            indicator.style = UIActivityIndicatorView.Style.gray
+            indicator.style = .gray
         }
-        indicator.backgroundColor = UIColor.clear
+        indicator.backgroundColor = .clear
         indicator.center = view.center
 
         view.addSubview(indicator)
@@ -40,7 +40,7 @@ extension UIViewController {
     func actionMenu(addActions: (UIAlertController) -> Void) {
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let cancelAction = UIAlertAction(title: R.string.localizable.cancel_button(), style: .cancel)
         
         addActions(optionMenu)
         
@@ -50,51 +50,53 @@ extension UIViewController {
     }
     
     func confirm(_ message: String, _ handler: @escaping () -> Swift.Void) {
-        let alert = UIAlertController(title: "Please confirm",
+        let alert = UIAlertController(title: R.string.localizable.please_confirm(),
                                       message: message,
-                                      preferredStyle: UIAlertController.Style.alert)
+                                      preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: { _ in handler() }))
+        alert.addAction(UIAlertAction(title: R.string.localizable.yes_button(),
+                                      style: .default,
+                                      handler: { _ in handler() }))
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel))
+        alert.addAction(UIAlertAction(title: R.string.localizable.cancel_button(), style: .cancel))
         
         present(alert, animated: true, completion: nil)
     }
     
     func inputText(_ message: String, _ handler: @escaping (String) -> Swift.Void) {
-        let alert = UIAlertController(title: "Input required",
+        let alert = UIAlertController(title: R.string.localizable.input_required(),
                                       message: message,
-                                      preferredStyle: UIAlertController.Style.alert)
+                                      preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { _ in
+        alert.addAction(UIAlertAction(title: R.string.localizable.ok_button(), style: .default, handler: { _ in
             handler(alert.textFields?[0].text ?? "")
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel))
+        alert.addAction(UIAlertAction(title: R.string.localizable.cancel_button(), style: .cancel))
         alert.addTextField()
         
         present(alert, animated: true, completion: nil)
     }
     
     func showInfo(_ message: String) {
-        let alert = UIAlertController(title: "OCTrace", message: message, preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "OCTrace", message: message, preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
+        alert.addAction(UIAlertAction(title: R.string.localizable.ok_button(), style: .default))
         
         present(alert, animated: true, completion: nil)
     }
     
     func showError(_ message: String) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: R.string.localizable.error(), message: message, preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
+        alert.addAction(UIAlertAction(title: R.string.localizable.ok_button(), style: .default))
         
         present(alert, animated: true, completion: nil)
     }
     
     func showSettings(_ message: String) {
-        let alert = UIAlertController(title: "OCTrace", message: message, preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "OCTrace", message: message, preferredStyle: .alert)
         
-        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+        let settingsAction = UIAlertAction(title: R.string.localizable.settings(), style: .default) { (_) -> Void in
             guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
                 return
             }
@@ -104,7 +106,7 @@ extension UIViewController {
             }
         }
         alert.addAction(settingsAction)
-        let cancelAction = UIAlertAction(title: "No, thanks", style: .default, handler: nil)
+        let cancelAction = UIAlertAction(title: R.string.localizable.no_thanks_button(), style: .default, handler: nil)
         alert.addAction(cancelAction)
         
         present(alert, animated: true)

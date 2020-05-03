@@ -108,7 +108,7 @@ class RootViewController: UITabBarController {
     }
     
     func showBluetoothOffWarning() {
-        showInfo("Please turn on Bluetooth to enable automatic contact tracing!")
+        showInfo(R.string.localizable.bluetooth_turn_on_request())
     }
     
     func addContact(_ contact: QrContact) {
@@ -119,13 +119,13 @@ class RootViewController: UITabBarController {
     func makeContact(rId: String, key: String, token: String, platform: String, tst: Int64) {
         if abs(Int(Date.timestamp() - tst)) > 60000 {
             // QR contact should be valid for 1 minute only
-            showError("Contact code has expired, please try again.")
+            showError(R.string.localizable.contact_code_expired_error())
             
             return
         }
         
         guard let location = LocationManager.lastLocation else {
-            showError("No location info")
+            showError(R.string.localizable.no_location_info_error())
             
             return
         }
@@ -153,9 +153,9 @@ class RootViewController: UITabBarController {
                         
                         self.addContact(contact)
                         
-                        self.showInfo("The contact has been recorded!")
+                        self.showInfo(R.string.localizable.contact_recoreded_info())
                     } else {
-                        self.showError("Status code: \(statusCode)")
+                        self.showError(R.string.localizable.status_code_error(statusCode))
                     }
         }
     }
@@ -248,7 +248,7 @@ class RootViewController: UITabBarController {
     }
     
     private func showExposedNotification() {
-        showInfo("A contact you have recorded has reported symptoms!")
+        showInfo(R.string.localizable.exposed_contact_message())
     }
     
 }
