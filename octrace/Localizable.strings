@@ -27,28 +27,28 @@
 /* Notifications onboarding button */
 "enable_notifications" = "Enable notifications";
 
-/*  Onboarding screen title */
+/* Onboarding screen title */
 "welcome" = "Welcome!";
 
 /* Welcome onboarding screen description */
 "welcome_description" = "Covid Control is here to help you and your community to keep safe and take the appropriate measures in case necessary.\n\nWe are in this together, and each one of us plays an important role.";
 
-/* Welcome  onboarding button */
+/* Welcome onboarding button */
 "get_started" = "Get started!";
 
-/* Clear log alert confirmation*/
+/* Clear log alert confirmation */
 "clear_log_confiration_question" = "Are you sure you want to clear all logs?";
 
-/* Cancel button title*/
+/* Cancel button title */
 "cancel_button" = "Cancel";
 
 /* Confirmation title */
 "please_confirm" = "Please confirm";
 
-/* Alert button*/
+/* Alert button */
 "yes_button" = "Yes";
 
-/* Alert title*/
+/* Alert title */
 "input_required" = "Input required";
 
 /* Alert button */
@@ -57,10 +57,10 @@
 /* Alert title */
 "error" = "Error";
 
-/* Alert title*/
+/* Alert title */
 "settings" = "Settings";
 
-/*  Alert action */
+/* Alert action */
 "no_thanks_button" = "No, thanks";
 
 "notifications_disabled" = "Need to enable notifications in Settings.";
@@ -81,13 +81,13 @@
 /* QR screen error */
 "get_notification_token_error" = "Failed to get notifications token.";
 
-/* Bluetooth turn on request*/
+/* Bluetooth turn on request */
 "bluetooth_turn_on_request" = "Please turn on Bluetooth to enable automatic contact tracing!";
 
 /* Contact code expired error */
 "contact_code_expired_error" = "Contact code has expired, please try again.";
 
-/* No location info error*/
+/* No location info error */
 "no_location_info_error" = "No location info";
 
 /* Contact recorded information */
@@ -96,7 +96,7 @@
 /* Error with status code */
 "status_code_error" = "Status code: %d";
 
-/* Notification title*/
+/* Notification title */
 "exposed_contact" = "Exposed contact";
 
 /* Notification body */
@@ -105,20 +105,20 @@
 /* Alert text */
 "new_statuses_disclaimer" = "We are planning to introduce new statuses: covid-confirmed and covid-recovered (immune) in the nearest future.";
 
-/* Confirmation message*/
+/* Confirmation message */
 "report_covid_confirmation" = "You are about to anonymously self-report having symptoms of Covid-19 (Coronavirus). Your tracking records will be uploaded to the server for processing.\nNOTE: This procedure is anonymous, your privacy is kept at all times.";
 
-/* Status title*/
+/* Status title */
 "status_title" = "Current status: %@";
 
-/* Status type*/
+/* Status type */
 "symptoms_status" = "Symptoms";
 
-/* Button title*/
+/* Button title */
 "whats_next_button" = "What's next?";
 
 /* Status type */
 "healthy" = "Healthy";
 
-/* Got symptoms button*/
+/* Got symptoms button */
 "got_symptoms_button" = "I got symptoms :(";
