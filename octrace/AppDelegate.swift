@@ -97,14 +97,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
              https://HOST/.well-known/apple-app-site-association
              */
             if url.pathComponents.count == 3 && url.pathComponents[2] == "contact" {
-                if let id = url.valueOf("i"),
+                if let rpi = url.valueOf("r"),
                     let key = url.valueOf("k"),
                     let token = url.valueOf("d"),
                     let platform = url.valueOf("p"),
                     let tst = url.valueOf("t") {
                     self.withRootController { rootViewController in
                         rootViewController.makeContact(
-                            rId: id,
+                            rpi: rpi,
                             key: key,
                             token: token,
                             platform: platform,
@@ -184,20 +184,17 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             let tst = userInfo["tst"] as! Int64
             
             if let key = EncryptionKeysManager.encryptionKeys[tst] {
-                let id = CryptoUtil.decodeAES(Data(base64Encoded: secret)!, with: key).base64EncodedString()
+                let secretData = Data(base64Encoded: secret)!
                 
-                LocationManager.registerCallback { location in
-                    let contact = QrContact(id, location, tst)
-                    
-                    QrContactsManager.addContact(contact)
-                    
-                    if let qrLinkViewController = QrLinkViewController.instance {
-                        qrLinkViewController.dismiss(animated: true, completion: nil)
-                    }
-                    
-                    self.withRootController { rootViewController in
-                        rootViewController.addContact(contact)
-                    }
+                let id = CryptoUtil.decodeAES(secretData.prefix(CryptoUtil.keyLength), with: key)
+                let meta = CryptoUtil.decodeAES(secretData.suffix(CryptoUtil.keyLength), with: key)
+                
+                let contact = QrContact(id.base64EncodedString(), meta)
+                
+                QrContactsManager.addContact(contact)
+                
+                if let qrLinkViewController = QrLinkViewController.instance {
+                    qrLinkViewController.dismiss(animated: true, completion: nil)
                 }
             }
         }

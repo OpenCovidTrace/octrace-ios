@@ -68,11 +68,11 @@ extension BtScanningManager: CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         peripheral.discoverServices([BLE_SERVICE_UUID])
-        log("Connect to: \(peripheral.identifier.uuidString)")
+        log("Connected to: \(peripheral.identifier.uuidString)")
     }
     
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
-        log("Fail Connect to: \(peripheral.identifier.uuidString)")
+        log("Failed to connect to: \(peripheral.identifier.uuidString)")
     }
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
@@ -111,27 +111,22 @@ extension BtScanningManager: CBPeripheralDelegate {
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         guard let data = characteristic.value else { return }
 
-        if data.count != CryptoUtil.keyLength {
-            log("Received unexpected data length \(data.count)")
+        if data.count != CryptoUtil.keyLength * 2 {
+            log("Received unexpected data length: \(data.count)")
         } else {
-            let rollingId = data.base64EncodedString()
+            let rollingId = data.subdata(in: 0..<CryptoUtil.keyLength).base64EncodedString()
+            let meta = data.subdata(in: 0..<(CryptoUtil.keyLength * 2))
 
-            log("Received rollingId from peripheral: \(rollingId)")
-
-            let lastLocation = LocationManager.lastLocation
-
-            if let location = lastLocation,
-                let rssi = peripheralsRssi[peripheral] {
-                let encounter = BtEncounter(rssi, location)
-                let foundDevice = PeripheralDevice(peripheral: peripheral, rssi: rssi, response: rollingId)
+            if let rssi = peripheralsRssi[peripheral] {
+                let day = CryptoUtil.currentDayNumber()
+                let encounter = BtEncounter(rssi: rssi, meta: meta)
+                let foundDevice = PeripheralDevice(peripheral: peripheral, rssi: rssi)
                 foundedDevices.append(foundDevice)
-                BtContactsManager.addContact(rollingId, encounter)
+                BtContactsManager.addContact(rollingId, day, encounter)
+                
+                log("Recorded a contact with \(rollingId) rssi \(rssi)")
             } else {
-                if lastLocation == nil {
-                    log("Failed to record contact: no location data.")
-                } else {
-                    log("Failed to record contact: no rssi data.")
-                }
+                log("Failed to record contact: no rssi data")
             }
         }
 

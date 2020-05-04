@@ -23,7 +23,7 @@ class QrLinkViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         if let token = AppDelegate.deviceTokenEncoded {
-            let rollingId = CryptoUtil.getRollingId()
+            let rpi = CryptoUtil.getCurrentRpi()
                 .base64EncodedString()
                 .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
             let tst = Date.timestamp()
@@ -32,7 +32,7 @@ class QrLinkViewController: UIViewController {
                 .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
             
             imageView.image = generateQRCode(
-                from: CONTACT_ENDPOINT + "app/contact?d=\(token)&i=\(rollingId)&k=\(key)&p=i&t=\(tst)"
+                from: CONTACT_ENDPOINT + "app/contact?d=\(token)&r=\(rpi)&k=\(key)&p=i&t=\(tst)"
             )
             
             label.isHidden = false

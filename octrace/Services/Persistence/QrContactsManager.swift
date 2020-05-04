@@ -8,11 +8,11 @@ class QrContactsManager {
     private init() {
     }
     
-    static var contacts: [QrContactHealth] {
+    static var contacts: [QrContact] {
         get {
             guard let data = NSKeyedUnarchiver.unarchiveObject(withFile: path) as? Data else { return [] }
             do {
-                return try PropertyListDecoder().decode([QrContactHealth].self, from: data)
+                return try PropertyListDecoder().decode([QrContact].self, from: data)
             } catch {
                 print("Retrieve Failed")
                 
@@ -31,71 +31,91 @@ class QrContactsManager {
     }
     
     static func removeOldContacts() {
-        let expirationTimestamp = DataManager.expirationTimestamp()
+        let expirationDay = DataManager.expirationDay()
         
-        let newContacts = contacts.filter { $0.contact.tst > expirationTimestamp }
+        let newContacts = contacts.filter { $0.day > expirationDay }
         
         contacts = newContacts
     }
     
-    static func matchContacts(_ keysData: KeysData) -> QrContact? {
+    static func matchContacts(_ keysData: KeysData) -> (Bool, ContactCoord?) {
         let newContacts = contacts
         
-        var lastInfectedContact: QrContact?
+        var hasExposure = false
+        var lastExposedContactCoord: ContactCoord?
         
         newContacts.forEach { contact in
-            let contactDate = Date(tst: contact.contact.tst)
-            let contactDay = CryptoUtil.getDayNumber(for: contactDate)
-            if keysData.keys.contains(where: { $0.day == contactDay &&
-                CryptoUtil.match(contact.contact.id, contactDate, Data(base64Encoded: $0.value)!) }) {
-                contact.infected = true
-                lastInfectedContact = contact.contact
+            keysData.keys
+                .filter { $0.day == contact.day }
+                .forEach { key in
+                    if CryptoUtil.match(contact.id, contact.day, Data(base64Encoded: key.value)!) {
+                        contact.exposed = true
+                        
+                        if let metaKey = key.meta {
+                            contact.metaData = CryptoUtil.decodeMetaData(
+                                contact.meta,
+                                with: Data(base64Encoded: metaKey)!
+                            )
+                            
+                            if let coord = contact.metaData?.coord {
+                                lastExposedContactCoord = coord
+                            }
+                        }
+                        
+                        hasExposure = true
+                    }
             }
         }
         
         contacts = newContacts
         
-        return lastInfectedContact
+        return (hasExposure, lastExposedContactCoord)
     }
     
     static func addContact(_ contact: QrContact) {
         var newContacts = contacts
         
-        newContacts.append(QrContactHealth(contact))
+        newContacts.append(contact)
         
         contacts = newContacts
     }
     
 }
 
-class QrContactHealth: Codable {
-    let contact: QrContact
-    var infected: Bool = false
+class QrContact: Codable {
     
-    init(_ contact: QrContact) {
-        self.contact = contact
+    let id: String
+    let meta: Data
+    let day: Int
+    
+    var exposed: Bool = false
+    var metaData: ContactMetaData?
+    
+    init(_ id: String, _ meta: Data) {
+        self.id = id
+        self.meta = meta
+        
+        day = CryptoUtil.currentDayNumber()
+    }
+    
+    convenience init(_ rpi: String) {
+        let rpiData = Data(base64Encoded: rpi)!
+        
+        self.init(rpiData.prefix(CryptoUtil.keyLength).base64EncodedString(), rpiData.suffix(CryptoUtil.keyLength))
     }
 }
 
-struct QrContact: Codable {
-    let id: String
+struct ContactMetaData: Codable {
+    let coord: ContactCoord?
+    let date: Date
+}
+
+struct ContactCoord: Codable {
     let lat: Double
     let lng: Double
-    let tst: Int64
-    
-    init(_ id: String, _ location: CLLocation, _ tst: Int64) {
-        self.id = id
-        self.lat = location.coordinate.latitude
-        self.lng = location.coordinate.longitude
-        self.tst = tst
-    }
+    let accuracy: Int
     
     func coordinate() -> CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: lat, longitude: lng)
     }
-    
-    func date() -> Date {
-        Date(tst: tst)
-    }
-    
 }

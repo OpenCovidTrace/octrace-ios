@@ -18,7 +18,7 @@ class MapViewController: UIViewController {
     
     var rootViewController: RootViewController!
     
-    private var mkContactPoints: [MKPointAnnotation: QrContactHealth] = [:]
+    private var mkContactPoints: [MKPointAnnotation: QrContact] = [:]
     private var mkCountriesPoints: [MKPointAnnotation] = []
     private var mkUserPolylines: [MKPolyline] = []
     private var mkSickPolylines: [MKPolyline] = []
@@ -279,24 +279,27 @@ class MapViewController: UIViewController {
         mkContactPoints.removeAll()
         
         QrContactsManager.contacts.forEach { contact in
-            let annotation = MKPointAnnotation()
-            
-            annotation.coordinate = contact.contact.coordinate()
-            let date = MapViewController.dateFormatter.string(from: contact.contact.date())
-            annotation.title = R.string.localizable.contact_at_date(date)
-            
-            mkContactPoints[annotation] = contact
+            if let metaData = contact.metaData,
+                let coord = metaData.coord {
+                let annotation = MKPointAnnotation()
+                
+                annotation.coordinate = coord.coordinate()
+                let date = MapViewController.dateFormatter.string(from: metaData.date)
+                annotation.title = R.string.localizable.contact_at_date(date)
+                
+                mkContactPoints[annotation] = contact
+            }
         }
         
         mkContactPoints.keys.forEach(mapView.addAnnotation)
     }
     
-    func goToContact(_ contact: QrContact) {
+    func goToContact(_ coord: ContactCoord) {
         if !isLocal() {
             segmentedControl.selectedSegmentIndex = 0
         }
         
-        goToLocation(CLLocation(latitude: contact.lat, longitude: contact.lng))
+        goToLocation(CLLocation(latitude: coord.lat, longitude: coord.lng))
     }
     
     private func isLocal() -> Bool {
@@ -334,7 +337,7 @@ extension MapViewController: MKMapViewDelegate {
         var identifier: String?
         
         if let contact = mkContactPoints[annotation as! MKPointAnnotation] {
-            if contact.infected {
+            if contact.exposed {
                 identifier = "InfectedContactAnnotation"
             } else {
                 identifier = "ContactAnnotation"

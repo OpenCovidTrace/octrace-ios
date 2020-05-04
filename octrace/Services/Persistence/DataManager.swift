@@ -16,4 +16,8 @@ class DataManager {
         expirationDate().timestamp()
     }
     
+    static func expirationDay() -> Int {
+        CryptoUtil.getDayNumber(for: expirationDate())
+    }
+    
 }

@@ -3,14 +3,13 @@ import CoreBluetooth
 struct PeripheralDevice {
     
     let peripheral: CBPeripheral
-    let response: String?
     let rssi: Int
     
-    init(peripheral: CBPeripheral, rssi: Int, response: String? = nil) {
+    init(peripheral: CBPeripheral, rssi: Int) {
         self.peripheral = peripheral
         self.rssi = rssi
-        self.response = response
     }
+
 }
 
 extension PeripheralDevice: Equatable {

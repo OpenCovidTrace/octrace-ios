@@ -47,11 +47,14 @@ extension BtAdvertisingManager: CBPeripheralManagerDelegate {
     }
     
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveRead request: CBATTRequest) {
-        let data = CryptoUtil.getRollingId()
+        let data = CryptoUtil.getCurrentRpi()
+        
         if request.offset > data.count {
             manager.respond(to: request, withResult: .invalidOffset)
+            
             return
         }
+        
         let range = request.offset..<data.count
         request.value = data.subdata(in: range)
         manager.respond(to: request, withResult: .success)

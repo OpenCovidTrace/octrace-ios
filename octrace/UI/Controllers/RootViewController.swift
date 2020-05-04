@@ -111,12 +111,7 @@ class RootViewController: UITabBarController {
         showInfo(R.string.localizable.bluetooth_turn_on_request())
     }
     
-    func addContact(_ contact: QrContact) {
-        mapViewController.updateContacts()
-        mapViewController.goToContact(contact)
-    }
-    
-    func makeContact(rId: String, key: String, token: String, platform: String, tst: Int64) {
+    func makeContact(rpi: String, key: String, token: String, platform: String, tst: Int64) {
         if abs(Int(Date.timestamp() - tst)) > 60000 {
             // QR contact should be valid for 1 minute only
             showError(R.string.localizable.contact_code_expired_error())
@@ -124,17 +119,15 @@ class RootViewController: UITabBarController {
             return
         }
         
-        guard let location = LocationManager.lastLocation else {
-            showError(R.string.localizable.no_location_info_error())
-            
-            return
-        }
+        let (rollingId, meta) = CryptoUtil.getCurrentRollingIdAndMeta()
         
-        let rollingId = CryptoUtil.getRollingId()
-        let secret = CryptoUtil.encodeAES(rollingId, with: Data(base64Encoded: key)!).base64EncodedString()
+        let keyData = Data(base64Encoded: key)!
+        var secretData = CryptoUtil.encodeAES(rollingId, with: keyData)
+        secretData.append(CryptoUtil.encodeAES(meta, with: keyData))
+        
         let contactRequest = ContactRequest(token: token,
                                             platform: platform,
-                                            secret: secret,
+                                            secret: secretData.base64EncodedString(),
                                             tst: tst)
         
         indicator.show()
@@ -147,11 +140,9 @@ class RootViewController: UITabBarController {
                     
                     let statusCode: Int = response.response?.statusCode ?? 0
                     if statusCode == 200 {
-                        let contact = QrContact(rId, location, tst)
+                        let contact = QrContact(rpi)
                         
                         QrContactsManager.addContact(contact)
-                        
-                        self.addContact(contact)
                         
                         self.showInfo(R.string.localizable.contact_recoreded_info())
                     } else {
@@ -230,16 +221,20 @@ class RootViewController: UITabBarController {
                     return
                 }
                 
-                let lastInfectedContact = QrContactsManager.matchContacts(data)
-                if let contact = lastInfectedContact {
+                let (hasQrExposure, lastQrExposedCoord) = QrContactsManager.matchContacts(data)
+                
+                let (hasBtExposure, lastBtExposedCoord) = BtContactsManager.matchContacts(data)
+                
+                if hasQrExposure || hasBtExposure {
                     self.showExposedNotification()
-                    
-                    self.mapViewController.goToContact(contact)
-                    self.mapViewController.updateContacts()
                 }
                 
-                if BtContactsManager.matchContacts(data) != nil && lastInfectedContact == nil {
-                    self.showExposedNotification()
+                if let coord = lastQrExposedCoord {
+                    self.mapViewController.goToContact(coord)
+                    self.mapViewController.updateContacts()
+                } else if let coord = lastBtExposedCoord {
+                    self.mapViewController.goToContact(coord)
+                    self.mapViewController.updateContacts()
                 }
             } else {
                 response.reportError("GET /keys")

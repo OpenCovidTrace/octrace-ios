@@ -5,8 +5,10 @@ import CoreLocation
 class KeysManager {
     
     private static let dailyKeysPath = DataManager.docsDir.appendingPathComponent("daily-keys").path
+    private static let metaKeysPath = DataManager.docsDir.appendingPathComponent("meta-keys").path
     
     private static let kLastKeysUploadDay = "kLastKeysUploadDay"
+    private static let kDiscloseMetaData = "kDiscloseMetaData"
     
     private init() {
     }
@@ -33,6 +35,28 @@ class KeysManager {
         }
     }
     
+    static var metaKeys: [Int: Data] {
+        get {
+            guard let data = NSKeyedUnarchiver.unarchiveObject(withFile: metaKeysPath) as? Data else { return [:] }
+            do {
+                return try PropertyListDecoder().decode([Int: Data].self, from: data)
+            } catch {
+                print("Retrieve Failed")
+                
+                return [:]
+            }
+        }
+        
+        set {
+            do {
+                let data = try PropertyListEncoder().encode(newValue)
+                NSKeyedArchiver.archiveRootObject(data, toFile: metaKeysPath)
+            } catch {
+                print("Save Failed")
+            }
+        }
+    }
+    
     static var lastUpdloadDay: Int {
         get {
             UserDefaults.standard.integer(forKey: kLastKeysUploadDay)
@@ -40,6 +64,16 @@ class KeysManager {
         
         set {
             UserDefaults.standard.set(newValue, forKey: kLastKeysUploadDay)
+        }
+    }
+    
+    static var discloseMetaData: Bool {
+        get {
+            UserDefaults.standard.bool(forKey: kDiscloseMetaData)
+        }
+        
+        set {
+            UserDefaults.standard.set(newValue, forKey: kDiscloseMetaData)
         }
     }
     
@@ -60,10 +94,17 @@ class KeysManager {
         
         func addKey(for dayNumber: Int) {
             // We currently don't upload diagnostic keys without location data!
-            if let border = borders[dayNumber] {
-                let keyValue = CryptoUtil.getDailyKey(for: dayNumber).base64EncodedString()
+            if let border = borders[dayNumber],
+                let dailyKey = dailyKeys[dayNumber],
+                let metaKey = metaKeys[dayNumber] {
                 border.secure()
-                let key = Key(value: keyValue, day: dayNumber, border: border)
+                
+                let meta = discloseMetaData ? metaKey.base64EncodedString() : nil
+                
+                let key = Key(value: dailyKey.base64EncodedString(),
+                              meta: meta,
+                              day: dayNumber,
+                              border: border)
                 
                 keysData.keys.append(key)
             }
@@ -107,6 +148,7 @@ class KeysData: Codable {
 
 struct Key: Codable {
     let value: String
+    let meta: String?
     let day: Int
     let border: LocationBorder
 }
