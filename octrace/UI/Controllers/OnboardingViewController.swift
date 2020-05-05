@@ -3,7 +3,7 @@ import CoreLocation
 import Alamofire
 import DP3TSDK
 
-class OnboardingViewController: IndicatorViewController {
+class OnboardingViewController: UIViewController {
     
     var stage = OnboardingStage.welcome
     var parentController: OnboardingViewController!
