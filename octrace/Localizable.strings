@@ -13,7 +13,7 @@
 "bluetooth_access" = "Bluetooth access";
 
 /* Bluetooth access onboarding screen description */
-"bluetooth_access_description" = "We use bluetooth for anonymous automatic contact tracing. All contacts are securely stored and never leave your phone.";
+"bluetooth_access_description" = "We use bluetooth for anonymous automatic exposure tracing. All data is securely stored and never leaves your phone.";
 
 /* Bluetooth access  onboarding button */
 "enable_bluetooth" = "Enable Bluetooth";
@@ -22,7 +22,7 @@
 "notifications" = "Notifications";
 
 /* Notifications onboarding screen description */
-"notifications_description" = "Notifications keep you up to date, and also alert you in case you have been in close contact with someone that now is infected.";
+"notifications_description" = "Notifications keep you up to date, and also alert you in case you have been in close contact with someone that now is exposed.";
 
 /* Notifications onboarding button */
 "enable_notifications" = "Enable notifications";
@@ -82,7 +82,7 @@
 "get_notification_token_error" = "Failed to get notifications token.";
 
 /* Bluetooth turn on request */
-"bluetooth_turn_on_request" = "Please turn on Bluetooth to enable automatic contact tracing!";
+"bluetooth_turn_on_request" = "Please turn on Bluetooth to enable automatic exposure tracing!";
 
 /* Contact code expired error */
 "contact_code_expired_error" = "Contact code has expired, please try again.";
@@ -100,7 +100,7 @@
 "exposed_contact" = "Exposed contact";
 
 /* Notification body */
-"exposed_contact_message" = "A contact you have recorded has reported symptoms.";
+"exposed_contact_message" = "A contact you have recorded has reported exposure.";
 
 /* Alert text */
 "new_statuses_disclaimer" = "We are planning to introduce new statuses: covid-confirmed and covid-recovered (immune) in the nearest future.";
