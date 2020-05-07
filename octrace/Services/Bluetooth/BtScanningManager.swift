@@ -34,7 +34,7 @@ extension BtScanningManager: CBCentralManagerDelegate {
         
         if state == .poweredOn {
             manager.scanForPeripherals(withServices: [BLE_SERVICE_UUID],
-                                       options: [CBCentralManagerScanOptionAllowDuplicatesKey: false])
+                                       options: [CBCentralManagerScanOptionAllowDuplicatesKey: true])
             
             log("Scanning has started")
         } else if state == .poweredOff {
@@ -54,14 +54,17 @@ extension BtScanningManager: CBCentralManagerDelegate {
         peripheralsRssi[peripheral] = RSSI.intValue
         let foundDevice = PeripheralDevice(peripheral: peripheral, rssi: RSSI.intValue)
         if foundDevices.contains(foundDevice) {
-            log("Not connecting to \(peripheral.identifier.uuidString), duplicate RSSI value.")
+            log("Not connecting to \(peripheral.identifier.uuidString), duplicate RSSI \(RSSI.intValue)")
             
             return
         }
 
+        foundDevices.append(foundDevice)
         peripheral.delegate = self
+        
+        log("Connecting to \(peripheral.identifier.uuidString), RSSI \(RSSI.intValue)")
+        
         connect(to: peripheral)
-
     }
     
     // MARK: - Connect to peripheral
@@ -97,8 +100,6 @@ extension BtScanningManager: CBPeripheralDelegate {
         let bleService = peripheral.services?.first(where: { $0.uuid == BLE_SERVICE_UUID })
         guard let unwrappedBleService = bleService else { return }
         
-        log("Discover service: \(unwrappedBleService.uuid.uuidString)")
-        
         peripheral.discoverCharacteristics([BLE_CHARACTERISTIC_UUID], for: unwrappedBleService)
     }
     
@@ -124,8 +125,6 @@ extension BtScanningManager: CBPeripheralDelegate {
             if let rssi = peripheralsRssi[peripheral] {
                 let day = CryptoUtil.currentDayNumber()
                 let encounter = BtEncounter(rssi: rssi, meta: meta)
-                let foundDevice = PeripheralDevice(peripheral: peripheral, rssi: rssi)
-                foundDevices.append(foundDevice)
                 BtContactsManager.addContact(rollingId, day, encounter)
                 
                 log("Recorded a contact with \(rollingId) rssi \(rssi)")
