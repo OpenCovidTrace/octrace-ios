@@ -30,7 +30,3 @@ Our vision is to provide a trustworthy contact tracing tool with universal inter
 
 
 Our mission is to develop an open-source implementation for proprietary protocols (such as Apple & Google and BlueTrace backends) which addresses privacy concerns in terms of preservation of individual privacy, and integrates with all popular open-source protocols (such as DP-3T).
-
-
-## Download
-Latest build can be found by link: https://opencovidtrace.org/octrace-android.apk
