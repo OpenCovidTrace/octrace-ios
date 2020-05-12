@@ -133,7 +133,7 @@ class CryptoUtil {
         var data = Data(withUnsafeBytes(of: timeInterval, Array.init))
         
         var latInt32 = Int32.max
-        var lngInt32 = Int32.min
+        var lngInt32 = Int32.max
         var accuracy = Int32(0)
         if let location = LocationManager.lastLocation {
             latInt32 = coordToInt(location.coordinate.latitude)
@@ -159,7 +159,7 @@ class CryptoUtil {
         let latInt32 = bytesToInt32(data.subdata(in: 8..<16).bytes)
         if latInt32 != Int32.max {
             let lngInt32 = bytesToInt32(data.subdata(in: 16..<24).bytes)
-            let accuracy = bytesToInt32(data.prefix(8).bytes)
+            let accuracy = bytesToInt32(data.suffix(8).bytes)
             
             coord = ContactCoord(lat: coordToDouble(latInt32),
                                  lng: coordToDouble(lngInt32),
