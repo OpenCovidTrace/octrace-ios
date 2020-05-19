@@ -47,8 +47,16 @@ class LocationManager {
     static func startUpdatingLocation() {
         locationManager.startUpdatingLocation()
         
-        locationManager.allowsBackgroundLocationUpdates = true
-        locationManager.pausesLocationUpdatesAutomatically = false
+        updateBackgroundState()
+    }
+    
+    static func updateBackgroundState() {
+        let background = UserSettingsManager.recordTrack
+        
+        locationManager.allowsBackgroundLocationUpdates = background
+        locationManager.pausesLocationUpdatesAutomatically = !background
+        
+        print("Background updates = \(background)")
     }
     
     static func updateAccuracy(foreground: Bool = true) {
@@ -75,7 +83,8 @@ class LocationManager {
         
         let now = Date.timestamp()
         if now - lastTrackingUpdate > TrackingManager.trackingIntervalMs &&
-            location.horizontalAccuracy > 0 && location.horizontalAccuracy < 30 {
+            location.horizontalAccuracy > 0 && location.horizontalAccuracy < 30 &&
+            UserSettingsManager.recordTrack {
             print("Updating tracking location")
             
             let point = TrackingPoint(location.coordinate)
@@ -88,7 +97,7 @@ class LocationManager {
             
             lastTrackingUpdate = now
             
-            if UserStatusManager.sick() {
+            if UserSettingsManager.uploadTrack {
                 TracksManager.uploadNewTracks()
             }
         }

@@ -4,15 +4,6 @@ class Dp3tLogsViewController: UIViewController {
 
     static var instance: Dp3tLogsViewController?
     
-    private static let dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateStyle = .long
-        dateFormatter.timeStyle = .medium
-        
-        return dateFormatter
-    }()
-    
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     
@@ -54,7 +45,7 @@ class Dp3tLogsViewController: UIViewController {
         var logString = ""
         
         Dp3tLogsManager.logs.forEach { item in
-            logString += "[\(Dp3tLogsViewController.dateFormatter.string(from: item.date))] \(item.text)\n"
+            logString += "[\(AppDelegate.dateFormatter.string(from: item.date))] \(item.text)\n"
         }
         
         if logString.isEmpty {

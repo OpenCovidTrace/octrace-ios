@@ -91,7 +91,7 @@ class RootViewController: UITabBarController {
                 }
             }
             
-            if UserStatusManager.sick() {
+            if UserSettingsManager.sick() {
                 KeysManager.uploadNewKeys()
             }
             
@@ -132,7 +132,7 @@ class RootViewController: UITabBarController {
         
         indicator.show()
         
-        AF.request(CONTACT_ENDPOINT + "makeContact",
+        AF.request(NetworkUtil.contactEndpoint("makeContact"),
                    method: .post,
                    parameters: contactRequest,
                    encoder: JSONParameterEncoder.default).response { response in
@@ -159,7 +159,7 @@ class RootViewController: UITabBarController {
         let border = LocationBorder(index)
         
         AF.request(
-            STORAGE_ENDPOINT + "tracks",
+            NetworkUtil.storageEndpoint("tracks"),
             parameters: [
                 "lastUpdateTimestamp": lastUpdateTimestamp,
                 "minLat": border.minLat,
@@ -203,7 +203,7 @@ class RootViewController: UITabBarController {
         let border = LocationBorder(index)
         
         AF.request(
-            STORAGE_ENDPOINT + "keys",
+            NetworkUtil.storageEndpoint("keys"),
             parameters: [
                 "lastUpdateTimestamp": lastUpdateTimestamp,
                 "minLat": border.minLat,

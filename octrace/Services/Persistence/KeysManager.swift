@@ -67,16 +67,6 @@ class KeysManager {
         }
     }
     
-    static var discloseMetaData: Bool {
-        get {
-            UserDefaults.standard.bool(forKey: kDiscloseMetaData)
-        }
-        
-        set {
-            UserDefaults.standard.set(newValue, forKey: kDiscloseMetaData)
-        }
-    }
-    
     static func uploadNewKeys(includeToday: Bool = false) {
         let oldLastUploadDay = lastUpdloadDay
         
@@ -99,7 +89,7 @@ class KeysManager {
                 let metaKey = metaKeys[dayNumber] {
                 border.secure()
                 
-                let meta = discloseMetaData ? metaKey.base64EncodedString() : nil
+                let meta = UserSettingsManager.discloseMetaData ? metaKey.base64EncodedString() : nil
                 
                 let key = Key(value: dailyKey.base64EncodedString(),
                               meta: meta,
@@ -111,7 +101,7 @@ class KeysManager {
         }
         
         if includeToday {
-            // Include key for today when reporting symptoms
+            // Include key for today when reporting exposure
             // This key will be uploaded again next day with updated borders
             addKey(for: currentDayNumber)
         }
@@ -127,7 +117,11 @@ class KeysManager {
             offset += 1
         }
         
-        AF.request(STORAGE_ENDPOINT + "keys",
+        if keysData.keys.isEmpty {
+            return
+        }
+        
+        AF.request(NetworkUtil.storageEndpoint("keys"),
                    method: .post,
                    parameters: keysData,
                    encoder: JSONParameterEncoder.default).response { response in

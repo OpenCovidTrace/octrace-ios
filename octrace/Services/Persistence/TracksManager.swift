@@ -83,9 +83,13 @@ class TracksManager {
             }
         }
         
+        if tracksByDay.isEmpty {
+            return
+        }
+        
         let tracksData = TracksData(tracks: [Track](tracksByDay.values))
         
-        AF.request(STORAGE_ENDPOINT + "tracks",
+        AF.request(NetworkUtil.storageEndpoint("tracks"),
                    method: .post,
                    parameters: tracksData,
                    encoder: JSONParameterEncoder.default).response { response in

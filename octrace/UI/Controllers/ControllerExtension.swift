@@ -1,5 +1,6 @@
 import UIKit
 
+
 extension UIViewController {
     
     /*
@@ -9,7 +10,6 @@ extension UIViewController {
     func popOut(animated: Bool = false) {
         _ = navigationController?.popViewController(animated: animated)
     }
-    
     
     
     /*
@@ -37,19 +37,7 @@ extension UIViewController {
      Dialogs
      */
     
-    func actionMenu(addActions: (UIAlertController) -> Void) {
-        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
-        let cancelAction = UIAlertAction(title: R.string.localizable.cancel_button(), style: .cancel)
-        
-        addActions(optionMenu)
-        
-        optionMenu.addAction(cancelAction)
-        
-        present(optionMenu, animated: true, completion: nil)
-    }
-    
-    func confirm(_ message: String, _ handler: @escaping () -> Swift.Void) {
+    func confirm(_ message: String, handler: @escaping () -> Void) {
         let alert = UIAlertController(title: R.string.localizable.please_confirm(),
                                       message: message,
                                       preferredStyle: .alert)
@@ -58,27 +46,31 @@ extension UIViewController {
                                       style: .default,
                                       handler: { _ in handler() }))
         
-        alert.addAction(UIAlertAction(title: R.string.localizable.cancel_button(), style: .cancel))
+        alert.addAction(UIAlertAction(title: R.string.localizable.cancel_button(), style: .default))
         
         present(alert, animated: true, completion: nil)
     }
     
-    func inputText(_ message: String, _ handler: @escaping (String) -> Swift.Void) {
-        let alert = UIAlertController(title: R.string.localizable.input_required(),
+    func choose(_ message: String, yesHandler: @escaping () -> Void, noHandler: @escaping () -> Void) {
+        let alert = UIAlertController(title: R.string.localizable.make_choice(),
                                       message: message,
                                       preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: R.string.localizable.ok_button(), style: .default, handler: { _ in
-            handler(alert.textFields?[0].text ?? "")
-        }))
-        alert.addAction(UIAlertAction(title: R.string.localizable.cancel_button(), style: .cancel))
-        alert.addTextField()
+        alert.addAction(UIAlertAction(title: R.string.localizable.yes_button(),
+                                      style: .default,
+                                      handler: { _ in yesHandler() }))
+        
+        alert.addAction(
+            UIAlertAction(title: R.string.localizable.no_button(),
+                          style: .default,
+                          handler: { _ in noHandler() })
+        )
         
         present(alert, animated: true, completion: nil)
     }
     
     func showInfo(_ message: String) {
-        let alert = UIAlertController(title: "OCTrace", message: message, preferredStyle: .alert)
+        let alert = UIAlertController(title: AppDelegate.appName, message: message, preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: R.string.localizable.ok_button(), style: .default))
         
@@ -94,7 +86,7 @@ extension UIViewController {
     }
     
     func showSettings(_ message: String) {
-        let alert = UIAlertController(title: "OCTrace", message: message, preferredStyle: .alert)
+        let alert = UIAlertController(title: AppDelegate.appName, message: message, preferredStyle: .alert)
         
         let settingsAction = UIAlertAction(title: R.string.localizable.settings(), style: .default) { (_) -> Void in
             guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {

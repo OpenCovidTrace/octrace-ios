@@ -46,11 +46,11 @@ class BtContactsManager {
         var hasExposure = false
         var lastExposedContactCoord: ContactCoord?
         
-        newContacts.forEach { (id, contact) in
+        newContacts.forEach { (_, contact) in
             keysData.keys
                 .filter { $0.day == contact.day }
                 .forEach { key in
-                    if CryptoUtil.match(contact.id, contact.day, Data(base64Encoded: key.value)!) {
+                    if CryptoUtil.match(contact.rollingId, contact.day, Data(base64Encoded: key.value)!) {
                         contact.exposed = true
                         
                         if let metaKey = key.meta {
@@ -76,13 +76,13 @@ class BtContactsManager {
         return (hasExposure, lastExposedContactCoord)
     }
     
-    static func addContact(_ id: String, _ day: Int, _ encounter: BtEncounter) {
+    static func addContact(_ rollingId: String, _ day: Int, _ encounter: BtEncounter) {
         var newContacts = contacts
         
-        if let contact = newContacts[id] {
+        if let contact = newContacts[rollingId] {
             contact.encounters.append(encounter)
         } else {
-            newContacts[id] = BtContact(id, day, encounter)
+            newContacts[rollingId] = BtContact(rollingId, day, encounter)
         }
         
         contacts = newContacts
@@ -92,15 +92,15 @@ class BtContactsManager {
 
 class BtContact: Codable {
     
-    let id: String
+    let rollingId: String
     let day: Int
     
     var encounters: [BtEncounter]
     
     var exposed: Bool = false
     
-    init(_ id: String, _ day: Int, _ encounter: BtEncounter) {
-        self.id = id
+    init(_ rollingId: String, _ day: Int, _ encounter: BtEncounter) {
+        self.rollingId = rollingId
         self.day = day
         
         encounters = [encounter]

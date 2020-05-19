@@ -1,13 +1,22 @@
 import Alamofire
 
-let HOST = "dev.opencovidtrace.org"
-
-let CONTACT_ENDPOINT = "https://contact.\(HOST)/"
-let STORAGE_ENDPOINT = "https://storage.\(HOST)/"
-
-
 class NetworkUtil {
+    
+    #if DEVELOPMENT
+    static let host = "dev.openexposuretrace.org"
+    #else
+    static let host = "openexposuretrace.org"
+    #endif
+
     private init() {
+    }
+    
+    static func contactEndpoint(_ uri: String) -> String {
+        return "https://contact.\(host)/\(uri)"
+    }
+    
+    static func storageEndpoint(_ uri: String) -> String {
+        return "https://storage.\(host)/\(uri)"
     }
     
     static let eternalRetry = EternalRetry()

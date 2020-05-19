@@ -32,7 +32,7 @@ class QrLinkViewController: UIViewController {
                 .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
             
             imageView.image = generateQRCode(
-                from: CONTACT_ENDPOINT + "app/contact?d=\(token)&r=\(rpi)&k=\(key)&p=i&t=\(tst)"
+                from: NetworkUtil.contactEndpoint("app/contact?d=\(token)&r=\(rpi)&k=\(key)&p=i&t=\(tst)")
             )
             
             label.isHidden = false

@@ -4,13 +4,24 @@ import Firebase
 import AlamofireNetworkActivityIndicator
 import DP3TSDK
 
-let MAKE_CONTACT_CATEGORY = "MAKE_CONTACT"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
+    static let appName = "OCTrace"
+    
+    static let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateStyle = .long
+        dateFormatter.timeStyle = .medium
+        
+        return dateFormatter
+    }()
+    
     static var deviceTokenEncoded: String?
     
+    private static let makeContactCategory = "MAKE_CONTACT"
     private static let tag = "APP"
     
     var window: UIWindow?
@@ -35,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          * Notifications setup
          */
         
-        let makeContactMessageCategory = UNNotificationCategory(identifier: MAKE_CONTACT_CATEGORY,
+        let makeContactMessageCategory = UNNotificationCategory(identifier: AppDelegate.makeContactCategory,
                                                                 actions: [],
                                                                 intentIdentifiers: [],
                                                                 options: .customDismissAction)
@@ -179,17 +190,17 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
         
-        if response.notification.request.content.categoryIdentifier == MAKE_CONTACT_CATEGORY {
+        if response.notification.request.content.categoryIdentifier == AppDelegate.makeContactCategory {
             let secret = userInfo["secret"] as! String
             let tst = userInfo["tst"] as! Int64
             
             if let key = EncryptionKeysManager.encryptionKeys[tst] {
                 let secretData = Data(base64Encoded: secret)!
                 
-                let id = CryptoUtil.decodeAES(secretData.prefix(CryptoUtil.keyLength), with: key)
+                let rollingId = CryptoUtil.decodeAES(secretData.prefix(CryptoUtil.keyLength), with: key)
                 let meta = CryptoUtil.decodeAES(secretData.suffix(CryptoUtil.keyLength), with: key)
                 
-                let contact = QrContact(id.base64EncodedString(), meta)
+                let contact = QrContact(rollingId.base64EncodedString(), meta)
                 
                 QrContactsManager.addContact(contact)
                 

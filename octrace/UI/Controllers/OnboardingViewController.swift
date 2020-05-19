@@ -1,7 +1,6 @@
 import UIKit
 import CoreLocation
 import Alamofire
-import DP3TSDK
 
 class OnboardingViewController: UIViewController {
     
@@ -16,6 +15,8 @@ class OnboardingViewController: UIViewController {
     @IBAction func actionTap(_ sender: Any) {
         switch stage {
         case OnboardingStage.location:
+            UserSettingsManager.recordTrack = true
+            
             LocationManager.requestAuthorization()
             
             goNext(OnboardingStage.bluetooth)
@@ -23,14 +24,6 @@ class OnboardingViewController: UIViewController {
         case OnboardingStage.bluetooth:
             BtAdvertisingManager.shared.setup()
             BtScanningManager.shared.setup()
-            
-            do {
-                try DP3TTracing.startTracing()
-                
-                Dp3tLogsManager.append("Started tracing")
-            } catch {
-                Dp3tLogsManager.append("Failed to start tracing: \(error.localizedDescription)")
-            }
             
             goNext(OnboardingStage.notifications)
             

@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3A2469AA2451F6170082AA06 /* PeripheralDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2469A92451F6170082AA06 /* PeripheralDevice.swift */; };
 		44A619811F5AC4D47CDBE5D3 /* Pods_octrace_DEV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1A8BBD365D79BDF10195B3A /* Pods_octrace_DEV.framework */; };
-		B1B5D3CC245C35BF00D5D717 /* MapViewController + MapFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B5D3CB245C35BF00D5D717 /* MapViewController + MapFeature.swift */; };
 		B1B5D3E0245C7BA300D5D717 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B5D3DF245C7BA300D5D717 /* R.generated.swift */; };
 		FA0571272446412E00D39462 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0571262446412E00D39462 /* AppDelegate.swift */; };
 		FA05712B2446412E00D39462 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA05712A2446412E00D39462 /* RootViewController.swift */; };
@@ -34,7 +32,7 @@
 		FA05716D244647A400D39462 /* KeysManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA05715F2446456C00D39462 /* KeysManager.swift */; };
 		FA05716F244647A400D39462 /* TrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0571612446456C00D39462 /* TrackingManager.swift */; };
 		FA057170244647A400D39462 /* TracksManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0571602446456C00D39462 /* TracksManager.swift */; };
-		FA057171244647A400D39462 /* UserStatusManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0571662446456C00D39462 /* UserStatusManager.swift */; };
+		FA057171244647A400D39462 /* UserSettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0571662446456C00D39462 /* UserSettingsManager.swift */; };
 		FA05717624464AC200D39462 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA05717424464AC200D39462 /* OnboardingViewController.swift */; };
 		FA05717724464AC200D39462 /* OnboardingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA05717524464AC200D39462 /* OnboardingViewController.xib */; };
 		FA05717A24464AD000D39462 /* QrLinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA05717824464AD000D39462 /* QrLinkViewController.swift */; };
@@ -60,8 +58,6 @@
 /* Begin PBXFileReference section */
 		117D1C6D38F63D587FA1E1BD /* Pods-octrace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-octrace.release.xcconfig"; path = "Target Support Files/Pods-octrace/Pods-octrace.release.xcconfig"; sourceTree = "<group>"; };
 		15CB5B50BF58601BDC235F89 /* Pods-octrace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-octrace.debug.xcconfig"; path = "Target Support Files/Pods-octrace/Pods-octrace.debug.xcconfig"; sourceTree = "<group>"; };
-		3A2469A92451F6170082AA06 /* PeripheralDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeripheralDevice.swift; sourceTree = "<group>"; };
-		B1B5D3CB245C35BF00D5D717 /* MapViewController + MapFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapViewController + MapFeature.swift"; sourceTree = "<group>"; };
 		B1B5D3DF245C7BA300D5D717 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		C1A8BBD365D79BDF10195B3A /* Pods_octrace_DEV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_octrace_DEV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C761838EBCA157C3CFEADE1F /* Pods-octrace DEV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-octrace DEV.release.xcconfig"; path = "Target Support Files/Pods-octrace DEV/Pods-octrace DEV.release.xcconfig"; sourceTree = "<group>"; };
@@ -91,7 +87,7 @@
 		FA0571622446456C00D39462 /* QrContactsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrContactsManager.swift; sourceTree = "<group>"; };
 		FA0571632446456C00D39462 /* EncryptionKeysManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionKeysManager.swift; sourceTree = "<group>"; };
 		FA0571652446456C00D39462 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		FA0571662446456C00D39462 /* UserStatusManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatusManager.swift; sourceTree = "<group>"; };
+		FA0571662446456C00D39462 /* UserSettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsManager.swift; sourceTree = "<group>"; };
 		FA0571672446458300D39462 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		FA057168244646AD00D39462 /* OCTrace.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OCTrace.entitlements; sourceTree = "<group>"; };
 		FA05717424464AC200D39462 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -198,7 +194,6 @@
 				FA0571522446454F00D39462 /* IndicatorViewController.swift */,
 				FA05714C2446454E00D39462 /* InfoViewController.swift */,
 				FA0571502446454F00D39462 /* MapViewController.swift */,
-				B1B5D3CB245C35BF00D5D717 /* MapViewController + MapFeature.swift */,
 				FA05717424464AC200D39462 /* OnboardingViewController.swift */,
 				FA05717824464AD000D39462 /* QrLinkViewController.swift */,
 				FA05712A2446412E00D39462 /* RootViewController.swift */,
@@ -226,7 +221,7 @@
 				FAD74D092454DF2A00D3DCF2 /* LocationIndexManager.swift */,
 				FA0571612446456C00D39462 /* TrackingManager.swift */,
 				FA0571602446456C00D39462 /* TracksManager.swift */,
-				FA0571662446456C00D39462 /* UserStatusManager.swift */,
+				FA0571662446456C00D39462 /* UserSettingsManager.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -234,9 +229,8 @@
 		FA0571B4244DB99A00D39462 /* Bluetooth */ = {
 			isa = PBXGroup;
 			children = (
-				3A2469A92451F6170082AA06 /* PeripheralDevice.swift */,
-				FAAE8C8D244DC464000882A1 /* BtScanningManager.swift */,
 				FA0571B1244DB98900D39462 /* BtAdvertisingManager.swift */,
+				FAAE8C8D244DC464000882A1 /* BtScanningManager.swift */,
 				FA0571B5244DBB8700D39462 /* BtServiceDefinition.swift */,
 			);
 			path = Bluetooth;
@@ -461,17 +455,15 @@
 				FA0571272446412E00D39462 /* AppDelegate.swift in Sources */,
 				FA057170244647A400D39462 /* TracksManager.swift in Sources */,
 				FA057143244644C400D39462 /* RoundButton.swift in Sources */,
-				B1B5D3CC245C35BF00D5D717 /* MapViewController + MapFeature.swift in Sources */,
 				FA0571AF2448990500D39462 /* LocationBordersManager.swift in Sources */,
 				FA05717A24464AD000D39462 /* QrLinkViewController.swift in Sources */,
 				B1B5D3E0245C7BA300D5D717 /* R.generated.swift in Sources */,
 				FA05715B2446455000D39462 /* MapViewController.swift in Sources */,
 				FA0571572446455000D39462 /* InfoViewController.swift in Sources */,
-				3A2469AA2451F6170082AA06 /* PeripheralDevice.swift in Sources */,
 				FA057142244644C400D39462 /* NetworkUtil.swift in Sources */,
 				FA05716D244647A400D39462 /* KeysManager.swift in Sources */,
 				FA05713F244644C400D39462 /* LocationManager.swift in Sources */,
-				FA057171244647A400D39462 /* UserStatusManager.swift in Sources */,
+				FA057171244647A400D39462 /* UserSettingsManager.swift in Sources */,
 				FA057140244644C400D39462 /* CryptoUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

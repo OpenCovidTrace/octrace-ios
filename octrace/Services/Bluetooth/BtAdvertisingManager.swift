@@ -15,7 +15,7 @@ class BtAdvertisingManager: NSObject {
     
     private func startAdvertising() {
         manager.startAdvertising([CBAdvertisementDataLocalNameKey: "BLEPrototype",
-                                  CBAdvertisementDataServiceUUIDsKey: [BLE_SERVICE_UUID]])
+                                  CBAdvertisementDataServiceUUIDsKey: [BtServiceDefinition.bleServiceUuid]])
     }
     
     private func log(_ text: String) {
@@ -29,12 +29,12 @@ extension BtAdvertisingManager: CBPeripheralManagerDelegate {
         log(peripheral.state.name())
 
         if peripheral.state == .poweredOn {
-            let characteristic = CBMutableCharacteristic(type: BLE_CHARACTERISTIC_UUID,
+            let characteristic = CBMutableCharacteristic(type: BtServiceDefinition.bleCharacteristicUuid,
                                                          properties: [.read],
                                                          value: nil,
                                                          permissions: [.readable])
             
-            let service = CBMutableService(type: BLE_SERVICE_UUID, primary: true)
+            let service = CBMutableService(type: BtServiceDefinition.bleServiceUuid, primary: true)
             service.characteristics = [characteristic]
             manager.add(service)
             
@@ -58,6 +58,8 @@ extension BtAdvertisingManager: CBPeripheralManagerDelegate {
         let range = request.offset..<data.count
         request.value = data.subdata(in: range)
         manager.respond(to: request, withResult: .success)
+        
+        log("Sent RPI to \(request.characteristic.uuid.uuidString)")
     }
     
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveWrite requests: [CBATTRequest]) {

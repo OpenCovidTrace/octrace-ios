@@ -4,15 +4,6 @@ class BtLogsViewController: UIViewController {
 
     static var instance: BtLogsViewController?
     
-    private static let dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateStyle = .long
-        dateFormatter.timeStyle = .medium
-        
-        return dateFormatter
-    }()
-    
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     
@@ -54,7 +45,7 @@ class BtLogsViewController: UIViewController {
         var logString = ""
         
         BtLogsManager.logs.forEach { item in
-            logString += "[\(BtLogsViewController.dateFormatter.string(from: item.date))] <\(item.tag)> \(item.text)\n"
+            logString += "[\(AppDelegate.dateFormatter.string(from: item.date))] <\(item.tag)> \(item.text)\n"
         }
         
         if logString.isEmpty {

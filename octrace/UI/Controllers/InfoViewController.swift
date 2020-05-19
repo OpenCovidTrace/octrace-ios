@@ -4,7 +4,7 @@ import Alamofire
 
 class InfoViewController: UIViewController {
     
-    private static let newsEndpoint = "https://\(HOST)/newsroom.html?from=app"
+    private static let newsEndpoint = "https://\(NetworkUtil.host)/newsroom.html?from=app"
     
     @IBOutlet weak var webView: WKWebView!
     

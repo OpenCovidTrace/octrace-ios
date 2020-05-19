@@ -48,7 +48,7 @@ class QrContactsManager {
             keysData.keys
                 .filter { $0.day == contact.day }
                 .forEach { key in
-                    if CryptoUtil.match(contact.id, contact.day, Data(base64Encoded: key.value)!) {
+                    if CryptoUtil.match(contact.rollingId, contact.day, Data(base64Encoded: key.value)!) {
                         contact.exposed = true
                         
                         if let metaKey = key.meta {
@@ -84,15 +84,15 @@ class QrContactsManager {
 
 class QrContact: Codable {
     
-    let id: String
+    let rollingId: String
     let meta: Data
     let day: Int
     
     var exposed: Bool = false
     var metaData: ContactMetaData?
     
-    init(_ id: String, _ meta: Data) {
-        self.id = id
+    init(_ rollingId: String, _ meta: Data) {
+        self.rollingId = rollingId
         self.meta = meta
         
         day = CryptoUtil.currentDayNumber()

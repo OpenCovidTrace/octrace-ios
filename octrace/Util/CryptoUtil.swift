@@ -5,6 +5,7 @@ class CryptoUtil {
     
     static let keyLength = 16
     
+    private static let intBytes = 4
     private static let coordPrecision = 1e7
     
     private init() {}
@@ -29,8 +30,7 @@ class CryptoUtil {
     }
     
     
-    // MARK: - Apple/Google crypto spec:
-    // https://www.blog.google/documents/56/Contact_Tracing_-_Cryptography_Specification.pdf
+    // MARK: - Apple/Google crypto spec
     
     private static let daySeconds = 60 * 60 * 24
     private static let enIntervalSeconds = 60 * 10
@@ -44,8 +44,6 @@ class CryptoUtil {
         if status != errSecSuccess { // Always test the status.
             fatalError("Failed to generate random bytes")
         }
-        
-        print("Generated key: \(bytes)")
         
         return Data(bytes)
     }
@@ -151,15 +149,15 @@ class CryptoUtil {
     static func decodeMetaData(_ encryptedData: Data, with metaKey: Data) -> ContactMetaData {
         let data = decodeAES(encryptedData, with: getEncryptionKey(metaKey))
         
-        let timeInterval = Double(bytesToInt32(data.prefix(8).bytes))
+        let timeInterval = Double(bytesToInt32(data.prefix(4).bytes))
         let date = Date(timeIntervalSince1970: timeInterval)
         
         var coord: ContactCoord?
         
-        let latInt32 = bytesToInt32(data.subdata(in: 8..<16).bytes)
+        let latInt32 = bytesToInt32(data.subdata(in: 4..<8).bytes)
         if latInt32 != Int32.max {
-            let lngInt32 = bytesToInt32(data.subdata(in: 16..<24).bytes)
-            let accuracy = bytesToInt32(data.suffix(8).bytes)
+            let lngInt32 = bytesToInt32(data.subdata(in: 8..<12).bytes)
+            let accuracy = bytesToInt32(data.suffix(4).bytes)
             
             coord = ContactCoord(lat: coordToDouble(latInt32),
                                  lng: coordToDouble(lngInt32),
@@ -180,9 +178,14 @@ class CryptoUtil {
     private static func bytesToInt32(_ bytes: [UInt8]) -> Int32 {
         var value: Int32 = 0
         
-        for byte in bytes {
+        var ind = 0
+        while ind < intBytes {
+            let byte = bytes[intBytes - ind - 1]
+            
             value = value << 8
             value = value | Int32(byte)
+            
+            ind += 1
         }
         
         return value

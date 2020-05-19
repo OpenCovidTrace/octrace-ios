@@ -4,43 +4,22 @@ import Alamofire
 
 class MapViewController: UIViewController {
     
-    private static let localLocationDistanceMeters = 3000
-    private static let globalLocationDistanceMeters = 5000000
+    private static let myLocationDistanceMeters = 3000
     
-    private static let dateFormatter: DateFormatter = {
-        let df = DateFormatter()
-        
-        df.dateStyle = .long
-        df.timeStyle = .medium
-        
-        return df
-    }()
+    private static let annotationIdentifier = "InfectedContactAnnotation"
     
     var rootViewController: RootViewController!
     
-    private var mkContactPoints: [MKPointAnnotation: QrContact] = [:]
-    private var mkCountriesPoints: [MKPointAnnotation] = []
+    private var mkContactPoints: [MKPointAnnotation] = []
     private var mkUserPolylines: [MKPolyline] = []
     private var mkSickPolylines: [MKPolyline] = []
+    
     private var tracks: [TrackingPoint] = []
     
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var myLocationButton: UIButton!
     @IBOutlet weak var contactButton: UIButton!
     @IBOutlet weak var accuracyLabel: UILabel!
-    @IBOutlet weak var indicator: UIActivityIndicatorView!
-    
-    @IBAction func segmentChanged(_ sender: Any) {
-        // Need to do it asynchronously to enable the actual segment change ASAP
-        DispatchQueue.main.async {
-            if self.segmentedControl.selectedSegmentIndex == 0 {
-                self.showLocalMap()
-            } else {
-                self.showGlobalMap()
-            }
-        }
-    }
     
     @IBAction func zoomIn(_ sender: Any) {
         mapView.zoomLevel += 1
@@ -65,7 +44,7 @@ class MapViewController: UIViewController {
     }
     
     @IBAction func openDp3tLog(_ sender: Any) {
-        let logsController = BtLogsViewController(nib: R.nib.btLogsViewController)
+        let logsController = Dp3tLogsViewController(nib: R.nib.dp3tLogsViewController)
         
         rootViewController.navigationController?.present(logsController, animated: true)
     }
@@ -99,18 +78,13 @@ class MapViewController: UIViewController {
         mapView.delegate = self
         mapView.showsUserLocation = true
         
-        if #available(iOS 13.0, *) {
-            indicator.style = .large
-        }
+        goToMyLocation()
         
-        showLocalMap()
+        updateExtTracks()
+        updateContacts()
     }
     
     func updateUserTracks() {
-        guard isLocal() else {
-            return
-        }
-        
         print("Updating user tracks...")
         
         let polylines = makePolylines(TrackingManager.trackingData)
@@ -123,10 +97,6 @@ class MapViewController: UIViewController {
     }
     
     func updateExtTracks() {
-        guard isLocal() else {
-            return
-        }
-        
         print("Updating external tracks...")
         
         var sickPolylines: [[CLLocationCoordinate2D]] = []
@@ -188,47 +158,11 @@ class MapViewController: UIViewController {
         return polylines
     }
     
-    private func showLocalMap() {
-        indicator.hide()
-        
-        mkCountriesPoints.forEach(mapView.removeAnnotation)
-        
-        goToMyLocation(global: false)
-        
-        updateExtTracks()
-        updateContacts()
-    }
-    
-    private func showGlobalMap() {
-        let countriesRequest = URLRequest(url: URL(string: "https://services.arcgis.com/5T5nSi527N4F7luB/arcgis/" +
-            "rest/services/Cases_by_country_Plg_V3/FeatureServer/0/query?f=json&where=1%3D1&returnGeometry=false&" +
-            "spatialRel=esriSpatialRelIntersects&outFields=*&orderByFields=cum_conf%20desc&resultOffset=0&" +
-            "resultRecordCount=310&cacheHint=true")!)
-        
-        indicator.show()
-        AF.request(countriesRequest,
-                   interceptor: NetworkUtil.eternalRetry).responseDecodable(of: MapFeatureValue.self) { response in
-                    if let value = response.value {
-                        self.indicator.hide()
-                        self.updateCountriesInfo(with: value.features)
-                    } else if let error = response.error {
-                        print(error.localizedDescription)
-                    }
-        }
-        
-        mkSickPolylines.forEach(mapView.removeOverlay)
-        mkContactPoints.keys.forEach(mapView.removeAnnotation)
-        
-        goToMyLocation(global: true)
-    }
-    
-    private func goToMyLocation(global: Bool) {
+    private func goToMyLocation() {
         LocationManager.registerCallback { location in
             self.goToLocation(location)
             
-            let distance = global ?
-                MapViewController.globalLocationDistanceMeters :
-                MapViewController.localLocationDistanceMeters
+            let distance = MapViewController.myLocationDistanceMeters
             
             let region = MKCoordinateRegion(
                 center: location.coordinate,
@@ -242,68 +176,41 @@ class MapViewController: UIViewController {
         }
     }
     
-    private func updateCountriesInfo(with features: [MapFeature]) {
-        guard !isLocal() else {
-            return
+    func updateContacts() {
+        mkContactPoints.forEach(mapView.removeAnnotation)
+        mkContactPoints.removeAll()
+        
+        func addContactPoint(_ metaData: ContactMetaData, _ coord: ContactCoord) {
+            let annotation = MKPointAnnotation()
+            
+            annotation.coordinate = coord.coordinate()
+            let date = AppDelegate.dateFormatter.string(from: metaData.date)
+            annotation.title = R.string.localizable.contact_at_date(date)
+            
+            mkContactPoints.append(annotation)
         }
         
-        mkCountriesPoints.forEach(mapView.removeAnnotation)
-        
-        mkCountriesPoints = []
-        
-        features.forEach { feature in
-            if let lat = feature.attributes.CENTER_LAT,
-                let lng = feature.attributes.CENTER_LON {
-                
-                let annotation = MKPointAnnotation()
-                
-                annotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lng)
-                annotation.title = R.string.localizable.comma(
-                    R.string.localizable.count_cases(feature.attributes.cum_conf),
-                    R.string.localizable.count_deaths(feature.attributes.cum_death)
-                )
-                
-                mkCountriesPoints.append(annotation)
+        BtContactsManager.contacts.values.forEach { contact in
+            contact.encounters.forEach { encounter in
+                if let metaData = encounter.metaData,
+                    let coord = metaData.coord {
+                    addContactPoint(metaData, coord)
+                }
             }
         }
-        
-        mkCountriesPoints.forEach(mapView.addAnnotation)
-    }
-    
-    func updateContacts() {
-        guard isLocal() else {
-            return
-        }
-        
-        mkContactPoints.keys.forEach(mapView.removeAnnotation)
-        mkContactPoints.removeAll()
         
         QrContactsManager.contacts.forEach { contact in
             if let metaData = contact.metaData,
                 let coord = metaData.coord {
-                let annotation = MKPointAnnotation()
-                
-                annotation.coordinate = coord.coordinate()
-                let date = MapViewController.dateFormatter.string(from: metaData.date)
-                annotation.title = R.string.localizable.contact_at_date(date)
-                
-                mkContactPoints[annotation] = contact
+                addContactPoint(metaData, coord)
             }
         }
         
-        mkContactPoints.keys.forEach(mapView.addAnnotation)
+        mkContactPoints.forEach(mapView.addAnnotation)
     }
     
     func goToContact(_ coord: ContactCoord) {
-        if !isLocal() {
-            segmentedControl.selectedSegmentIndex = 0
-        }
-        
         goToLocation(CLLocation(latitude: coord.lat, longitude: coord.lng))
-    }
-    
-    private func isLocal() -> Bool {
-        return segmentedControl.selectedSegmentIndex == 0
     }
     
     private func goToLocation(_ location: CLLocation) {
@@ -333,32 +240,17 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard annotation is MKPointAnnotation else { return nil }
-        var annotationView: MKAnnotationView?
-        var identifier: String?
         
-        if let contact = mkContactPoints[annotation as! MKPointAnnotation] {
-            if contact.exposed {
-                identifier = "InfectedContactAnnotation"
-            } else {
-                identifier = "ContactAnnotation"
-            }
-            
-            annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier!)
-        } else {
-            identifier = "CountryAnnotation"
-            annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier!)
-        }
+        var annotationView: MKAnnotationView?
+        
+        annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: MapViewController.annotationIdentifier)
         
         if annotationView == nil {
-            let pinAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier!)
-            if identifier == "InfectedContactAnnotation" {
-                pinAnnotationView.pinTintColor = UIColor.systemRed
-            } else if identifier == "ContactAnnotation" {
-                pinAnnotationView.pinTintColor = UIColor.systemBlue
-            } else {
-                pinAnnotationView.pinTintColor = UIColor.systemYellow
-            }
-            
+            let pinAnnotationView = MKPinAnnotationView(
+                annotation: annotation,
+                reuseIdentifier: MapViewController.annotationIdentifier
+            )
+            pinAnnotationView.pinTintColor = UIColor.systemRed
             annotationView = pinAnnotationView
             annotationView!.canShowCallout = true
         } else {
