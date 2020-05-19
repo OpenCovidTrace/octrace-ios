@@ -2,11 +2,7 @@ import Alamofire
 
 class NetworkUtil {
     
-    #if DEVELOPMENT
     static let host = "dev.openexposuretrace.org"
-    #else
-    static let host = "openexposuretrace.org"
-    #endif
 
     private init() {
     }
