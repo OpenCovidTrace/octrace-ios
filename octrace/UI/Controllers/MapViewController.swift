@@ -271,7 +271,7 @@ extension MKMapView {
         }
         
         set (newZoomLevel) {
-            setCenterCoordinate(coordinate: centerCoordinate, zoomLevel: newZoomLevel, animated: true)
+            setCenterCoordinate(coordinate: centerCoordinate, zoomLevel: newZoomLevel, animated: false)
         }
     }
     
