@@ -48,6 +48,8 @@
 		FAAE8C92244E1506000882A1 /* BtLogsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE8C91244E1506000882A1 /* BtLogsManager.swift */; };
 		FAAE8C95244E171F000882A1 /* BtLogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE8C93244E171F000882A1 /* BtLogsViewController.swift */; };
 		FAAE8C96244E171F000882A1 /* BtLogsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAAE8C94244E171F000882A1 /* BtLogsViewController.xib */; };
+		FAC39817247535B000B6C1E5 /* Podfile.lock in Resources */ = {isa = PBXBuildFile; fileRef = FAC39815247535B000B6C1E5 /* Podfile.lock */; };
+		FAC39818247535B000B6C1E5 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = FAC39816247535B000B6C1E5 /* Podfile */; };
 		FAD74D0A2454DF2A00D3DCF2 /* LocationIndexManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD74D092454DF2A00D3DCF2 /* LocationIndexManager.swift */; };
 		FAD74D0C2458889C00D3DCF2 /* Dp3tLogsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD74D0B2458889C00D3DCF2 /* Dp3tLogsManager.swift */; };
 		FAD74D0F2458892E00D3DCF2 /* Dp3tLogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD74D0D2458892E00D3DCF2 /* Dp3tLogsViewController.swift */; };
@@ -104,6 +106,8 @@
 		FAAE8C91244E1506000882A1 /* BtLogsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BtLogsManager.swift; sourceTree = "<group>"; };
 		FAAE8C93244E171F000882A1 /* BtLogsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BtLogsViewController.swift; sourceTree = "<group>"; };
 		FAAE8C94244E171F000882A1 /* BtLogsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BtLogsViewController.xib; sourceTree = "<group>"; };
+		FAC39815247535B000B6C1E5 /* Podfile.lock */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; };
+		FAC39816247535B000B6C1E5 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		FAD74D092454DF2A00D3DCF2 /* LocationIndexManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationIndexManager.swift; sourceTree = "<group>"; };
 		FAD74D0B2458889C00D3DCF2 /* Dp3tLogsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dp3tLogsManager.swift; sourceTree = "<group>"; };
 		FAD74D0D2458892E00D3DCF2 /* Dp3tLogsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dp3tLogsViewController.swift; sourceTree = "<group>"; };
@@ -149,6 +153,8 @@
 		FA05711A2446412E00D39462 = {
 			isa = PBXGroup;
 			children = (
+				FAC39816247535B000B6C1E5 /* Podfile */,
+				FAC39815247535B000B6C1E5 /* Podfile.lock */,
 				FAEE90AC245319FD009A46E7 /* .swiftlint.yml */,
 				FA057148244644F800D39462 /* README.md */,
 				FA0571252446412E00D39462 /* octrace */,
@@ -340,8 +346,10 @@
 				FA057149244644F800D39462 /* README.md in Resources */,
 				FAAE8C96244E171F000882A1 /* BtLogsViewController.xib in Resources */,
 				FAD74D102458892E00D3DCF2 /* Dp3tLogsViewController.xib in Resources */,
+				FAC39817247535B000B6C1E5 /* Podfile.lock in Resources */,
 				FA3A89AC2453586D00A7A6E8 /* Localizable.strings in Resources */,
 				FA05712E2446412E00D39462 /* Main.storyboard in Resources */,
+				FAC39818247535B000B6C1E5 /* Podfile in Resources */,
 				FA05717724464AC200D39462 /* OnboardingViewController.xib in Resources */,
 				FA05717B24464AD000D39462 /* QrLinkViewController.xib in Resources */,
 				FA0571AD2448773A00D39462 /* GoogleService-Info.plist in Resources */,
