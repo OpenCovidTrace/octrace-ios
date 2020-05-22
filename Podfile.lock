@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (5.1.0)
+  - Alamofire (5.2.0)
   - AlamofireNetworkActivityIndicator (3.1.0):
     - Alamofire (~> 5.1)
   - BlueCryptor (1.0.32)
@@ -10,27 +10,27 @@ PODS:
     - SQLite.swift (~> 0.12)
     - SwiftJWT (~> 3.5)
     - SwiftProtobuf (~> 1.6)
-  - Firebase/Analytics (6.24.0):
+  - Firebase/Analytics (6.25.0):
     - Firebase/Core
-  - Firebase/Core (6.24.0):
+  - Firebase/Core (6.25.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 6.5.0)
-  - Firebase/CoreOnly (6.24.0):
-    - FirebaseCore (= 6.7.0)
-  - Firebase/Crashlytics (6.24.0):
+    - FirebaseAnalytics (= 6.5.1)
+  - Firebase/CoreOnly (6.25.0):
+    - FirebaseCore (= 6.7.1)
+  - Firebase/Crashlytics (6.25.0):
     - Firebase/CoreOnly
     - FirebaseCrashlytics (~> 4.1.0)
-  - FirebaseAnalytics (6.5.0):
+  - FirebaseAnalytics (6.5.1):
     - FirebaseCore (~> 6.7)
     - FirebaseInstallations (~> 1.2)
-    - GoogleAppMeasurement (= 6.5.0)
+    - GoogleAppMeasurement (= 6.5.1)
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (~> 1.30905.0)
   - FirebaseAnalyticsInterop (1.5.0)
-  - FirebaseCore (6.7.0):
+  - FirebaseCore (6.7.1):
     - FirebaseCoreDiagnostics (~> 1.3)
     - FirebaseCoreDiagnosticsInterop (~> 1.2)
     - GoogleUtilities/Environment (~> 6.5)
@@ -55,13 +55,13 @@ PODS:
     - GoogleUtilities/Environment (~> 6.6)
     - GoogleUtilities/UserDefaults (~> 6.6)
     - PromisesObjC (~> 1.2)
-  - GoogleAppMeasurement (6.5.0):
+  - GoogleAppMeasurement (6.5.1):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (~> 1.30905.0)
-  - GoogleDataTransport (6.1.0)
+  - GoogleDataTransport (6.1.1)
   - GoogleDataTransportCCTSupport (3.1.0):
     - GoogleDataTransport (~> 6.1)
     - nanopb (~> 1.30905.0)
@@ -108,7 +108,7 @@ PODS:
     - KituraContracts (~> 1.1)
     - LoggerAPI (~> 1.7)
   - SwiftLint (0.39.2)
-  - SwiftProtobuf (1.8.0)
+  - SwiftProtobuf (1.9.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -154,23 +154,23 @@ SPEC REPOS:
     - SwiftProtobuf
 
 SPEC CHECKSUMS:
-  Alamofire: 9d5c5f602928e512395b30950c5984eca840093c
+  Alamofire: c1ca147559e730bfb2182c8c7aafbdd90a867987
   AlamofireNetworkActivityIndicator: 6564782bd7b9e6c430ae67d9277af01907b01ca4
   BlueCryptor: b0aee3d9b8f367b49b30de11cda90e1735571c24
   BlueECC: 0d18e93347d3ec6d41416de21c1ffa4d4cd3c2cc
   BlueRSA: 6f9776d62d9773502415a7db3bcbb2bbb3f71fc3
   CryptoSwift: f12f037f6d0fcd6d48c96db0071b653de64e6c4d
   DP3TSDK: b398641ec3d1232ba35d79fab6cdbf00b9d2dec5
-  Firebase: b28e55c60efd98963cd9011fe2fac5a10c2ba124
-  FirebaseAnalytics: 7386fc2176e3f93ad8ef34b5b1f2b33a891e4962
+  Firebase: 5719b4f965f76643241a1bb8244483ff6117db39
+  FirebaseAnalytics: 93565f3f0f0f50a5d8770850bfe6a82eaba5db27
   FirebaseAnalyticsInterop: 3f86269c38ae41f47afeb43ebf32a001f58fcdae
-  FirebaseCore: e610482f64097b0e9f056cd97bc6b33dfabcbb6a
+  FirebaseCore: 6023faeada5afa95a349fccafb40900e32e9ac42
   FirebaseCoreDiagnostics: 4a773a47bd83bbd5a9b1ccf1ce7caa8b2d535e67
   FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
   FirebaseCrashlytics: fff345f16a07f0b23cb342d8de5a42cec6de3492
   FirebaseInstallations: 2119fb3e46b0a88bfdbf12562f855ee3252462fa
-  GoogleAppMeasurement: 4c644d86835d827bab30ab6aabb9ecaf1f500735
-  GoogleDataTransport: f6f8eba931df03ebd2232ff4645aa85f8f47b5ab
+  GoogleAppMeasurement: 137afe68bfa406c3f4221b9395253d9e5d4654cf
+  GoogleDataTransport: ad884314b81cdb808fb1d23787b367ff8da4e28a
   GoogleDataTransportCCTSupport: d70a561f7d236af529fee598835caad5e25f6d3d
   GoogleUtilities: 39530bc0ad980530298e9c4af8549e991fd033b1
   KituraContracts: e845e60dc8627ad0a76fa55ef20a45451d8f830b
@@ -183,7 +183,7 @@ SPEC CHECKSUMS:
   SQLite.swift: d2b4642190917051ce6bd1d49aab565fe794eea3
   SwiftJWT: 9a47a71090cae25767078756b5810e3b630aa9a7
   SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
-  SwiftProtobuf: 2cbd9409689b7df170d82a92a33443c8e3e14a70
+  SwiftProtobuf: ecbec1be9036d15655f6b3443a1c4ea693c97932
 
 PODFILE CHECKSUM: f1e2b9a9af45465542294547c749f41927e7d2e1
 
