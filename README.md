@@ -1,3 +1,5 @@
+[![Build Status](https://app.bitrise.io/app/0cb4eec51acf2327/status.svg?token=5o2L69cr8hiihqp06D193g&branch=master)](https://app.bitrise.io/app/0cb4eec51acf2327)
+
 # OpenCovidTrace iOS App
 
 Visit <https://opencovidtrace.org> to learn more.
