@@ -70,7 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          * DP3T integration
          */
         
-        let dp3tBackendUrl = URL(string: "https://demo.dpppt.org/")!
+        let dp3tBackendUrl = URL(string: "https://dp3t.\(NetworkUtil.host)/")!
         do {
             try DP3TTracing.initialize(
                 with: .manual(

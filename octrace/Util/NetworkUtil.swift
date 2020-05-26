@@ -2,7 +2,7 @@ import Alamofire
 
 class NetworkUtil {
     
-    static let host = "dev.openexposuretrace.org"
+    static let host = "dev.opencovidtrace.org"
 
     private init() {
     }
