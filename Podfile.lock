@@ -1,15 +1,15 @@
 PODS:
-  - Alamofire (5.2.0)
+  - Alamofire (5.2.1)
   - AlamofireNetworkActivityIndicator (3.1.0):
     - Alamofire (~> 5.1)
   - BlueCryptor (1.0.32)
   - BlueECC (1.2.5)
   - BlueRSA (1.0.34)
   - CryptoSwift (1.3.1)
-  - DP3TSDK (0.0.2):
-    - SQLite.swift (~> 0.12)
+  - DP3TSDK (0.4.0):
     - SwiftJWT (~> 3.5)
     - SwiftProtobuf (~> 1.6)
+    - ZIPFoundation (~> 0.9)
   - Firebase/Analytics (6.25.0):
     - Firebase/Core
   - Firebase/Core (6.25.0):
@@ -98,9 +98,6 @@ PODS:
   - R.swift (5.2.2):
     - R.swift.Library (~> 5.2.0)
   - R.swift.Library (5.2.0)
-  - SQLite.swift (0.12.2):
-    - SQLite.swift/standard (= 0.12.2)
-  - SQLite.swift/standard (0.12.2)
   - SwiftJWT (3.5.3):
     - BlueCryptor (~> 1.0)
     - BlueECC (~> 1.1)
@@ -109,6 +106,7 @@ PODS:
     - LoggerAPI (~> 1.7)
   - SwiftLint (0.39.2)
   - SwiftProtobuf (1.9.0)
+  - ZIPFoundation (0.9.11)
 
 DEPENDENCIES:
   - Alamofire
@@ -148,19 +146,19 @@ SPEC REPOS:
     - PromisesObjC
     - R.swift
     - R.swift.Library
-    - SQLite.swift
     - SwiftJWT
     - SwiftLint
     - SwiftProtobuf
+    - ZIPFoundation
 
 SPEC CHECKSUMS:
-  Alamofire: c1ca147559e730bfb2182c8c7aafbdd90a867987
+  Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
   AlamofireNetworkActivityIndicator: 6564782bd7b9e6c430ae67d9277af01907b01ca4
   BlueCryptor: b0aee3d9b8f367b49b30de11cda90e1735571c24
   BlueECC: 0d18e93347d3ec6d41416de21c1ffa4d4cd3c2cc
   BlueRSA: 6f9776d62d9773502415a7db3bcbb2bbb3f71fc3
   CryptoSwift: f12f037f6d0fcd6d48c96db0071b653de64e6c4d
-  DP3TSDK: b398641ec3d1232ba35d79fab6cdbf00b9d2dec5
+  DP3TSDK: b95202d4dae885bfd4dc34f76ad9f5867851f477
   Firebase: 5719b4f965f76643241a1bb8244483ff6117db39
   FirebaseAnalytics: 93565f3f0f0f50a5d8770850bfe6a82eaba5db27
   FirebaseAnalyticsInterop: 3f86269c38ae41f47afeb43ebf32a001f58fcdae
@@ -180,11 +178,11 @@ SPEC CHECKSUMS:
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   R.swift: 7c52cdc57a66840ffe6cbd8a823d732059d42a32
   R.swift.Library: 5ba4f1631300caf9a4d890186930da85d540769d
-  SQLite.swift: d2b4642190917051ce6bd1d49aab565fe794eea3
   SwiftJWT: 9a47a71090cae25767078756b5810e3b630aa9a7
   SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
   SwiftProtobuf: ecbec1be9036d15655f6b3443a1c4ea693c97932
+  ZIPFoundation: b1f0de4eed33e74a676f76e12559ab6b75990197
 
-PODFILE CHECKSUM: f1e2b9a9af45465542294547c749f41927e7d2e1
+PODFILE CHECKSUM: e0cb706b952e53724345be94abbeed953b77eaee
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.2

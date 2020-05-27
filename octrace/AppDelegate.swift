@@ -73,12 +73,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let dp3tBackendUrl = URL(string: "https://dp3t.\(NetworkUtil.host)/")!
         do {
             try DP3TTracing.initialize(
-                with: .manual(
-                    .init(appId: Bundle.main.bundleIdentifier!,
-                          bucketBaseUrl: dp3tBackendUrl,
-                          reportBaseUrl: dp3tBackendUrl,
-                          jwtPublicKey: nil)
-                )
+                with: .init(appId: Bundle.main.bundleIdentifier!,
+                            bucketBaseUrl: dp3tBackendUrl,
+                            reportBaseUrl: dp3tBackendUrl,
+                            jwtPublicKey: nil)
             )
             
             DP3TTracing.delegate = self

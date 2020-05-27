@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		44A619811F5AC4D47CDBE5D3 /* Pods_octrace_DEV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1A8BBD365D79BDF10195B3A /* Pods_octrace_DEV.framework */; };
+		136BCA1BCB61DA73517D9AA9 /* Pods_octrace_DEV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C48FC347EAAE8EF7ECA9BB5 /* Pods_octrace_DEV.framework */; };
 		B1B5D3E0245C7BA300D5D717 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B5D3DF245C7BA300D5D717 /* R.generated.swift */; };
 		FA0571272446412E00D39462 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0571262446412E00D39462 /* AppDelegate.swift */; };
 		FA05712B2446412E00D39462 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA05712A2446412E00D39462 /* RootViewController.swift */; };
@@ -58,12 +58,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		117D1C6D38F63D587FA1E1BD /* Pods-octrace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-octrace.release.xcconfig"; path = "Target Support Files/Pods-octrace/Pods-octrace.release.xcconfig"; sourceTree = "<group>"; };
-		15CB5B50BF58601BDC235F89 /* Pods-octrace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-octrace.debug.xcconfig"; path = "Target Support Files/Pods-octrace/Pods-octrace.debug.xcconfig"; sourceTree = "<group>"; };
+		2C48FC347EAAE8EF7ECA9BB5 /* Pods_octrace_DEV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_octrace_DEV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A48694C919555A0ACCCC1A3D /* Pods-octrace DEV.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-octrace DEV.debug.xcconfig"; path = "Target Support Files/Pods-octrace DEV/Pods-octrace DEV.debug.xcconfig"; sourceTree = "<group>"; };
 		B1B5D3DF245C7BA300D5D717 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
-		C1A8BBD365D79BDF10195B3A /* Pods_octrace_DEV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_octrace_DEV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C761838EBCA157C3CFEADE1F /* Pods-octrace DEV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-octrace DEV.release.xcconfig"; path = "Target Support Files/Pods-octrace DEV/Pods-octrace DEV.release.xcconfig"; sourceTree = "<group>"; };
-		E8132C6432B2B904E6C385FF /* Pods-octrace DEV.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-octrace DEV.debug.xcconfig"; path = "Target Support Files/Pods-octrace DEV/Pods-octrace DEV.debug.xcconfig"; sourceTree = "<group>"; };
+		D48095734213791F57BAC5C9 /* Pods-octrace DEV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-octrace DEV.release.xcconfig"; path = "Target Support Files/Pods-octrace DEV/Pods-octrace DEV.release.xcconfig"; sourceTree = "<group>"; };
 		FA0571232446412E00D39462 /* OCTrace DEV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OCTrace DEV.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA0571262446412E00D39462 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA05712A2446412E00D39462 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -122,7 +120,7 @@
 			files = (
 				FA057145244644DB00D39462 /* MapKit.framework in Frameworks */,
 				FA057147244644E300D39462 /* WebKit.framework in Frameworks */,
-				44A619811F5AC4D47CDBE5D3 /* Pods_octrace_DEV.framework in Frameworks */,
+				136BCA1BCB61DA73517D9AA9 /* Pods_octrace_DEV.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,7 +132,7 @@
 			children = (
 				FA057146244644E300D39462 /* WebKit.framework */,
 				FA057144244644DA00D39462 /* MapKit.framework */,
-				C1A8BBD365D79BDF10195B3A /* Pods_octrace_DEV.framework */,
+				2C48FC347EAAE8EF7ECA9BB5 /* Pods_octrace_DEV.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -142,10 +140,8 @@
 		EE8A3518629D67CBA90A5493 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				15CB5B50BF58601BDC235F89 /* Pods-octrace.debug.xcconfig */,
-				117D1C6D38F63D587FA1E1BD /* Pods-octrace.release.xcconfig */,
-				E8132C6432B2B904E6C385FF /* Pods-octrace DEV.debug.xcconfig */,
-				C761838EBCA157C3CFEADE1F /* Pods-octrace DEV.release.xcconfig */,
+				A48694C919555A0ACCCC1A3D /* Pods-octrace DEV.debug.xcconfig */,
+				D48095734213791F57BAC5C9 /* Pods-octrace DEV.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -285,12 +281,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA0571372446413000D39462 /* Build configuration list for PBXNativeTarget "octrace DEV" */;
 			buildPhases = (
-				9A8A38F6739D115A89B97C5B /* [CP] Check Pods Manifest.lock */,
+				63512AAB294F361728E1E0A9 /* [CP] Check Pods Manifest.lock */,
 				B1B5D3DD245C7A1200D5D717 /* Run RSwift */,
 				FA05711F2446412E00D39462 /* Sources */,
 				FA0571202446412E00D39462 /* Frameworks */,
 				FA0571212446412E00D39462 /* Resources */,
-				432B66A2517D31F1C6F9DDCF /* [CP] Embed Pods Frameworks */,
+				6A00FD2876A4A1AF4E0ABE9E /* [CP] Embed Pods Frameworks */,
 				FAEE90AB2453188D009A46E7 /* Run Swiftlint */,
 			);
 			buildRules = (
@@ -359,24 +355,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		432B66A2517D31F1C6F9DDCF /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-octrace DEV/Pods-octrace DEV-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-octrace DEV/Pods-octrace DEV-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-octrace DEV/Pods-octrace DEV-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9A8A38F6739D115A89B97C5B /* [CP] Check Pods Manifest.lock */ = {
+		63512AAB294F361728E1E0A9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -396,6 +375,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6A00FD2876A4A1AF4E0ABE9E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-octrace DEV/Pods-octrace DEV-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-octrace DEV/Pods-octrace DEV-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-octrace DEV/Pods-octrace DEV-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B1B5D3DD245C7A1200D5D717 /* Run RSwift */ = {
@@ -550,7 +546,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -604,7 +600,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -616,7 +612,7 @@
 		};
 		FA0571382446413000D39462 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E8132C6432B2B904E6C385FF /* Pods-octrace DEV.debug.xcconfig */;
+			baseConfigurationReference = A48694C919555A0ACCCC1A3D /* Pods-octrace DEV.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = octrace/OCTrace.entitlements;
@@ -625,7 +621,7 @@
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = S5ENNERNQZ;
 				INFOPLIST_FILE = octrace/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -641,7 +637,7 @@
 		};
 		FA0571392446413000D39462 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C761838EBCA157C3CFEADE1F /* Pods-octrace DEV.release.xcconfig */;
+			baseConfigurationReference = D48095734213791F57BAC5C9 /* Pods-octrace DEV.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = octrace/OCTrace.entitlements;
@@ -650,7 +646,7 @@
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = S5ENNERNQZ;
 				INFOPLIST_FILE = octrace/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
