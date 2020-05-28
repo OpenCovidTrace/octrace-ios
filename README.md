@@ -8,7 +8,7 @@ Visit <https://opencovidtrace.org> to learn more.
 
 DP3T switched to Exposure Notification Framework of Apple/Google which requires entitlements which are only available for official government/health organisations.
 
-Hence **this project development is on hold for now**, and we switched to other project which is focused solely **on our technology**:
+Hence **this project development is on hold for now**, and we switched to other project which is focused solely on **our technology**:
 
 https://github.com/OpenCovidTrace/oextrace-ios
 
